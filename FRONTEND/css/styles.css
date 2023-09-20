@@ -47,15 +47,16 @@ footer{
     background-color: #3500A6;
     height: 88px;
     color: white;
-    width: 100%;
+
     justify-content: space-between;
     text-align: center;
 }
 .contacto{
     flex: 1;
     text-align: left;
+    width: 40%;
 }
 .copyright{
     flex: 0;
-    width: 40%;
+    text-align: left;
 }
