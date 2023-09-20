@@ -27,8 +27,8 @@
         <label for="dni">DNI del profesor:</label>
         <input type="text" name="dni" required><br>
 
-        <label for="dni">Nombre del profesor:</label>
-        <input type="text" name="dni" required><br>
+        <label for="nombre">Nombre del profesor:</label>
+        <input type="text" name="nombre" required><br>
 
         <label for="apellidos">Apellidos del profesor:</label>
         <input type="text" name="apellidos" required><br>
@@ -37,7 +37,7 @@
         <input type="text" name="titulo_academico" required><br>
 
         <label for="foto">Foto (en proceso):</label>
-        <input type="text" name="apellidos"><br>
+        <input type="text" name="foto"><br>
 
         <input type="submit" value="Crear Profesor">
     </form>
