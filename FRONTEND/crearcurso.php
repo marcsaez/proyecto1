@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creacion</title>
-</head>
-<body>
-    <?php
-        if($_POST){
+<?php
+    include_once('funciones.php');
+    if($_POST){
             //COGEMOS LOS DATOS DEL FORMULARIO
             $nombre = $_POST['nombre'];
             $descripcion = $_POST['descripcion'];
@@ -18,6 +11,7 @@
             $fk_profesor = $_POST['fk_profesor'];
 
             $connection = abrirBBDD();
+            
             if ($connection){
                 insertarCurso($nombre,$descripcion,$horas,$inicio,$final,$activo,$fk_profesor,$connection);
             } else{
@@ -29,7 +23,3 @@
             header("Location: formulariocursos.php");
         }
     ?>
-    
-
-</body>
-</html>

@@ -1,4 +1,5 @@
 <?php
+    include_once('funciones.php');
     if($_POST){
         //COGEMOS LOS DATOS DEL FORMULARIO
         $dni = $_POST['dni'];
