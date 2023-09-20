@@ -11,7 +11,7 @@
     <a href="./formulariomodificarcursos.php"><h2>Modificar cursos</h2>
     <a href="./eliminarcurso.php"><h2>Eliminar cursos</h2>
     <a href="./formularioprofes.php"><h2>Crear Profesores</h2>
-    <a href="./eliminarcurso.php"><h2>Modifiar Profesores</h2>
+    <a href="./formulariomodificarprofes.php"><h2>Modificar Profesores</h2>
     <a href="./profesdesactivar.php"><h2>Desactivar Profesores</h2>
 </body>
 </html>

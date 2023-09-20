@@ -21,7 +21,7 @@
             <img src="./img/98-1.jpg" alt="fotoperfil" id="fotoperfil">
         </div>
     </header>
-<h2>Crear Nuevo Curso</h2>
+    <h2>Crear Nuevo Curso</h2>
 
     <form action="crearcurso.php" method="post">
         <label for="nombre">Nombre del Curso:</label>
