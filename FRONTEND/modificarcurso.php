@@ -1,11 +1,6 @@
 <?php
-// Conectarse a la base de datos (debes configurar tus credenciales)
-$conexion = new mysqli("localhost", "usuario", "contraseña", "basededatos");
-
-// Comprobar la conexión
-if ($conexion->connect_error) {
-    die("La conexión a la base de datos falló: " . $conexion->connect_error);
-}
+include_once('funciones.php');
+$conexion = abrirBBDD();
 
 // Obtener los datos enviados desde el formulario
 $codigo = $_POST['codigo'];

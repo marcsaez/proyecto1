@@ -27,9 +27,9 @@
         <label for="codigo">Selecciona un curso:</label>
         <select name="codigo">
             <?php
-            include_once('funciones.php')
+            include_once('funciones.php');
             // Esta funcion devuelve la conexion o false si no se establece la conexión
-            $conexion = abrirBBDD()
+            $conexion = abrirBBDD();
 
             // Consulta SQL para obtener la lista de cursos
             $consulta = "SELECT codigo, nombre FROM cursos";
