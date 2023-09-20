@@ -37,7 +37,7 @@
 
             // Generar las opciones del select
             while ($fila = $resultados->fetch_assoc()) {
-                echo "<option value='" . $fila['id'] . "'>" . $fila['nombre'] . "</option>";
+                echo "<option value='" . $fila['codigo'] . "'>" . $fila['nombre'] . "</option>";
             }
 
             // Cerrar la conexión a la base de datos
