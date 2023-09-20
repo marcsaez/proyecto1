@@ -8,12 +8,12 @@ if ($conexion->connect_error) {
 }
 
 // Obtener los datos enviados desde el formulario
-$curso_id = $_POST['curso_id'];
-$nuevo_nombre = $_POST['nuevo_nombre'];
-$nueva_descripcion = $_POST['nueva_descripcion'];
+$codigo = $_POST['codigo'];
+$nombre = $_POST['nombre'];
+$descripcion = $_POST['descripcion'];
 
 // Consulta SQL para actualizar el curso
-$consulta = "UPDATE cursos SET nombre='$nuevo_nombre', descripcion='$nueva_descripcion' WHERE id=$curso_id";
+$consulta = "UPDATE cursos SET nombre='$nombre', descripcion='$descripcion' WHERE codigo=$codigo";
 
 if ($conexion->query($consulta) === TRUE) {
     echo "Curso actualizado con éxito.";

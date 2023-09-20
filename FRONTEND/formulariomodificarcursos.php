@@ -23,7 +23,7 @@
     </header>
 <h2>Modificar Curso</h2>
 
-    <form method="post" action="procesar_modificacion.php">
+    <form method="post" action="modificarcurso.php">
         <label for="codigo">Selecciona un curso:</label>
         <select name="codigo">
             <?php
@@ -45,11 +45,11 @@
             ?>
         </select>
         <br>
-        <label for="nuevo_nombre">Nuevo nombre del curso:</label>
-        <input type="text" name="nuevo_nombre">
+        <label for="nombre">Nuevo nombre del curso:</label>
+        <input type="text" name="nombre">
         <br>
-        <label for="nueva_descripcion">Nueva descripción del curso:</label>
-        <textarea name="nueva_descripcion"></textarea>
+        <label for="descripcion">Nueva descripción del curso:</label>
+        <textarea name="descripcion"></textarea>
         <br>
         <input type="submit" value="Modificar Curso">
     </form>
