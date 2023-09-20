@@ -33,11 +33,11 @@
         <label for="horas">Horas:</label>
         <input type="number" name="horas" required><br>
 
-        <label for="inicio">Fecha de Inicio:</label>
-        <input type="date" name="inicio" required><br>
+        <label for="inicio">Fecha de Inicio: (AAAA-MM-DD)</label>
+        <input type="text" name="inicio" required><br>
 
-        <label for="final">Fecha de Finalización:</label>
-        <input type="date" name="final" required><br>
+        <label for="final">Fecha de Finalización: (AAAA-MM-DD)</label>
+        <input type="text" name="final" required><br>
 
         <label for="fk_profesor">DNI del Profesor:</label>
         <input type="text" name="fk_profesor" required><br>
