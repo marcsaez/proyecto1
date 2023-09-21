@@ -13,6 +13,7 @@ $consulta = "UPDATE profesor SET nombre = '$nombre', apellidos = '$apellidos', t
 
 if ($conexion->query($consulta) === TRUE) {
     echo "Curso actualizado con éxito.";
+    echo "<a href='menuadmin.php'>Volver al menu</a>";
 } else {
     echo "Error al actualizar el curso: " . $conexion->error;
 }

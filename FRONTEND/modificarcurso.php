@@ -12,6 +12,7 @@ $consulta = "UPDATE cursos SET nombre='$nombre', descripcion='$descripcion' WHER
 
 if ($conexion->query($consulta) === TRUE) {
     echo "Curso actualizado con éxito.";
+    echo "<a href='menuadmin.php'><p>Volver al menu</p></a>";
 } else {
     echo "Error al actualizar el curso: " . $conexion->error;
 }

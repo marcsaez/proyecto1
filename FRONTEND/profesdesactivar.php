@@ -13,7 +13,7 @@
     
 <header>
         <div class="header">
-            <img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo">
+            <a href="menuadmin.php"><img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo"></a>
             <h2 id="titulo">TECH ACADEMY</h2>
         </div>
         <div class="usuario">
