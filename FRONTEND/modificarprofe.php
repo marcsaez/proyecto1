@@ -9,7 +9,7 @@ $apellidos = $_POST['apellidos'];
 $titulo_academico = $_POST['titulo_academico'];
 
 // Consulta SQL para actualizar el profesor
-$consulta = "UPDATE profesor SET nombre = '$nombre', apellidos = '$apellidos', titulo_academico = '$titulo_academico' WHERE dni=$dni";
+$consulta = "UPDATE profesor SET nombre = '$nombre', apellidos = '$apellidos', titulo_academico = '$titulo_academico' WHERE dni = '$dni'";
 
 if ($conexion->query($consulta) === TRUE) {
     echo "Curso actualizado con éxito.";
