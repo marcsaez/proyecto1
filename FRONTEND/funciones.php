@@ -17,10 +17,12 @@ function insertarCurso($nombre, $descripcion, $horas, $inicio, $final, $activo, 
         $result = $connection->query($sql);
         if ($result->num_rows > 0) {
             // Si el usuario ya existe en la base de datos, mostramos un mensaje de error
+            echo "<a href='menuadmin.php'>Volver al menu</a>";
         ?>
         <script>
-            alert("EL CURSO YA ESTA CREADO!")
+            alert("EL CURSO YA ESTA CREADO!");
         </script>
+        
         <?php
 
         } else {
