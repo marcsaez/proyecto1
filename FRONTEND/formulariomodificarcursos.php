@@ -1,3 +1,9 @@
+<?php 
+    include("funciones.php");
+    if ($_POST){
+        modificarCurso();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +29,7 @@
     </header>
 <h2>Modificar Curso</h2>
 
-    <form method="post" action="modificarcurso.php">
+    <form method="post" action="">
         <label for="codigo">Selecciona un curso:</label>
         <select name="codigo">
             <?php

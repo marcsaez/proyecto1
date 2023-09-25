@@ -1,3 +1,9 @@
+<?php 
+    include("funciones.php");
+    if ($_POST){
+        eliminarCurso();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +26,7 @@
     </header>
 
     <h2>Desactivar curso:</h2>
-    <form method="POST" action="cursoseliminar.php">
+    <form method="POST" action="">
         <?php
             include_once("funciones.php");
             $conexion = abrirBBDD();

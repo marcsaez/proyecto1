@@ -1,3 +1,9 @@
+<?php 
+    include("funciones.php");
+    if ($_POST){
+        crearProfe();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +29,7 @@
     </header>
 <h2>Crear Nuevo Profesor</h2>
 
-    <form action="crearprofe.php" method="post">
+    <form action="" method="post">
         <label for="dni">DNI del profesor:</label>
         <input type="text" name="dni" required><br>
 

@@ -1,3 +1,9 @@
+<?php 
+    include("funciones.php");
+    if ($_POST){
+        eliminarprofes();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +30,7 @@
     </header>
     <h2>Desactivar Profesor:</h2>
 
-    <form method="POST" action="desactivarprofe.php">
+    <form method="POST" action="">
         <?php 
         include_once("funciones.php");
         $connection = abrirBBDD();

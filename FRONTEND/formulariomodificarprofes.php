@@ -1,3 +1,9 @@
+<?php 
+    include("funciones.php");
+    if ($_POST){
+        modificarProfe();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +29,7 @@
     </header>
 <h2>Modificar Profesor</h2>
 
-    <form method="post" action="modificarprofe.php">
+    <form method="post" action="">
         <label for="dni">Selecciona un/a profesor/a:</label>
         <select name="dni">
             <?php

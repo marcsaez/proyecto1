@@ -1,3 +1,9 @@
+<?php 
+    include("funciones.php");
+    if ($_POST){
+        crearcurso();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +29,7 @@
     </header>
     <h2>Crear Nuevo Curso</h2>
 
-    <form action="crearcurso.php" method="post">
+    <form action="" method="post">
         <label for="nombre">Nombre del Curso:</label>
         <input type="text" name="nombre" required><br>
 
