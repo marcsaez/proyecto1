@@ -243,49 +243,57 @@ function modificarProfe(){
 }
 
 function formularioRegistro() {
-        if($_POST) {
-            $conexion = abrirBBDD();
-            if($conexion == false) {
-                mysqli_connect_error();
+    if($_POST) {
+        $usuarioregistrado = false;
+        $conexion = abrirBBDD();
+        if($conexion == false) {
+            mysqli_connect_error();
+        }
+        else {
+
+            $imagen_path = moverImagen();
+            $contraseña = encriptacio();
+            $dni = $_POST['dni'];
+            $nombre = $_POST['nombre'];
+            $apellidos = $_POST['apellidos'];
+            $edad = $_POST['edad'];
+            $sql = "INSERT INTO alumnos (dni, nombre, apellidos, edad, contraseña, foto) VALUES ('$dni', '$nombre', '$apellidos', '$edad', '$contraseña', '$imagen_path')";
+            $sql2 = "SELECT dni FROM alumnos WHERE dni='$dni'";
+            $consulta = mysqli_query($conexion, $sql2);
+            $numlinias = mysqli_num_rows($consulta);
+            if($numlinias > 0) {
+                $usuarioregistrado = true;
+                ?>
+                <script>
+                    alert("¡Usuario registrado!")
+                </script>
+                <?php
             }
             else {
-                $imagen_path = moverImagen();
-                $contraseña = encriptacio();
-                $sql = "INSERT INTO alumnos (dni, nombre, apellidos, edad, contraseña, foto) VALUES('".$_POST['dni']."', '".$_POST['nombre']."', '".$_POST['apellidos']."', '".$_POST['edad']."', '".$contraseña."', '".$imagen_path."')";
-                $sql2 = "SELECT dni FROM alumnos WHERE dni='".$_POST['dni']."';";
-                $consulta = mysqli_query($conexion, $sql2);
-                $numlinias = mysqli_num_rows($consulta);
-                if($numlinias > 0) {
-                    ?>
-
-                    <script>
-                        alert("¡Usuario registrado!")
-                    </script>
-                    <?php
-                }
-                else {
-                    $consulta = mysqli_query($conexion, $sql);
-                }
+                $consulta = mysqli_query($conexion, $sql);
+                header("Location: listarcursos.php?registro_exitoso=true");
             }
         }
-        //Si no existeix l'array POST entra al un formulari
-        else {
-            formularioRegistro();
-        }
+    }
+    //Si no existeix l'array POST entra al un formulari
+    else {
+        formularioRegistro();
+    }
+    return $usuarioregistrado;
 }
 
 function moverImagen() {
-    $imagen_ext = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
-    $imagen_path = 'img/perfiles/' . $_POST['dni'] .'.'. $imagen_ext;
-    move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_path);
+$imagen_ext = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+$imagen_path = 'img/perfiles/' . $_POST['dni'] .'.'. $imagen_ext;
+move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_path);
 
-    return $imagen_path;
+return $imagen_path;
 }
 
 function encriptacio() {
-    $contraseña = $_POST['contraseña'];
-    $contraseña_encriptada = password_hash($contraseña, PASSWORD_BCRYPT);
+$contraseña = $_POST['contraseña'];
+$contraseña_encriptada = password_hash($contraseña, PASSWORD_BCRYPT);
 
-    return $contraseña_encriptada;
+return $contraseña_encriptada;
 }
 ?>

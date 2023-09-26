@@ -6,17 +6,15 @@ document.addEventListener("DOMContentLoaded", function(){
         "Una lastima, no has ganado nada..."
     ];
 
-    const registrar = document.getElementById("registrar");
+    const url = new URLSearchParams(window.location.search);
 
-    registrar.addEventListener("click", function(){
-        
+    if (url.has("registro_exitoso")){
         function concursoaleatorio(){
             const aleatorio = Math.floor(Math.random() * frases.length);
             const fraserandom = frases[aleatorio];
             alert("Concurso por novato:\n\n"+fraserandom);
-            window.location.href = "listarcursos.php";
+            
         }
-    
         concursoaleatorio();
+    }
     });
-});

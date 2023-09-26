@@ -1,5 +1,8 @@
 <?php
     include_once("funciones.php");
+    if($_POST){
+        formularioRegistro();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,11 +10,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <script src = "./js/concurso.js"></script>
 </head>
 <body>
 
-<form enctype="multipart/form-data" action="" method="POST">
+<form enctype="multipart/form-data" action="" method="POST" id="registrofrom">
             <table>
                 <tr>
                     <td> <label for="nombre">Nombre:</label> </td> <td> <input type="text" name="nombre" id="nombre" required> </td>
