@@ -2,7 +2,7 @@
 
 function abrirBBDD(){
     try {
-        $connection = mysqli_connect("localhost", "root", "", "tech_academy");
+        $connection = mysqli_connect("localhost", "super", "P4ssword!", "tech_academy");
         return $connection;
     } 
     catch (Exception $e) {

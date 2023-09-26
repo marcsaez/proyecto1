@@ -30,26 +30,16 @@
             echo '<p> ERROR </p>';
         }
         else {
-            #echo '<p> HOLA </p>';
-            // Contador para rastrear el número de cursos mostrados
-            $contador = 0;
             $sql = "SELECT * FROM cursos WHERE activo=1";
             $result = $conexion->query($sql);
             if ($result->num_rows > 0) {
-                echo '<div class="curso-container">';
+                echo '<div class="curso-wrapper">';
                 while ($row = $result->fetch_assoc()) {
                     echo '<div class="curso">';
                     echo '<h2>' . $row['nombre'] . '</h2>';
                     echo '<p>' . $row['descripcion'] . '</p>';
                     echo '<p>' . $row['horas'] . '</p>';
                     echo '</div>';
-                // Incrementa el contador
-                    $contador++;
-                    // Cierra el bloque de tres cursos y abre uno nuevo cada vez que se alcanza el tercer curso
-                    if ($contador % 3 == 0) {
-                        echo '</div>';
-                        echo '<div class="curso-container">';
-                    }
                 }
                 echo '</div>';
             } else {
