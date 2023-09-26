@@ -8,6 +8,7 @@ CREATE TABLE PROFESOR (
     nombre VARCHAR(255) NOT NULL,
     apellidos VARCHAR(255) NOT NULL,
     titulo_academico VARCHAR(255),
+    contraseña VARCHAR(255) NOT NULL,
     foto VARCHAR(255),
     activo BOOLEAN
 );
@@ -18,6 +19,7 @@ CREATE TABLE ALUMNOS (
     nombre VARCHAR(255) NOT NULL,
     apellidos VARCHAR(255) NOT NULL,
     edad INT,
+    contraseña VARCHAR(255) NOT NULL,
     foto VARCHAR(255)
 );
 
@@ -37,6 +39,7 @@ CREATE TABLE CURSOS (
     inicio DATE,
     final DATE,
     activo BOOLEAN,
+    foto VARCHAR(255),
     fk_profesor VARCHAR(10),
     FOREIGN KEY (fk_profesor) REFERENCES PROFESOR(dni)
 );
