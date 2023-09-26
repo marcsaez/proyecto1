@@ -2,7 +2,7 @@
 
 function abrirBBDD(){
     try {
-        $connection = mysqli_connect("localhost", "super", "P4ssword!", "tech_academy");
+        $connection = mysqli_connect("localhost", "root", "", "tech_academy");
         return $connection;
     } 
     catch (Exception $e) {
@@ -240,5 +240,57 @@ function modificarProfe(){
     } else {
         echo "Error al actualizar el curso: " . $conexion->error;
     }
+}
+
+function formularioRegistro() {
+    ?>
+        <form enctype="multipart/form-data" action="signup.php" method="POST">
+            <table>
+                <tr>
+                    <td> <label for="nombre">Nombre:</label> </td> <td> <input type="text" name="nombre" id="nombre" required> </td>
+                </tr>
+                <tr>
+                    <td> <label for="apellidos">Apellidos:</label> </td> <td> <input type="text" name="apellidos" id="apellidos" required> </td>
+                </tr>
+                <tr>
+                    <td> <label for="edad">Edad:</label> </td> <td> <input type="text" name="edad" id="edad" required> </td>
+                </tr>
+                <tr>
+                    <td> <label for="dni">DNI:</label> </td> <td> <input type="text" name="dni" id="dni" required> </td>
+                </tr>
+                <tr>
+                    <td> <label for="contraseña">Contraseña:</label> </td> <td> <input type="password" name="contraseña" id="contraseña" required> </td>
+                </tr>
+                <tr>
+                    <td> <label for="imagen">Foto de perfil:</label> </td> <td> <input type="file" name="imagen" id="imagen" accept="img/*"> </td>
+                </tr>
+                <tr>
+                    <td id="registrar" style="text-align:center" colspan="2"> 
+                        <input type="submit" name="Aceptar" value="Aceptar">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center" colspan="2">
+                        <a href="login.php">Inicio de sesión</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    <?php
+}
+
+function moverImagen() {
+    $imagen_ext = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+    $imagen_path = 'img/perfiles/' . $_POST['dni'] .'.'. $imagen_ext;
+    move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_path);
+
+    return $imagen_path;
+}
+
+function encriptacio() {
+    $contraseña = $_POST['contraseña'];
+    $contraseña_encriptada = password_hash($contraseña, PASSWORD_BCRYPT);
+
+    return $contraseña_encriptada;
 }
 ?>
