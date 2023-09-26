@@ -48,6 +48,9 @@
         <label for="fk_profesor">DNI del Profesor:</label>
         <input type="text" name="fk_profesor" required><br>
 
+        <label for="imagen">Imagen del curso (solo formato PNG):</label>
+        <input type="file" name="imagen" accept=".png"><br>
+        
         <input type="submit" value="Crear Curso">
     </form>
 

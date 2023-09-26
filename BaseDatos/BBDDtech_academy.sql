@@ -33,6 +33,7 @@ CREATE TABLE administradores (
 CREATE TABLE cursos (
     codigo INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
+    imagen VARCHAR(255),
     descripcion TEXT,
     horas INT,
     inicio DATE,
