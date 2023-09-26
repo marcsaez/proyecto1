@@ -53,3 +53,7 @@ CREATE TABLE matriculados (
 
 -- Crear registro en ADMINISTRADORES
 INSERT INTO administradores (usuario, contraseña) VALUES ('admin', 'admin');
+
+-- Usuario admin
+create user "super" identified by "P4ssword!";
+grant all privileges on tech_academy.* to "super";
