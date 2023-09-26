@@ -25,6 +25,7 @@
     <a href="./formularioprofes.php"><h2>Crear Profesores</h2></a>
     <a href="./formulariomodificarprofes.php"><h2>Modificar Profesores</h2></a>
     <a href="./profesdesactivar.php"><h2>Desactivar Profesores</h2></a>
+    <a href="./listarcursos.php"><h2>Listar Cursos</h2></a>
 
     <footer>
         <div class="contacto">

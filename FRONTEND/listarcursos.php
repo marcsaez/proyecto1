@@ -22,36 +22,41 @@
         </div>
     </header>
     <?php
-    $sql = "SELECT * FROM cursos";
-    $result = $conn->query($sql);
-
-    // Contador para rastrear el número de cursos mostrados
-    $contador = 0;
-
-    // Si hay resultados, muestra los cursos en bloques de tres
-    if ($result->num_rows > 0) {
-        echo '<div class="curso-container">';
-        while ($row = $result->fetch_assoc()) {
-            echo '<div class="curso">';
-            echo '<h2>' . $row['nombre'] . '</h2>';
-            echo '<p>' . $row['descripcion'] . '</p>';
-            echo '</div>';
-            
-            // Incrementa el contador
-            $contador++;
-            
-            // Cierra el bloque de tres cursos y abre uno nuevo cada vez que se alcanza el tercer curso
-            if ($contador % 3 == 0) {
-                echo '</div>';
+        include_once('funciones.php');
+#        // Esta funcion devuelve la conexion o false si no se establece la conexión
+        $conexion = abrirBBDD();
+        if($conexion == false) {
+            mysqli_connect_error();
+            echo '<p> ERROR </p>';
+        }
+        else {
+            #echo '<p> HOLA </p>';
+            // Contador para rastrear el número de cursos mostrados
+            $contador = 0;
+            $sql = "SELECT * FROM cursos WHERE activo=1";
+            $result = $conexion->query($sql);
+            if ($result->num_rows > 0) {
                 echo '<div class="curso-container">';
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="curso">';
+                    echo '<h2>' . $row['nombre'] . '</h2>';
+                    echo '<p>' . $row['descripcion'] . '</p>';
+                    echo '<p>' . $row['horas'] . '</p>';
+                    echo '</div>';
+                // Incrementa el contador
+                    $contador++;
+                    // Cierra el bloque de tres cursos y abre uno nuevo cada vez que se alcanza el tercer curso
+                    if ($contador % 3 == 0) {
+                        echo '</div>';
+                        echo '<div class="curso-container">';
+                    }
+                }
+                echo '</div>';
+            } else {
+                echo "No se encontraron cursos.";
             }
         }
-        echo '</div>';
-    } else {
-        echo "No se encontraron cursos.";
-    }
     ?>
-
     <footer>
         <div class="contacto">
             <p>consultas@techacademy.com</p>
