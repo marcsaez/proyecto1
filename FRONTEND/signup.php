@@ -10,11 +10,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="./css/inicio.css">
 </head>
 <body>
 
 <form enctype="multipart/form-data" action="" method="POST" id="registrofrom">
             <table>
+                <tr>
+                    <td class="imagen" colspan="2"> <img src="./img/TECHrecortada.png" alt="Descripción de la imagen"></td>
+                </tr>
                 <tr>
                     <td> <label for="nombre">Nombre:</label> </td> <td> <input type="text" name="nombre" id="nombre" required> </td>
                 </tr>
@@ -35,7 +39,7 @@
                 </tr>
                 <tr>
                     <td id="registrar" style="text-align:center" colspan="2"> 
-                        <input type="submit" name="Aceptar" value="Aceptar" id="registrar">
+                        <input type="submit" name="Sign Up" value="Sign Up" id="registrar">
                     </td>
                 </tr>
                 <tr>

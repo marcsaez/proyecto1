@@ -1,0 +1,24 @@
+body {
+    background-image: url('../img/fondo.jpg');
+    background-size: 100%;
+}
+
+table {
+    background-color: #3500A6;
+    color: white;
+    font-weight: bold;
+    padding: 1%;
+    border-radius: 5%;
+}
+
+td {
+    padding-top: 2%;
+}
+
+img {
+    width: 20%;
+}
+
+.imagen {
+    align-items: center;
+}

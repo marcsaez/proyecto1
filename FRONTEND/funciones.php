@@ -274,12 +274,12 @@ function formularioRegistro() {
                 header("Location: listarcursos.php?registro_exitoso=true");
             }
         }
-    }
-    //Si no existeix l'array POST entra al un formulari
-    else {
-        formularioRegistro();
-    }
-    return $usuarioregistrado;
+        }
+        //Si no existeix l'array POST entra al un formulari
+        else {
+            formularioRegistro();
+        }
+        return $usuarioregistrado;
 }
 
 function moverImagen() {
