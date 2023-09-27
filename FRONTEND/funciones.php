@@ -315,6 +315,10 @@ function listarCursos(){
                     echo '<h2>' . $row['nombre'] . '</h2>';
                     echo '<p>' . $row['descripcion'] . '</p>';
                     echo '<p>' . $row['horas'] . '</p>';
+                    echo '<form action="paginacurso.php" method="POST">';
+                    echo '<input type="hidden" name="curso_id" value="' . $row['id'] . '">';
+                    echo '<button type="submit" name="ver_curso">Ver Curso</button>';
+                    echo '</form>';
                     echo '</div>';
                 }
                 echo '</div>';
