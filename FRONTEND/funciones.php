@@ -363,7 +363,7 @@ function contenido($conexion, $sql) {
 function verificarContraseña($contraseña, $contraseñaBBDD) {
     return password_verify($contraseña, $contraseñaBBDD);
 }
-
+// CREAR UNA FUNCION IGUAL PARA PROFESORES
 function sessionAbrir($dni){
     $conexion = abrirBBDD();
 
