@@ -12,7 +12,7 @@ function abrirBBDD(){
     }
     }
 
-function insertarCurso($nombre, $descripcion, $horas, $inicio, $final, $activo, $fk_profesor,$connection){
+function insertarCurso($nombre, $descripcion, $horas, $inicio, $final, $activo, $imagen, $fk_profesor,$connection){
     $sql = "SELECT * FROM cursos WHERE nombre = '$nombre'";
         $result = $connection->query($sql);
         if ($result->num_rows > 0) {
@@ -27,7 +27,7 @@ function insertarCurso($nombre, $descripcion, $horas, $inicio, $final, $activo, 
 
         } else {
             // Si el usuario no existe en la base de datos, lo insertamos
-            $sql = "INSERT INTO cursos (nombre, descripcion, horas, inicio, final, activo, fk_profesor) VALUES ('$nombre', '$descripcion','$horas', '$inicio', '$final','$activo', '$fk_profesor')";
+            $sql = "INSERT INTO cursos (nombre, descripcion, horas, inicio, final, activo, foto, fk_profesor) VALUES ('$nombre', '$descripcion','$horas', '$inicio', '$final','$activo', '$imagen', '$fk_profesor')";
     
         if ($connection->query($sql) === TRUE) {
             // Si se ha insertado el usuario correctamente, mostramos un mensaje de éxito
@@ -75,11 +75,12 @@ function crearcurso(){
         $final = $_POST['final'];
         $activo = true;
         $fk_profesor = $_POST['fk_profesor'];
+        $imagen = moverImagenR("cursos", $_POST['imagen']);
 
         $connection = abrirBBDD();
         
         if ($connection){
-            insertarCurso($nombre,$descripcion,$horas,$inicio,$final,$activo,$fk_profesor,$connection);
+            insertarCurso($nombre,$descripcion,$horas,$inicio,$final,$activo,$imagen,$fk_profesor,$connection);
         } else{
             header("Location: formulariocursos.php");
         }
@@ -251,7 +252,7 @@ function formularioRegistro() {
         }
         else {
 
-            $imagen_path = moverImagen();
+            $imagen_path = moverImagenR("perfiles", $_POST['dni']);
             $contraseña = encriptacio();
             $dni = $_POST['dni'];
             $nombre = $_POST['nombre'];
@@ -289,6 +290,14 @@ move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_path);
 
 return $imagen_path;
 }
+
+function moverImagenR($path, $name) {
+    $imagen_ext = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+    $imagen_path = 'img/'. $path .'/' . $name .'.'. $imagen_ext;
+    move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_path);
+    
+    return $imagen_path;
+    }
 
 function encriptacio() {
 $contraseña = $_POST['contraseña'];
