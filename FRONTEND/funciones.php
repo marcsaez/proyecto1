@@ -274,12 +274,12 @@ function formularioRegistro() {
                 header("Location: listarcursos.php?registro_exitoso=true");
             }
         }
-        }
-        //Si no existeix l'array POST entra al un formulari
-        else {
-            formularioRegistro();
-        }
-        return $usuarioregistrado;
+    }
+    //Si no existeix l'array POST entra al un formulari
+    else {
+        formularioRegistro();
+    }
+    return $usuarioregistrado;
 }
 
 function moverImagen() {
@@ -362,5 +362,36 @@ function contenido($conexion, $sql) {
 
 function verificarContraseña($contraseña, $contraseñaBBDD) {
     return password_verify($contraseña, $contraseñaBBDD);
+}
+// CREAR UNA FUNCION IGUAL PARA PROFESORES
+function sessionAbrir($dni){
+    $conexion = abrirBBDD();
+
+    $sql = "SELECT * FROM alumnos WHERE dni = '$dni'";
+    $result = $conexion->query($sql);
+    $lineas = $result -> fetch_assoc();
+
+    $nombre = $lineas['nombre'];
+    $apellidos = $lineas['apellidos'];
+    $edad = $lineas['edad'];
+    $foto = $lineas['foto'];
+
+    $datos = array(
+        'nombre'=>$nombre,
+        'apellidos' => $apellidos,
+        'edad' => $edad, 
+        'foto' => $foto
+    );
+
+    return $datos;
+}
+
+function datosUserVisibles($datos){
+    echo "<div class='usuario'>";
+    echo "<p id='username' >";
+    echo $datos['nombre']. ' ' .$datos['apellidos'] ;
+    echo "</p>";
+    echo "<img src='./".$datos['foto']."' alt='fotoperfil' id='fotoperfil'>";
+    echo "</div>";
 }
 ?>
