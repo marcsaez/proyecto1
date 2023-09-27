@@ -27,7 +27,7 @@ session_start();
                     $_SESSION['dni'] = $_POST['dni'];
                     $_SESSION['contraseña'] = $_POST['contraseña'];
                     ?>
-                    <!-- <meta http-equiv="REFRESH" content="10;url=menuadmin.php"> -->
+                    <meta http-equiv="REFRESH" content="0;url=listarcursos.php">
                     <?php
                 }
                 else {
