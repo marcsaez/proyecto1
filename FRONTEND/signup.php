@@ -13,8 +13,9 @@
     <link rel="stylesheet" type="text/css" href="./css/inicio.css">
 </head>
 <body>
-
-<form enctype="multipart/form-data" action="" method="POST" id="registrofrom">
+    <div>
+        <h1>INICIO DE SESIÓN</h1>
+        <form enctype="multipart/form-data" action="" method="POST" id="registrofrom">
             <table>
                 <tr>
                     <td class="imagen" colspan="2"> <img src="./img/TECHrecortada.png" alt="Descripción de la imagen"></td>
@@ -49,5 +50,6 @@
                 </tr>
             </table>
         </form>
+    </div>
 </body>
 </html>

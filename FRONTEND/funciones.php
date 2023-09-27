@@ -394,8 +394,4 @@ function datosUserVisibles($datos){
     echo "<img src='./".$datos['foto']."' alt='fotoperfil' id='fotoperfil'>";
     echo "</div>";
 }
-<<<<<<< HEAD
 ?>
-=======
-?>
->>>>>>> c6841140521bdb15e596aadabbb2541cdb46d2f1
