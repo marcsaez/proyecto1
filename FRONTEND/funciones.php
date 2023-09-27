@@ -296,4 +296,32 @@ $contraseña_encriptada = password_hash($contraseña, PASSWORD_BCRYPT);
 
 return $contraseña_encriptada;
 }
+
+
+// LISTAR CURSOS
+function listarCursos(){
+    $conexion = abrirBBDD();
+        if($conexion == false) {
+            mysqli_connect_error();
+            echo '<p> ERROR </p>';
+        }
+        else {
+            $sql = "SELECT * FROM cursos WHERE activo=1";
+            $result = $conexion->query($sql);
+            if ($result->num_rows > 0) {
+                echo '<div class="curso-wrapper">';
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="curso">';
+                    echo '<h2>' . $row['nombre'] . '</h2>';
+                    echo '<p>' . $row['descripcion'] . '</p>';
+                    echo '<p>' . $row['horas'] . '</p>';
+                    echo '</div>';
+                }
+                echo '</div>';
+            } else {
+                echo "No se encontraron cursos.";
+            }
+        }
+    
+}
 ?>
