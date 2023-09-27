@@ -22,6 +22,7 @@ header {
     align-items: center;
     width: 180px;
     justify-content: space-between;
+    margin-left: 2%;
 }
 #titulo {
     font-family: Russo One;
@@ -30,9 +31,10 @@ header {
 }
 #username {
     font-size: 15px;
-    margin: 0;
     text-align: right;
-    margin-right: 3%;
+    width: 180px;
+    margin-right: 5%;
+
 }
 #fotoperfil {
     width: 48px;
