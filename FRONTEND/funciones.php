@@ -337,7 +337,7 @@ function mostrarCurso($codigo){
             $sql = "SELECT * FROM cursos WHERE codigo=$codigo";
             $result = $conexion->query($sql);
             $curso=$result->fetch_assoc();
-            echo '<div class="curso">';
+            echo '<div class="paginacurso">';
             echo '<h2>' . $curso['nombre'] . '</h2>';
             echo '<p>' . $curso['descripcion'] . '</p>';
             echo '<p>' . $curso['horas'] . '</p>';
