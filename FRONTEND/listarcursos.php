@@ -1,3 +1,9 @@
+<?php 
+    session_start();
+    $dni = $_SESSION['dni'];
+    include_once('funciones.php');
+    $datos = sessionAbrir($dni);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,14 +22,11 @@
         <a href="menuadmin.php"><img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo"></a>
             <h2 id="titulo">TECH ACADEMY</h2>
         </div>
-        <div class="usuario">
-            <!-- FOTO DE PRUEBA PARA MEDIDAS (HAY QUE SACARLA DE LA BBDD) -->
-            <p id="username" >Pablo de Gregorio</p>
-            <img src="./img/98-1.jpg" alt="fotoperfil" id="fotoperfil">
-        </div>
+        <?php 
+            datosUserVisibles($datos);
+        ?>
     </header>
     <?php
-        include_once('funciones.php');
         listarCursos()
         
     ?>

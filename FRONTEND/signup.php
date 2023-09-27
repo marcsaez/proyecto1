@@ -17,6 +17,9 @@
 <form enctype="multipart/form-data" action="" method="POST" id="registrofrom">
             <table>
                 <tr>
+                    <td class="imagen" colspan="2"> <img src="./img/TECHrecortada.png" alt="Descripción de la imagen"></td>
+                </tr>
+                <tr>
                     <td> <label for="nombre">Nombre:</label> </td> <td> <input type="text" name="nombre" id="nombre" required> </td>
                 </tr>
                 <tr>
