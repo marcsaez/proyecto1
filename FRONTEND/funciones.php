@@ -321,7 +321,42 @@ function listarCursos(){
             } else {
                 echo "No se encontraron cursos.";
             }
-        }
+        } 
+}
+
+function formularioInicio() {
+    ?>
+    <form enctype="multipart/form-data" action="login.php" method="POST">
+        <table>
+            <tr>
+                <td> <label for="dni">DNI:</label> </td> <td> <input type="text" name="dni" id="dni" required> </td>
+            </tr>
+            <tr>
+                <td> <label for="contraseña">Contraseña:</label> </td> <td> <input type="password" name="contraseña" id="contraseña" required> </td>
+            </tr>
+            <tr>
+                <td id="iniciar" style="text-align:center" colspan="2"> 
+                    <input type="submit" name="Aceptar" value="Aceptar">
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center" colspan="2">
+                    <a href="signup.php">Registrarse</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <?php
+}
+
+function contenido($conexion, $sql) {
+    $consulta = mysqli_query($conexion, $sql);
+    $linia = mysqli_fetch_array($consulta);
     
+    return $linia[0];
+}
+
+function verificarContraseña($contraseña, $contraseñaBBDD) {
+    return password_verify($contraseña, $contraseñaBBDD);
 }
 ?>
