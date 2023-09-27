@@ -363,4 +363,35 @@ function contenido($conexion, $sql) {
 function verificarContraseña($contraseña, $contraseñaBBDD) {
     return password_verify($contraseña, $contraseñaBBDD);
 }
+
+function sessionAbrir($dni){
+    $conexion = abrirBBDD();
+
+    $sql = "SELECT * FROM alumnos WHERE dni = '$dni'";
+    $result = $conexion->query($sql);
+    $lineas = $result -> fetch_assoc();
+
+    $nombre = $lineas['nombre'];
+    $apellidos = $lineas['apellidos'];
+    $edad = $lineas['edad'];
+    $foto = $lineas['foto'];
+
+    $datos = array(
+        'nombre'=>$nombre,
+        'apellidos' => $apellidos,
+        'edad' => $edad, 
+        'foto' => $foto
+    );
+
+    return $datos;
+}
+
+function datosUserVisibles($datos){
+    echo "<div class='usuario'>";
+    echo "<p id='username' >";
+    echo $datos['nombre']. ' ' .$datos['apellidos'] ;
+    echo "</p>";
+    echo "<img src='./".$datos['foto']."' alt='fotoperfil' id='fotoperfil'>";
+    echo "</div>";
+}
 ?>
