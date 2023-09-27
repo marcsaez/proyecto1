@@ -14,7 +14,7 @@
 </head>
 <body>
     <div>
-        <h1>INICIO DE SESIÓN</h1>
+        <h1>REGISTRO</h1>
         <form enctype="multipart/form-data" action="" method="POST" id="registrofrom">
             <table>
                 <tr>
