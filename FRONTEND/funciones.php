@@ -316,7 +316,7 @@ function listarCursos(){
                     echo '<p>' . $row['descripcion'] . '</p>';
                     echo '<p>' . $row['horas'] . '</p>';
                     echo '<form action="paginacurso.php" method="POST">';
-                    echo '<input type="hidden" name="curso_id" value="' . $row['codigo'] . '">';
+                    echo '<input type="hidden" name="codigo" value="' . $row['codigo'] . '">';
                     echo '<button type="submit" name="ver_curso">Ver Curso</button>';
                     echo '</form>';
                     echo '</div>';
@@ -327,6 +327,24 @@ function listarCursos(){
             }
         } 
 }
+
+function mostrarCurso($codigo){
+    $conexion = abrirBBDD();
+        if($conexion == false) {
+            mysqli_connect_error();
+        }
+        else {
+            $sql = "SELECT * FROM cursos WHERE codigo=$codigo";
+            $result = $conexion->query($sql);
+            $curso=$result->fetch_assoc();
+            echo '<div class="paginacurso">';
+            echo '<h2>' . $curso['nombre'] . '</h2>';
+            echo '<p>' . $curso['descripcion'] . '</p>';
+            echo '<p>' . $curso['horas'] . '</p>';
+            echo '</div>';
+        }
+}
+
 
 function formularioInicio() {
     ?>
