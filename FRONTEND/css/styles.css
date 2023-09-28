@@ -1,78 +1,85 @@
 header {
-    display: flex;
-    background-color: #3500A6;
-    height: 88px;
-    color: white;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  background-color: #3500A6;
+  height: 88px;
+  color: white;
+  justify-content: space-between;
 }
+
 #logo {
-    height: 80px;
-    width: 91px;
-    margin-left: 2%;
-    
+  height: 80px;
+  width: 91px;
+  margin-left: 2%;
 }
-.header{
-    display: flex;
-    align-items: center;
-    width: 300px;
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 300px;
 }
-.usuario{
-    display: flex;
-    align-items: center;
-    width: 180px;
-    justify-content: space-between;
-    margin-left: 2%;
+
+.usuario {
+  display: flex;
+  align-items: center;
+  width: 180px;
+  justify-content: space-between;
+  margin-left: 2%;
 }
+
 #titulo {
-    font-family: Russo One;
-    margin-left: 7%px;
-    
+  font-family: Russo One;
+  margin-left: 7%;
 }
+
 #username {
-    font-size: 15px;
-    text-align: right;
-    width: 180px;
-    margin-right: 5%;
-
+  font-size: 15px;
+  text-align: right;
+  width: 180px;
+  margin-right: 5%;
 }
+
 #fotoperfil {
-    width: 48px;
-    height: 49px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 7%;
+  width: 48px;
+  height: 49px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 7%;
 }
-footer{
-    display: flex;
-    position: relative;
-    background-color: #3500A6;
-    height: 88px;
-    color: white;
 
-    justify-content: space-between;
-    text-align: center;
+footer {
+  display: flex;
+  position: relative;
+  background-color: #3500A6;
+  height: 88px;
+  color: white;
+  justify-content: space-between;
+  text-align: center;
 }
-.contacto{
-    flex: 1;
-    text-align: left;
-    width: 40%;
+
+.contacto {
+  flex: 1;
+  text-align: left;
+  width: 40%;
 }
-.copyright{
-    flex: 0;
-    text-align: left;
+
+.copyright {
+  flex: 0;
+  text-align: left;
 }
-/*  LISTAR CURSOS */ 
+
+/*  LISTAR CURSOS */
 .curso-wrapper {
-    display: grid;              
-    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); 
-    gap: 10px;                 
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+  gap: 10px;
 }
 
 .curso {
-    width: 100%;                
-    margin: 10px;               
-    padding: 10px;              
-    border: 1px solid #ccc;     
-    box-sizing: border-box;     
-}
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}/*# sourceMappingURL=styles.css.map */
