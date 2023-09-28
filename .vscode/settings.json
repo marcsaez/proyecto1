@@ -1,0 +1,10 @@
+{
+    "json.schemas": [],
+    "liveSassCompile.settings.formats": [
+        {
+        "format": "expanded",
+        "extensionName": ".css",
+        "savePath": "/FRONTEND/css"
+        }
+    ]
+}
