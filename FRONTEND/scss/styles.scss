@@ -1,0 +1,86 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+header {
+    @include flex-center;
+    background-color: $color-primary;
+    height: 88px;
+    color: white;
+    justify-content: space-between;
+}
+
+#logo {
+    height: 80px;
+    width: 91px;
+    margin-left: 2%;
+}
+
+.header{
+    @include flex-center;
+    width: 300px;
+}
+
+.usuario{
+    @include flex-center;
+    width: 180px;
+    justify-content: space-between;
+    margin-left: 2%;
+}
+
+#titulo {
+    font-family: $font-family;
+    margin-left: 7%;
+    
+}
+
+#username {
+    font-size: 15px;
+    text-align: right;
+    width: 180px;
+    margin-right: 5%;
+
+}
+
+#fotoperfil {
+    width: 48px;
+    height: 49px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 7%;
+}
+
+footer{
+    display: flex;
+    position: relative;
+    background-color: $color-primary;
+    height: 88px;
+    color: white;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.contacto{
+    flex: 1;
+    text-align: left;
+    width: 40%;
+}
+
+.copyright{
+    flex: 0;
+    text-align: left;
+}
+
+/*  LISTAR CURSOS */ 
+.curso-wrapper {
+    display: grid;              
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); 
+    gap: 10px;                 
+}
+
+.curso {
+    width: 100%;                
+    margin: 10px;               
+    padding: 10px;              
+    border: 1px solid #ccc;     
+    box-sizing: border-box;     
+}
