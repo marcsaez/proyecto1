@@ -27,10 +27,7 @@
         ?>
     </header>
     <?php
-        if (isset($_POST['ver_curso'])) {
-            $codigo = $_POST['codigo'];
-            mostrarCurso($codigo);
-        }
+        $codigo = mostrarCurso();
     ?>
     <footer>
         <div class="contacto">

@@ -337,8 +337,10 @@ function listarCursos(){
         } 
 }
 
-function mostrarCurso($codigo){
-    $conexion = abrirBBDD();
+function mostrarCurso(){
+    if ($_POST){
+        $codigo = $_POST['codigo'];
+        $conexion = abrirBBDD();
         if($conexion == false) {
             mysqli_connect_error();
         }
@@ -350,8 +352,16 @@ function mostrarCurso($codigo){
             echo '<h2>' . $curso['nombre'] . '</h2>';
             echo '<p>' . $curso['descripcion'] . '</p>';
             echo '<p>' . $curso['horas'] . '</p>';
+            echo '<form action="funciones.php" method="POST">';
+            echo '<button type="submit" name="Matricularse">Matricularse</button>';
+            echo '</form>';
             echo '</div>';
         }
+
+    }
+    return $codigo;
+
+    
 }
 
 
@@ -427,4 +437,30 @@ function datosUserVisibles($datos){
     echo "<img src='./".$datos['foto']."' alt='fotoperfil' id='fotoperfil'>";
     echo "</div>";
 }
+
+function matricular($dni, $codigo) {
+    $conexion = abrirBBDD();
+
+    $sql = "INSERT INTO matriculados (codigo, dni) VALUES ('$codigo', '$dni')";
+    $consulta = mysqli_query($conexion, $sql);
+            if($conexion->query($sql) === TRUE) {
+                ?>
+                <script>
+                    alert("¡ERROR: USER NO MATRICULADO!");
+                </script>
+                <?php
+            }
+            else {
+                $consulta = mysqli_query($conexion, $sql);
+                header("Location: listarcursos.php");
+                ?>
+                <script>
+                    alert("¡Matriculado con exito!");
+                </script>
+                <?php
+                
+            }
+}
+
+
 ?>
