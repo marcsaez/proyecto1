@@ -439,9 +439,9 @@ function matricular($dni, $codigo) {
             ?>
             <script>
                 alert("¡Matriculado con éxito!");
+                window.location.href = "listarcursos.php";
             </script>
             <?php
-            header("Location: listarcursos.php");
         } else {
             // Hubo un error en la consulta.
             throw new Exception("Error en la consulta: " . $conexion->error);
@@ -449,12 +449,10 @@ function matricular($dni, $codigo) {
     } catch (Exception $ex) {
         ?>
         <script>
-            alert("¡ERROR! <?php echo $ex->getMessage(); ?>");
+            alert("¡ERROR! Ya esats matriculado");
+            window.location.href = "listarcursos.php";
         </script>
-
         <?php
     }
 }
-
-
 ?>
