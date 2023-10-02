@@ -101,10 +101,17 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 
-.home body {
+.home {
   background-image: url("../img/fondo.jpg");
   background-size: 100%;
 }
+.home table {
+  background-color: rgba(53, 0, 166, 0.5);
+  margin: 3% 7%;
+  font-size: x-large;
+  text-align: center;
+  color: white;
+}
 .home img {
-  width: 300px;
+  width: 400px;
 }/*# sourceMappingURL=styles.css.map */

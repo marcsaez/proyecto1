@@ -14,7 +14,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="sobrenosotros.php">Sobre nosotros</a></li>
+                <li><a href="bienvenida.php">Inicio</a></li>
                 <li><a href="#">Servicios</a></li>
                 <li><a href="#">Contacto</a></li>
                 <li><a href="login.php">Iniciar sesión</a></li>
@@ -24,12 +24,13 @@
 
     <table>
         <tr>
-            <td colspan="3">Mira a tu alrededor. Estás rodeado de informática. Es tan importante su papel en la actualidad que, muchas veces, ni siquiera nos paramos a pensarlo. Si tu sueño es ser informático y eres consciente de esta necesidad, este artículo te interesa. ¿No sabes qué especialidad de la informática escoger? </td>
+            <td>Tech Academy abre sus puertas en el año 2023 con un grupo de jóvenes profesionales de la formación especializados en formación profesional. A lo largo del tiempo hemos ido creciendo personal y profesionalmente para ofrecer la mejor calidad en la formación.</td>
         </tr>
         <tr>
-            <td class="imagen"> <img src="./img/java.png" alt="Descripción de la imagen"></td>
-            <td class="imagen"> <img src="./img/python.png" alt="Descripción de la imagen"></td>
-            <td class="imagen"> <img src="./img/mysql.png" alt="Descripción de la imagen"></td>
+            <td class="imagen"> <img src="./img/TECHrecortada.png" alt="Descripción de la imagen"></td>
+        </tr>
+        <tr>
+            <td>¡Conoce todos los cursos de informática disponibles para ti!</td>
         </tr>
     </table>
 
