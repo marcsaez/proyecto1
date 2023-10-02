@@ -449,7 +449,7 @@ function matricular($dni, $codigo) {
     } catch (Exception $ex) {
         ?>
         <script>
-            alert("¡ERROR! Ya esats matriculado");
+            alert("¡ERROR! Ya estas matriculado");
             window.location.href = "listarcursos.php";
         </script>
         <?php
