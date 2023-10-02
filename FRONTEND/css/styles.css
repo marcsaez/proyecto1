@@ -82,4 +82,29 @@ footer {
   padding: 10px;
   border: 1px solid #ccc;
   box-sizing: border-box;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+nav ul li {
+  margin-right: 20px;
+}
+nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.home body {
+  background-image: url("../img/fondo.jpg");
+  background-size: 100%;
+}
+.home img {
+  width: 300px;
 }/*# sourceMappingURL=styles.css.map */

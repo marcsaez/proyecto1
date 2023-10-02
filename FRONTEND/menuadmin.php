@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
 </head>
 <body>
-<header>
+    <header>
         <div class="header">
             <img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo">
             <h2 id="titulo">TECH ACADEMY</h2>
