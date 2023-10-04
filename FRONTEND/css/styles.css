@@ -114,4 +114,18 @@ nav ul li a:hover {
 }
 .home img {
   width: 400px;
+}
+
+.admin img {
+  width: 30px;
+}
+.admin .blanco {
+  background-color: white;
+  font-weight: bold;
+}
+.admin tr {
+  background-color: lightgray;
+  text-align: center;
+  margin: 1%;
+  padding: 1% 5%;
 }/*# sourceMappingURL=styles.css.map */

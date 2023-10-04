@@ -122,3 +122,21 @@ nav {
         width: 400px;
     }
 }
+
+.admin {
+    img {
+        width: 30px;
+    }
+
+    .blanco {
+        background-color: white;
+        font-weight: bold;
+    }
+
+    tr {
+        background-color: lightgray;
+        text-align: center;
+        margin: 1%;
+        padding: 1% 5%;
+    }
+}
