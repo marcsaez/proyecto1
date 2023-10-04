@@ -490,12 +490,14 @@ function sessionAbrir($dni){
 }
 
 function datosUserVisibles($datos){
+    echo "<a href='perfil.php'>";
     echo "<div class='usuario'>";
     echo "<p id='username' >";
     echo $datos['nombre']. ' ' .$datos['apellidos'] ;
     echo "</p>";
     echo "<img src='./".$datos['foto']."' alt='fotoperfil' id='fotoperfil'>";
     echo "</div>";
+    echo "</a>";
 }
 
 function matricular($dni, $codigo) {

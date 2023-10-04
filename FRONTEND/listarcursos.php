@@ -22,6 +22,12 @@
         <a href="menuadmin.php"><img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo"></a>
             <h2 id="titulo">TECH ACADEMY</h2>
         </div>
+        <nav>
+            <ul>
+                <li><a href="listarcursos.php">Todos los cursos</a></li>
+                <li><a href="miscursos.php">Mis cursos</a></li>
+            </ul>
+        </nav>
         <?php 
             datosUserVisibles($datos);
         ?>
