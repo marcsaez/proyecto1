@@ -13,20 +13,12 @@ document.addEventListener("DOMContentLoaded", function(){
             const aleatorio = Math.floor(Math.random() * frases.length);
             const fraserandom = frases[aleatorio];
             
-            const mensajeDiv = document.createElement("div");
-            mensajeDiv.textContent = "Concurso por novato:\n\n" + fraserandom;
-            mensajeDiv.style.position = "fixed";
-            mensajeDiv.style.top = "50%";
-            mensajeDiv.style.left = "50%";
-            mensajeDiv.style.transform = "translate(-50%, -50%)";
-            mensajeDiv.style.backgroundColor = "white";
-            mensajeDiv.style.padding = "20px";
-            mensajeDiv.style.border = "1px solid #ccc";
-            mensajeDiv.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
-            mensajeDiv.style.zIndex = "9999";
-
-            // Agregar el elemento al body
-            document.body.appendChild(mensajeDiv);
+           // Abrir una nueva ventana
+           const nuevaVentana = window.open('', '', 'width=400,height=200');
+            
+           // Agregar el contenido HTML a la nueva ventana
+           nuevaVentana.document.write("<h1>Concurso por nuevo:</h1>");
+           nuevaVentana.document.write("<p>" + fraserandom + "</p>");
             
         }
         concursoaleatorio();
