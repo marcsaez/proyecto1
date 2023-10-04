@@ -326,13 +326,10 @@ function moverImagenR($path, $name) {
     return $imagen_path;
 }
 
-function eliminarImagen($path, $name) {
-    $imagen_ext = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
-    $imagen_anterior = 'img/' . $path . '/' . $name .'.'. $imagen_ext;
-    if (file_exists($imagen_anterior)) {
-        unlink($imagen_anterior);
+function eliminarImagen($path) {
+    if (file_exists($path)) {
+        unlink($path);
     }
-
 }
 
 function encriptacio() {
@@ -601,11 +598,17 @@ function perfil($dni){
             $nuevoEdad = $_POST['edad'];
             // Obtener el DNI de la sesión o de alguna otra fuente
             $dni = $_SESSION['dni']; // Asegúrate de que esta variable de sesión esté configurada correctamente
-            eliminarImagen("perfiles", $dni);
-            $imagen_path = moverImagenR("perfiles", $dni);
+            if(isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+                eliminarImagen($_SESSION['foto']);
+                $imagen_path = moverImagenR("perfiles", $dni);
+                // Actualizar los datos en la base de datos
+                $sqlUpdate = "UPDATE alumnos SET nombre = '$nuevoNombre', apellidos = '$nuevoApellidos', edad = '$nuevoEdad', foto = '$imagen_path' WHERE dni = '$dni'";
+            }
+            else {
+                //Actualizar los datos en la base de datos sin la foto porque no se ha editado
+                $sqlUpdate = "UPDATE alumnos SET nombre = '$nuevoNombre', apellidos = '$nuevoApellidos', edad = '$nuevoEdad' WHERE dni = '$dni'";
+            }
             
-            // Actualizar los datos en la base de datos
-            $sqlUpdate = "UPDATE alumnos SET nombre = '$nuevoNombre', apellidos = '$nuevoApellidos', edad = '$nuevoEdad' WHERE dni = '$dni'";
             
             if ($conexion->query($sqlUpdate) === TRUE) {
                 // Redirigir a la misma página después de la actualización
@@ -620,9 +623,10 @@ function perfil($dni){
         $result = $conexion->query($sql);
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
+            $_SESSION['foto'] = $row['foto']; //ayudita
 
             echo "<div class='perfil'>";
-            echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='post'>";
+            echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='post' enctype='multipart/form-data'>";
 
             // Rellenar el formulario con los valores de la consulta
             echo "<label for='dni'>DNI:</label>";
