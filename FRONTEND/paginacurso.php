@@ -30,12 +30,9 @@
 
     $codigo = $_POST['codigo'];
     $_SESSION ['codigo'] = $codigo;
-    mostrarCurso($codigo)
+    mostrarCurso($dni, $codigo);
    
     ?>
-    <form action="matricularse.php" method= "POST">
-            <button type= "submit" name="Matricularse" >Matricularse</button>
-        </form>
     <footer>
         <div class="contacto">
             <p>consultas@techacademy.com</p>

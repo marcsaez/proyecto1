@@ -337,25 +337,37 @@ function listarCursos(){
         } 
 }
 
-function mostrarCurso($codigo){
+function mostrarCurso($dni, $codigo){
         $conexion = abrirBBDD();
         if($conexion == false) {
             mysqli_connect_error();
         }
         else {
-            $sql = "SELECT * FROM cursos WHERE codigo=$codigo";
-            $result = $conexion->query($sql);
-            $curso=$result->fetch_assoc();
-            echo '<div class="paginacurso">';
-            echo '<h2>' . $curso['nombre'] . '</h2>';
-            echo '<p>' . $curso['descripcion'] . '</p>';
-            echo '<p>' . $curso['horas'] . '</p>';
-            
-            echo '</div>';
+        $sql1 = "SELECT * FROM cursos WHERE codigo = $codigo";
+        $result = $conexion->query($sql1);
+        $curso = $result->fetch_assoc();
+        
+        // Verificar si el estudiante está matriculado en el curso
+        $sql_verificar = "SELECT * FROM matriculados WHERE codigo = '$codigo' AND dni = '$dni'";
+        $result_verificar = $conexion->query($sql_verificar);
+        
+        echo '<div class="paginacurso">';
+        echo '<h2>' . $curso['nombre'] . '</h2>';
+        echo '<p>' . $curso['descripcion'] . '</p>';
+        echo '<p>' . $curso['horas'] . '</p>';
+
+        if ($result_verificar->num_rows > 0) {
+            // El estudiante ya está matriculado, muestra otro contenido en su lugar
+            echo '<p>Nota:</p>';
+        } else {
+            // El estudiante no está matriculado, muestra el formulario de matriculación
+            echo "<form action='matricularse.php' method='POST'>";
+            echo "<button type='submit' name='Matricularse'>Matricularse</button>";
+            echo "</form>";
+        }
+        echo '</div>';
         }
     } 
-
-
 
 function formularioInicio() {
     ?>
@@ -442,6 +454,7 @@ function matricular($dni, $codigo) {
                 window.location.href = "listarcursos.php";
             </script>
             <?php
+            return true;
         } else {
             // Hubo un error en la consulta.
             throw new Exception("Error en la consulta: " . $conexion->error);
@@ -453,6 +466,7 @@ function matricular($dni, $codigo) {
             window.location.href = "listarcursos.php";
         </script>
         <?php
+        return false;
     }
 }
 ?>
