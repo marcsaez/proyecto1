@@ -289,7 +289,7 @@ function formularioRegistro() {
                     <script>
                         alert("El DNI es incorrecto") 
                     </script>
-                    <meta http-equiv="REFRESH" content="10;url=signup.php">
+                    <meta http-equiv="REFRESH" content="0;url=signup.php">
                 <?php
             }
             else {
