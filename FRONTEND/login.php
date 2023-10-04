@@ -1,6 +1,17 @@
 <?php
-session_destroy();
-session_start();
+    try{
+        if(session_start()){
+            session_destroy();
+            session_start();
+        } else {
+            session_start();
+        }
+        
+    } catch (Exception $e) {
+        echo "ERROR";
+    }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -265,6 +265,7 @@ function formularioRegistro() {
                 $numlinias = mysqli_num_rows($consulta);
                 if($numlinias > 0) {
                     $usuarioregistrado = true;
+                    session_start();
                     ?>
                     <script>
                         alert("¡Usuario registrado!")
@@ -490,7 +491,7 @@ function sessionAbrir($dni){
 }
 
 function datosUserVisibles($datos){
-    echo "<a href='perfil.php'>";
+    echo "º<a href='perfil.php'>";
     echo "<div class='usuario'>";
     echo "<p id='username' >";
     echo $datos['nombre']. ' ' .$datos['apellidos'] ;
