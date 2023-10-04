@@ -327,7 +327,8 @@ function moverImagenR($path, $name) {
 }
 
 function eliminarImagen($path, $name) {
-    $imagen_anterior = 'img/' . $path . '/' . $name;
+    $imagen_ext = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+    $imagen_anterior = 'img/' . $path . '/' . $name .'.'. $imagen_ext;
     if (file_exists($imagen_anterior)) {
         unlink($imagen_anterior);
     }
