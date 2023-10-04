@@ -311,11 +311,11 @@ function formularioRegistro() {
 }
 
 function moverImagen() {
-$imagen_ext = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
-$imagen_path = 'img/perfiles/' . $_POST['dni'] .'.'. $imagen_ext;
-move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_path);
+    $imagen_ext = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+    $imagen_path = 'img/perfiles/' . $_POST['dni'] .'.'. $imagen_ext;
+    move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_path);
 
-return $imagen_path;
+    return $imagen_path;
 }
 
 function moverImagenR($path, $name) {
@@ -324,13 +324,21 @@ function moverImagenR($path, $name) {
     move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_path);
     
     return $imagen_path;
+}
+
+function eliminarImagen($path, $name) {
+    $imagen_anterior = 'img/' . $path . '/' . $name;
+    if (file_exists($imagen_anterior)) {
+        unlink($imagen_anterior);
     }
 
-function encriptacio() {
-$contraseña = $_POST['contraseña'];
-$contraseña_encriptada = password_hash($contraseña, PASSWORD_BCRYPT);
+}
 
-return $contraseña_encriptada;
+function encriptacio() {
+    $contraseña = $_POST['contraseña'];
+    $contraseña_encriptada = password_hash($contraseña, PASSWORD_BCRYPT);
+
+    return $contraseña_encriptada;
 }
 
 function comprobacionDNI($dni) {
@@ -564,12 +572,14 @@ function perfil($dni){
     else {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Comprobar si se ha enviado el formulario
-            
+
             $nuevoNombre = $_POST['nombre'];
             $nuevoApellidos = $_POST['apellidos'];
             $nuevoEdad = $_POST['edad'];
             // Obtener el DNI de la sesión o de alguna otra fuente
             $dni = $_SESSION['dni']; // Asegúrate de que esta variable de sesión esté configurada correctamente
+            eliminarImagen("perfiles", $dni);
+            $imagen_path = moverImagenR("perfiles", $dni);
             
             // Actualizar los datos en la base de datos
             $sqlUpdate = "UPDATE alumnos SET nombre = '$nuevoNombre', apellidos = '$nuevoApellidos', edad = '$nuevoEdad' WHERE dni = '$dni'";
@@ -596,13 +606,16 @@ function perfil($dni){
             echo "<input type='text' id='dni' name='dni' value='" . $row['dni'] . "' disabled><br>";
 
             echo "<label for='nombre'>Nombre:</label>";
-            echo "<input type='text' id='nombre' name='nombre' value='" . $row['nombre'] . "'><br>";
+            echo "<input type='text' id='nombre' name='nombre' value='" . $row['nombre'] . "' required><br>";
 
             echo "<label for='apellidos'>Apellidos:</label>";
-            echo "<input type='text' id='apellidos' name='apellidos' value='" . $row['apellidos'] . "'><br>";
+            echo "<input type='text' id='apellidos' name='apellidos' value='" . $row['apellidos'] . "' required><br>";
 
             echo "<label for='edad'>Edad:</label>";
-            echo "<input type='number' id='edad' name='edad' value='" . $row['edad'] . "'><br>";
+            echo "<input type='number' id='edad' name='edad' value='" . $row['edad'] . "' required><br>";
+
+            echo "<label for='imagen'>Foto de perfil:</label>";
+            echo "<input type='file' name='imagen' id='imagen' accept='img/*'><br>";
 
             // Añade más campos según tus necesidades
 
