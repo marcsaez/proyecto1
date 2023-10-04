@@ -258,22 +258,49 @@ function formularioRegistro() {
             $nombre = $_POST['nombre'];
             $apellidos = $_POST['apellidos'];
             $edad = $_POST['edad'];
-            $sql = "INSERT INTO alumnos (dni, nombre, apellidos, edad, contraseña, foto) VALUES ('$dni', '$nombre', '$apellidos', '$edad', '$contraseña', '$imagen_path')";
-            $sql2 = "SELECT dni FROM alumnos WHERE dni='$dni'";
-            $consulta = mysqli_query($conexion, $sql2);
-            $numlinias = mysqli_num_rows($consulta);
-            if($numlinias > 0) {
-                $usuarioregistrado = true;
+            if(comprobacionDNI($dni) == true && comprobacionEdad($edad) == true) {
+                $sql = "INSERT INTO alumnos (dni, nombre, apellidos, edad, contraseña, foto) VALUES ('$dni', '$nombre', '$apellidos', '$edad', '$contraseña', '$imagen_path')";
+                $sql2 = "SELECT dni FROM alumnos WHERE dni='$dni'";
+                $consulta = mysqli_query($conexion, $sql2);
+                $numlinias = mysqli_num_rows($consulta);
+                if($numlinias > 0) {
+                    $usuarioregistrado = true;
+                    ?>
+                    <script>
+                        alert("¡Usuario registrado!")
+                    </script>
+                    <?php
+                }
+                else {
+                    $consulta = mysqli_query($conexion, $sql);
+                    header("Location: listarcursos.php?registro_exitoso=true");
+                }
+            }
+            else if (comprobacionDNI($dni) == true) {
                 ?>
-                <script>
-                    alert("¡Usuario registrado!")
-                </script>
+                    <script>
+                        alert("La edad es incorrecta")
+                    </script>
+                    <meta http-equiv="REFRESH" content="0;url=signup.php">
+                <?php
+            }
+            else if (comprobacionEdad($edad) == true) {
+                ?>  
+                    <script>
+                        alert("El DNI es incorrecto") 
+                    </script>
+                    <meta http-equiv="REFRESH" content="10;url=signup.php">
                 <?php
             }
             else {
-                $consulta = mysqli_query($conexion, $sql);
-                header("Location: listarcursos.php?registro_exitoso=true");
+                ?>
+                    <script>
+                        alert("El DNI y la edad son incorrectos")
+                    </script>
+                    <meta http-equiv="REFRESH" content="0;url=signup.php">
+                <?php
             }
+            
         }
     }
     //Si no existeix l'array POST entra al un formulari
@@ -304,6 +331,32 @@ $contraseña = $_POST['contraseña'];
 $contraseña_encriptada = password_hash($contraseña, PASSWORD_BCRYPT);
 
 return $contraseña_encriptada;
+}
+
+function comprobacionDNI($dni) {
+	$letras = 'TRWAGMYFPDXBNJZSQVHLCKE';
+	$numero = substr($dni, 0, 8);
+	if(ctype_digit($numero)) {
+		$residuo = (int)$numero%23;
+		if($dni[8] == $letras[$residuo]) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return  false;
+	}
+}
+
+function comprobacionEdad($edad) {
+	if(ctype_digit($edad)) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 
@@ -370,7 +423,7 @@ function mostrarCurso($dni, $codigo){
         }
         echo '</div>';
         }
-    } 
+} 
 
 function formularioInicio() {
     ?>

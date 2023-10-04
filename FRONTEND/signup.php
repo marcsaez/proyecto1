@@ -33,7 +33,7 @@
                     <td> <label for="edad">Edad:</label> </td> <td> <input type="text" name="edad" id="edad" required> </td>
                 </tr>
                 <tr>
-                    <td> <label for="dni">DNI:</label> </td> <td> <input type="text" name="dni" id="dni" required> </td>
+                    <td> <label for="dni">DNI:</label> </td> <td> <input type="text" name="dni" id="dni" maxlength="9" required> </td>
                 </tr>
                 <tr>
                     <td> <label for="contraseña">Contraseña:</label> </td> <td> <input type="password" name="contraseña" id="contraseña" required> </td>
