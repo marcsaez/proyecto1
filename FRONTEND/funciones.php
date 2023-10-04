@@ -359,6 +359,9 @@ function mostrarCurso($dni, $codigo){
         if ($result_verificar->num_rows > 0) {
             // El estudiante ya está matriculado, muestra otro contenido en su lugar
             echo '<p>Nota:</p>';
+            echo "<form action='desmatricularse.php' method='POST'>";
+            echo "<button type='submit' name='Darbaja'>Darse de baja</button>";
+            echo "</form>";
         } else {
             // El estudiante no está matriculado, muestra el formulario de matriculación
             echo "<form action='matricularse.php' method='POST'>";
@@ -463,6 +466,33 @@ function matricular($dni, $codigo) {
         ?>
         <script>
             alert("¡ERROR! Ya estas matriculado");
+            window.location.href = "listarcursos.php";
+        </script>
+        <?php
+        return false;
+    }
+}
+function desmatricular($dni, $codigo) {
+    $conexion = abrirBBDD();
+    $sql = "DELETE FROM matriculados WHERE codigo = '$codigo' AND dni = '$dni'";
+    try {
+        if ($conexion->query($sql)) {
+            // La consulta se ejecutó correctamente.
+            ?>
+            <script>
+                alert("¡Desmatriculado con éxito!");
+                window.location.href = "listarcursos.php";
+            </script>
+            <?php
+            return true;
+        } else {
+            // Hubo un error en la consulta.
+            throw new Exception("Error en la consulta: " . $conexion->error);
+        }
+    } catch (Exception $ex) {
+        ?>
+        <script>
+            alert("¡ERROR!");
             window.location.href = "listarcursos.php";
         </script>
         <?php
