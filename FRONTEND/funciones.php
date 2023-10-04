@@ -491,7 +491,7 @@ function sessionAbrir($dni){
 }
 
 function datosUserVisibles($datos){
-    echo "º<a href='perfil.php'>";
+    echo "<a href='perfil.php'>";
     echo "<div class='usuario'>";
     echo "<p id='username' >";
     echo $datos['nombre']. ' ' .$datos['apellidos'] ;
