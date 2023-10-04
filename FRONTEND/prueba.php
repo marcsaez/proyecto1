@@ -3,7 +3,6 @@
     session_start();
     $dni = $_SESSION['dni'];
     include_once('funciones.php');
-    include_once('header.php');
     $datos = sessionAbrir($dni);
 ?>
 <!DOCTYPE html>
