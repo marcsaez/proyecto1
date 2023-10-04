@@ -1,8 +1,6 @@
 <?php 
     session_start();
-    $dni = $_SESSION['dni'];
-    include_once('funciones.php');
-    $datos = sessionAbrir($dni);
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +14,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
 </head>
 <body>
+<?php 
+        if($_SESSION){
+            $dni = $_SESSION['dni'];
+            include_once('funciones.php');
+            $datos = sessionAbrir($dni);
+    ?>
     <script src = "./js/concurso.js"></script>
     <header>
         <div class="header">
@@ -42,6 +46,13 @@
             <p>© 2023 TECH ACADEMY</p>
         </div>
     </footer>
-
+    <?php
+        } else{
+            ?>
+            <h2>ERROR: ¡SESION NO INICIADA!</h2>
+            <meta http-equiv="REFRESH" content="3;url=login.php">
+            <?php
+        }
+    ?>
 </body>
 </html>
