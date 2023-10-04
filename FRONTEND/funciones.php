@@ -554,4 +554,68 @@ function desmatricular($dni, $codigo) {
         return false;
     }
 }
+
+function perfil($dni){
+    // echo '<h2>'. $dni . '</h2>';
+    $conexion = abrirBBDD();
+    if($conexion == false) {
+        mysqli_connect_error();
+    }
+    else {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Comprobar si se ha enviado el formulario
+            
+            $nuevoNombre = $_POST['nombre'];
+            $nuevoApellidos = $_POST['apellidos'];
+            $nuevoEdad = $_POST['edad'];
+            // Obtener el DNI de la sesión o de alguna otra fuente
+            $dni = $_SESSION['dni']; // Asegúrate de que esta variable de sesión esté configurada correctamente
+            
+            // Actualizar los datos en la base de datos
+            $sqlUpdate = "UPDATE alumnos SET nombre = '$nuevoNombre', apellidos = '$nuevoApellidos', edad = '$nuevoEdad' WHERE dni = '$dni'";
+            
+            if ($conexion->query($sqlUpdate) === TRUE) {
+                // Redirigir a la misma página después de la actualización
+                header("Location: " . $_SERVER['PHP_SELF']);
+                exit(); // Asegúrate de que no se ejecute más código después de la redirección
+            } else {
+                echo "Error al actualizar los datos: " . $conexion->error;
+            }
+        }
+        
+        $sql = "SELECT * FROM alumnos WHERE dni='$dni'";
+        $result = $conexion->query($sql);
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            echo "<div class='perfil'>";
+            echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='post'>";
+
+            // Rellenar el formulario con los valores de la consulta
+            echo "<label for='dni'>DNI:</label>";
+            echo "<input type='text' id='dni' name='dni' value='" . $row['dni'] . "' disabled><br>";
+
+            echo "<label for='nombre'>Nombre:</label>";
+            echo "<input type='text' id='nombre' name='nombre' value='" . $row['nombre'] . "'><br>";
+
+            echo "<label for='apellidos'>Apellidos:</label>";
+            echo "<input type='text' id='apellidos' name='apellidos' value='" . $row['apellidos'] . "'><br>";
+
+            echo "<label for='edad'>Edad:</label>";
+            echo "<input type='number' id='edad' name='edad' value='" . $row['edad'] . "'><br>";
+
+            // Añade más campos según tus necesidades
+
+            // Botón para enviar el formulario
+            echo "<input type='submit' value='Guardar'>";
+            echo "</form>";
+            echo "</div>";
+        }
+        
+    }
+    
+
+}
+
+
 ?>
