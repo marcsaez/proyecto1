@@ -34,7 +34,7 @@
     </header>
 
     <?php
-        perfil($dni);
+        perfil($_SESSION['dni']);
     ?>
 
 
