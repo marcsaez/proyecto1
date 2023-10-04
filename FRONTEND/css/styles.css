@@ -25,6 +25,8 @@ header {
   width: 180px;
   justify-content: space-between;
   margin-left: 2%;
+  text-decoration: none;
+  color: white;
 }
 
 #titulo {
