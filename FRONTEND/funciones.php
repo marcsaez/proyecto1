@@ -264,8 +264,7 @@ function formularioRegistro() {
                 $consulta = mysqli_query($conexion, $sql2);
                 $numlinias = mysqli_num_rows($consulta);
                 if($numlinias > 0) {
-                    $usuarioregistrado = true;
-                    session_start();
+                    $usuarioregistrado = true; 
                     ?>
                     <script>
                         alert("¡Usuario registrado!")

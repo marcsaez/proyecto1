@@ -33,7 +33,7 @@
                 mysqli_connect_error();
             }
             else {
-                $sql = "SELECT codigo FROM matriculados WHERE dni=$dni";
+                $sql = "SELECT codigo FROM matriculados WHERE dni='$dni'";
                 $result = $conexion->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {

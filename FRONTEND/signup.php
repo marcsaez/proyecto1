@@ -1,19 +1,20 @@
 <?php
-    try{
-        if(session_start()){
-            session_destroy();
-            session_start();
-        } else {
-            session_start();
-        }
-        
-    } catch (Exception $e) {
-        echo "ERROR";
+include_once("funciones.php");
+if($_POST){
+    if(session_start()){
+        session_destroy();
+        session_start();
+        $_SESSION['dni'] = $_POST['dni'];
+        $dni = $_SESSION['dni'];
+    } else {
+        session_start();
+        $_SESSION['dni'] = $_POST['dni'];
+        $dni = $_SESSION['dni'];
     }
-    include_once("funciones.php");
-    if($_POST){
-        formularioRegistro();
-    }
+    formularioRegistro();
+}
+
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
