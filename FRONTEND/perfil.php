@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    if($_SESSION){
     $dni = $_SESSION['dni'];
     include_once('funciones.php');
     $datos = sessionAbrir($dni);
@@ -47,5 +48,13 @@
             <p>© 2023 TECH ACADEMY</p>
         </div>
     </footer>
+    <?php
+    } else{
+        ?>
+        <h2>ERROR: ¡SESION NO INICIADA!</h2>
+        <meta http-equiv="REFRESH" content="3;url=login.php">
+        <?php
+    }
+    ?>
 </body>
 </html>
