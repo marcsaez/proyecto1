@@ -19,18 +19,9 @@
             $dni = $_SESSION['dni'];
             include_once('funciones.php');
             $datos = sessionAbrir($dni);
-    ?>
-    <header>
-        <div class="header">
-        <a href="menuadmin.php"><img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo"></a>
-            <h2 id="titulo">TECH ACADEMY</h2>
-        </div>
-        <?php 
-            datosUserVisibles($datos);
-        ?>
-    </header>
-    
-    <?php
+            encabezadoUsuario($datos);
+            
+     
             
             $conexion = abrirBBDD();
             if($conexion == false) {
