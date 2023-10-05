@@ -1,5 +1,46 @@
 <?php 
 
+// ############
+// ENCABEZADO #
+// ############
+
+function datosUserVisibles($datos){
+    echo "<a href='perfil.php'>";
+    echo "<div class='usuario'>";
+    echo "<p id='username' >";
+    echo $datos['nombre']. ' ' .$datos['apellidos'] ;
+    echo "</p>";
+    echo "<img src='./".$datos['foto']."' alt='fotoperfil' id='fotoperfil'>";
+    echo "</div>";
+    echo "</a>";
+}
+
+function navegadorUsuario(){
+    echo '<nav>
+    <ul>
+        <li><a href="listarcursos.php">Todos los cursos</a></li>
+        <li><a href="miscursos.php">Mis cursos</a></li>
+    </ul>
+  </nav>';
+
+}
+
+function encabezadoUsuario($datos){
+    echo "<header>
+    <div class='header'>
+    <a href='menuadmin.php'><img src='./img/TECHrecortada.png' alt='TechAcademy' id='logo'></a>
+        <h2 id='titulo'>TECH ACADEMY</h2>
+    </div>";
+    //echo "<h1> PRUEBA</h1>";
+    navegadorUsuario();
+    datosUserVisibles($datos);
+    echo "</header>";
+}
+
+// ############
+// Base de Datos #
+// ############
+
 function abrirBBDD(){
     try {
         $connection = mysqli_connect("localhost", "super", "P4ssword!", "tech_academy");
@@ -11,6 +52,11 @@ function abrirBBDD(){
         return false;
     }
     }
+
+
+// ############
+// Cursos     #
+// ############
 
 function insertarCurso($nombre, $descripcion, $horas, $inicio, $final, $activo, $imagen, $fk_profesor,$connection){
     $sql = "SELECT * FROM cursos WHERE nombre = '$nombre'";
@@ -37,32 +83,6 @@ function insertarCurso($nombre, $descripcion, $horas, $inicio, $final, $activo, 
             echo '<p>Error al registrar el usuario: ' . $connection->error . '</p>';
         }
         }
-}
-
-function insertarProfesor($dni, $nombre, $apellidos, $titulo_academico, $foto, $activo, $connection){
-    $sql = "SELECT * FROM profesor WHERE dni = '$dni'";
-    $result = $connection->query($sql);
-    
-    if ($result->num_rows > 0) {
-        // Si el usuario ya existe en la base de datos, mostramos un mensaje de error
-    ?>
-    <script>
-        alert("EL PROFESOR YA ESTA CREADO!")
-    </script>
-    <?php
-
-    } else {
-        // Si el usuario no existe en la base de datos, lo insertamos
-        $sql = "INSERT INTO profesor (dni, nombre, apellidos, titulo_academico, foto, activo) VALUES ('$dni', '$nombre','$apellidos', '$titulo_academico', '$foto','$activo')";
-
-        if ($connection->query($sql) === TRUE) {
-            // Si se ha insertado el usuario correctamente, mostramos un mensaje de éxito
-            header("Location: menuadmin.php");
-        } else {
-            // Si ha habido un error al insertar el usuario, mostramos un mensaje de error
-            echo '<p>Error al registrar el usuario: ' . $connection->error . '</p>';
-        }
-    }
 }
 
 function crearcurso(){
@@ -129,6 +149,122 @@ function eliminarCurso(){
     }
 }
 
+function modificarCurso(){
+    $conexion = abrirBBDD();
+
+    // Obtener los datos enviados desde el formulario
+    $codigo = $_POST['codigo'];
+    $nombre = $_POST['nombre'];
+    $descripcion = $_POST['descripcion'];
+
+    // Consulta SQL para actualizar el curso
+    $consulta = "UPDATE cursos SET nombre='$nombre', descripcion='$descripcion' WHERE codigo=$codigo";
+
+    if ($conexion->query($consulta) === TRUE) {
+        echo "Curso actualizado con éxito.";
+        echo "<a href='menuadmin.php'><p>Volver al menu</p></a>";
+    } else {
+        echo "Error al actualizar el curso: " . $conexion->error;
+    }
+
+}
+
+// LISTAR CURSOS
+function listarCursos(){
+    $conexion = abrirBBDD();
+        if($conexion == false) {
+            mysqli_connect_error();
+            echo '<p> ERROR </p>';
+        }
+        else {
+            $sql = "SELECT * FROM cursos WHERE activo=1";
+            $result = $conexion->query($sql);
+            if ($result->num_rows > 0) {
+                echo '<div class="curso-wrapper">';
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="curso">';
+                    echo '<h2>' . $row['nombre'] . '</h2>';
+                    echo '<p>' . $row['descripcion'] . '</p>';
+                    echo '<p>' . $row['horas'] . '</p>';
+                    echo '<form action="paginacurso.php" method="POST">';
+                    echo '<input type="hidden" name="codigo" value="' . $row['codigo'] . '">';
+                    echo '<button type="submit" name="ver_curso">Ver Curso</button>';
+                    echo '</form>';
+                    echo '</div>';
+                }
+                echo '</div>';
+            } else {
+                echo "No se encontraron cursos.";
+            }
+        } 
+}
+
+function mostrarCurso($dni, $codigo){
+        $conexion = abrirBBDD();
+        if($conexion == false) {
+            mysqli_connect_error();
+        }
+        else {
+        $sql1 = "SELECT * FROM cursos WHERE codigo = $codigo";
+        $result = $conexion->query($sql1);
+        $curso = $result->fetch_assoc();
+        
+        // Verificar si el estudiante está matriculado en el curso
+        $sql_verificar = "SELECT * FROM matriculados WHERE codigo = '$codigo' AND dni = '$dni'";
+        $result_verificar = $conexion->query($sql_verificar);
+        
+        echo '<div class="paginacurso">';
+        echo '<h2>' . $curso['nombre'] . '</h2>';
+        echo '<p>' . $curso['descripcion'] . '</p>';
+        echo '<p>' . $curso['horas'] . '</p>';
+
+        if ($result_verificar->num_rows > 0) {
+            // El estudiante ya está matriculado, muestra otro contenido en su lugar
+            echo '<p>Nota:</p>';
+            echo "<form action='desmatricularse.php' method='POST'>";
+            echo "<button type='submit' name='Darbaja'>Darse de baja</button>";
+            echo "</form>";
+        } else {
+            // El estudiante no está matriculado, muestra el formulario de matriculación
+            echo "<form action='matricularse.php' method='POST'>";
+            echo "<button type='submit' name='Matricularse'>Matricularse</button>";
+            echo "</form>";
+        }
+        echo '</div>';
+        }
+} 
+
+// ############
+// Profesores #
+// ############
+
+function insertarProfesor($dni, $nombre, $apellidos, $titulo_academico, $foto, $activo, $connection){
+    $sql = "SELECT * FROM profesor WHERE dni = '$dni'";
+    $result = $connection->query($sql);
+    
+    if ($result->num_rows > 0) {
+        // Si el usuario ya existe en la base de datos, mostramos un mensaje de error
+    ?>
+    <script>
+        alert("EL PROFESOR YA ESTA CREADO!")
+    </script>
+    <?php
+
+    } else {
+        // Si el usuario no existe en la base de datos, lo insertamos
+        $sql = "INSERT INTO profesor (dni, nombre, apellidos, titulo_academico, foto, activo) VALUES ('$dni', '$nombre','$apellidos', '$titulo_academico', '$foto','$activo')";
+
+        if ($connection->query($sql) === TRUE) {
+            // Si se ha insertado el usuario correctamente, mostramos un mensaje de éxito
+            header("Location: menuadmin.php");
+        } else {
+            // Si ha habido un error al insertar el usuario, mostramos un mensaje de error
+            echo '<p>Error al registrar el usuario: ' . $connection->error . '</p>';
+        }
+    }
+}
+
+
 function eliminarprofes(){
     if($_POST){
         
@@ -178,25 +314,6 @@ function eliminarprofes(){
         header("Location: menuadmin.php");
 }
 }
-function modificarCurso(){
-    $conexion = abrirBBDD();
-
-    // Obtener los datos enviados desde el formulario
-    $codigo = $_POST['codigo'];
-    $nombre = $_POST['nombre'];
-    $descripcion = $_POST['descripcion'];
-
-    // Consulta SQL para actualizar el curso
-    $consulta = "UPDATE cursos SET nombre='$nombre', descripcion='$descripcion' WHERE codigo=$codigo";
-
-    if ($conexion->query($consulta) === TRUE) {
-        echo "Curso actualizado con éxito.";
-        echo "<a href='menuadmin.php'><p>Volver al menu</p></a>";
-    } else {
-        echo "Error al actualizar el curso: " . $conexion->error;
-    }
-
-}
 
 function crearProfe(){
     if($_POST){
@@ -242,6 +359,10 @@ function modificarProfe(){
         echo "Error al actualizar el curso: " . $conexion->error;
     }
 }
+
+// ############
+// Registro   #
+// ############
 
 function formularioRegistro() {
     if($_POST) {
@@ -366,71 +487,6 @@ function comprobacionEdad($edad) {
 }
 
 
-// LISTAR CURSOS
-function listarCursos(){
-    $conexion = abrirBBDD();
-        if($conexion == false) {
-            mysqli_connect_error();
-            echo '<p> ERROR </p>';
-        }
-        else {
-            $sql = "SELECT * FROM cursos WHERE activo=1";
-            $result = $conexion->query($sql);
-            if ($result->num_rows > 0) {
-                echo '<div class="curso-wrapper">';
-                while ($row = $result->fetch_assoc()) {
-                    echo '<div class="curso">';
-                    echo '<h2>' . $row['nombre'] . '</h2>';
-                    echo '<p>' . $row['descripcion'] . '</p>';
-                    echo '<p>' . $row['horas'] . '</p>';
-                    echo '<form action="paginacurso.php" method="POST">';
-                    echo '<input type="hidden" name="codigo" value="' . $row['codigo'] . '">';
-                    echo '<button type="submit" name="ver_curso">Ver Curso</button>';
-                    echo '</form>';
-                    echo '</div>';
-                }
-                echo '</div>';
-            } else {
-                echo "No se encontraron cursos.";
-            }
-        } 
-}
-
-function mostrarCurso($dni, $codigo){
-        $conexion = abrirBBDD();
-        if($conexion == false) {
-            mysqli_connect_error();
-        }
-        else {
-        $sql1 = "SELECT * FROM cursos WHERE codigo = $codigo";
-        $result = $conexion->query($sql1);
-        $curso = $result->fetch_assoc();
-        
-        // Verificar si el estudiante está matriculado en el curso
-        $sql_verificar = "SELECT * FROM matriculados WHERE codigo = '$codigo' AND dni = '$dni'";
-        $result_verificar = $conexion->query($sql_verificar);
-        
-        echo '<div class="paginacurso">';
-        echo '<h2>' . $curso['nombre'] . '</h2>';
-        echo '<p>' . $curso['descripcion'] . '</p>';
-        echo '<p>' . $curso['horas'] . '</p>';
-
-        if ($result_verificar->num_rows > 0) {
-            // El estudiante ya está matriculado, muestra otro contenido en su lugar
-            echo '<p>Nota:</p>';
-            echo "<form action='desmatricularse.php' method='POST'>";
-            echo "<button type='submit' name='Darbaja'>Darse de baja</button>";
-            echo "</form>";
-        } else {
-            // El estudiante no está matriculado, muestra el formulario de matriculación
-            echo "<form action='matricularse.php' method='POST'>";
-            echo "<button type='submit' name='Matricularse'>Matricularse</button>";
-            echo "</form>";
-        }
-        echo '</div>';
-        }
-} 
-
 function formularioInicio() {
     ?>
     <div>
@@ -495,38 +551,10 @@ function sessionAbrir($dni){
     return $datos;
 }
 
-function datosUserVisibles($datos){
-    echo "<a href='perfil.php'>";
-    echo "<div class='usuario'>";
-    echo "<p id='username' >";
-    echo $datos['nombre']. ' ' .$datos['apellidos'] ;
-    echo "</p>";
-    echo "<img src='./".$datos['foto']."' alt='fotoperfil' id='fotoperfil'>";
-    echo "</div>";
-    echo "</a>";
-}
 
-function navegadorUsuario(){
-    echo '<nav>
-    <ul>
-        <li><a href="listarcursos.php">Todos los cursos</a></li>
-        <li><a href="miscursos.php">Mis cursos</a></li>
-    </ul>
-  </nav>';
-
-}
-
-function encabezadoUsuario($datos){
-    echo "<header>
-    <div class='header'>
-    <a href='menuadmin.php'><img src='./img/TECHrecortada.png' alt='TechAcademy' id='logo'></a>
-        <h2 id='titulo'>TECH ACADEMY</h2>
-    </div>";
-    //echo "<h1> PRUEBA</h1>";
-    navegadorUsuario();
-    datosUserVisibles($datos);
-    echo "</header>";
-}
+// ############
+// MATRICULAR #
+// ############
 
 function matricular($dni, $codigo) {
     $conexion = abrirBBDD();
@@ -582,6 +610,11 @@ function desmatricular($dni, $codigo) {
         return false;
     }
 }
+
+
+// ############
+// PERFIL     #
+// ############
 
 function perfil($dni){
     // echo '<h2>'. $dni . '</h2>';
