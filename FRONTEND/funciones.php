@@ -10,7 +10,14 @@ function datosUserVisibles($datos){
     echo "<p id='username' >";
     echo $datos['nombre']. ' ' .$datos['apellidos'] ;
     echo "</p>";
+    $foto = $datos['foto'];
+    $info = pathinfo($foto);
+    if (isset($info['extension']) && $info['extension'] !== '') {
     echo "<img src='./".$datos['foto']."' alt='fotoperfil' id='fotoperfil'>";
+    } else {
+        echo "<img src='./img/perfiles/default.png' alt='fotoperfil' id='fotoperfil'>";
+    }
+
     echo "</div>";
     echo "</a>";
 }
