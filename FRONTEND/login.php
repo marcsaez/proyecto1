@@ -35,7 +35,7 @@
             }
             else {
                 $sql = "SELECT contraseña FROM alumnos WHERE dni='".$_POST['dni']."';";
-                $consulta = mysqli_query($conexion, $sql);
+                //$consulta = mysqli_query($conexion, $sql);
                 $contraseñaBBDD = contenido($conexion, $sql);
                 $contraseña = $_POST['contraseña'];
                 $verificacion = verificarContraseña($contraseña, $contraseñaBBDD);

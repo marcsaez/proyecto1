@@ -58,7 +58,7 @@ function abrirBBDD(){
         header("Location: formulariocursos.php");
         return false;
     }
-    }
+}
 
 
 // ############
@@ -71,6 +71,7 @@ function datosconcurso($dni){
     $result = $connection->query($sql);
     return $result;
 }
+
 function Concurso($dni){
     $connection = abrirBBDD();
     $sql = "SELECT concurso FROM alumnos WHERE dni = '$dni'";
@@ -291,7 +292,6 @@ function insertarProfesor($dni, $nombre, $apellidos, $titulo_academico, $foto, $
         }
     }
 }
-
 
 function eliminarprofes(){
     if($_POST){
@@ -659,6 +659,8 @@ function perfil($dni){
             $nuevoNombre = $_POST['nombre'];
             $nuevoApellidos = $_POST['apellidos'];
             $nuevoEdad = $_POST['edad'];
+            $contraseña = $_POST['contraseña'];
+            $contraseñaNueva = $_POST['contraseña_nueva'];
             // Obtener el DNI de la sesión o de alguna otra fuente
             $dni = $_SESSION['dni']; // Asegúrate de que esta variable de sesión esté configurada correctamente
             if(isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
@@ -703,6 +705,12 @@ function perfil($dni){
 
             echo "<label for='edad'>Edad:</label>";
             echo "<input type='number' id='edad' name='edad' value='" . $row['edad'] . "' required><br>";
+
+            echo "<label for='contrasenya'>Contrasenya actual:</label>";
+            echo "<input type='password' id='contrasenya' name='contrasenya'><br>";
+
+            echo "<label for='contrasenya_nueva'>Contrasenya nueva:</label>";
+            echo "<input type='password' id='contrasenya_nueva' name='contrasenya_nueva'><br>";
 
             echo "<label for='imagen'>Foto de perfil:</label>";
             echo "<input type='file' name='imagen' id='imagen' accept='img/*'><br>";
