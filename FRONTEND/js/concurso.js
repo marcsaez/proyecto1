@@ -13,8 +13,18 @@ document.addEventListener("DOMContentLoaded", function(){
             const aleatorio = Math.floor(Math.random() * frases.length);
             const fraserandom = frases[aleatorio];
             
-           // Abrir una nueva ventana
-           const nuevaVentana = window.open('', '', 'width=400,height=200');
+            const opcionesVentana = {
+            width: 400, // Ancho de la ventana en píxeles
+            height: 200, // Altura de la ventana en píxeles
+            top: 2500, // Posición superior en píxeles
+            left: 2500, // Posición izquierda en píxeles
+        };
+
+        // Generar las opciones como una cadena de texto
+        const opcionesTexto = Object.keys(opcionesVentana).map(key => `${key}=${opcionesVentana[key]}`).join(",");
+
+        // Abrir una nueva ventana con las opciones especificadas
+        const nuevaVentana = window.open("", "", opcionesTexto);
             
            // Agregar el contenido HTML a la nueva ventana
            nuevaVentana.document.write("<h1>Concurso por nuevo:</h1>");
