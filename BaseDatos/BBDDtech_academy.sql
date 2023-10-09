@@ -19,7 +19,8 @@ CREATE TABLE alumnos (
     apellidos VARCHAR(255) NOT NULL,
     edad INT,
     contraseña VARCHAR(255) NOT NULL,
-    foto VARCHAR(255)
+    foto VARCHAR(255),
+    concurso BOOLEAN
 );
 
 -- Crear la tabla ADMINISTRADORES
