@@ -20,15 +20,18 @@
             $dni = $_SESSION['dni'];
             include_once('funciones.php');
             $datos = sessionAbrir($dni);
-    ?>
-    <script src = "./js/concurso.js"></script>
-    <?php
-        encabezadoUsuario($datos);
 
-    
-        listarCursos();
-        
-    ?>
+            encabezadoUsuario($datos);
+            $datosConcur = datosconcurso($dni);
+            
+                Concurso($dni);   
+
+
+            
+            listarCursos();
+                
+            ?>
+            
     <footer>
         <div class="contacto">
             <p>consultas@techacademy.com</p>

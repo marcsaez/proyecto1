@@ -19,8 +19,9 @@ document.addEventListener("DOMContentLoaded", function(){
            // Agregar el contenido HTML a la nueva ventana
            nuevaVentana.document.write("<h1>Concurso por nuevo:</h1>");
            nuevaVentana.document.write("<p>" + fraserandom + "</p>");
-            
+           window.location.href = 'listarcursos.php'; 
         }
         concursoaleatorio();
-    }
+
+    } 
     });

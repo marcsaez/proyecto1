@@ -50,7 +50,7 @@ function encabezadoUsuario($datos){
 
 function abrirBBDD(){
     try {
-        $connection = mysqli_connect("localhost", "super", "P4ssword!", "tech_academy");
+        $connection = mysqli_connect("localhost", "root", "", "tech_academy");
         return $connection;
     } 
     catch (Exception $e) {
@@ -64,6 +64,27 @@ function abrirBBDD(){
 // ############
 // Cursos     #
 // ############
+
+function datosconcurso($dni){
+    $connection = abrirBBDD();
+    $sql = "SELECT concurso FROM alumnos WHERE dni = '$dni'";
+    $result = $connection->query($sql);
+    return $result;
+}
+function Concurso($dni){
+    $connection = abrirBBDD();
+    $sql = "SELECT concurso FROM alumnos WHERE dni = '$dni'";
+    $result = $connection->query($sql);
+    $concurso = false;
+    if ($result == true){
+        ?>
+        <script src = "./js/concurso.js"></script>
+        <?php
+        $sql2 = "UPDATE alumnos SET concurso = '$concurso' WHERE dni = '$dni'";
+        $result2 = $connection->query($sql2);
+        
+    }
+}
 
 function insertarCurso($nombre, $descripcion, $horas, $inicio, $final, $activo, $imagen, $fk_profesor,$connection){
     $sql = "SELECT * FROM cursos WHERE nombre = '$nombre'";
@@ -386,8 +407,9 @@ function formularioRegistro() {
             $nombre = $_POST['nombre'];
             $apellidos = $_POST['apellidos'];
             $edad = $_POST['edad'];
+            $concurso = true;
             if(comprobacionDNI($dni) == true && comprobacionEdad($edad) == true) {
-                $sql = "INSERT INTO alumnos (dni, nombre, apellidos, edad, contraseña, foto) VALUES ('$dni', '$nombre', '$apellidos', '$edad', '$contraseña', '$imagen_path')";
+                $sql = "INSERT INTO alumnos (dni, nombre, apellidos, edad, contraseña, foto, concurso) VALUES ('$dni', '$nombre', '$apellidos', '$edad', '$contraseña', '$imagen_path', '$concurso')";
                 $sql2 = "SELECT dni FROM alumnos WHERE dni='$dni'";
                 $consulta = mysqli_query($conexion, $sql2);
                 $numlinias = mysqli_num_rows($consulta);
@@ -401,6 +423,7 @@ function formularioRegistro() {
                 }
                 else {
                     $consulta = mysqli_query($conexion, $sql);
+                    $datoconcursos = datosconcurso($dni);
                     header("Location: listarcursos.php?registro_exitoso=true");
                 }
             }
