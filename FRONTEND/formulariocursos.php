@@ -29,7 +29,7 @@
     </header>
     <h2>Crear Nuevo Curso</h2>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype = "multipart/form-data">
         <label for="nombre">Nombre del Curso:</label>
         <input type="text" name="nombre" required><br>
 
@@ -40,16 +40,16 @@
         <input type="number" name="horas" required><br>
 
         <label for="inicio">Fecha de Inicio: (AAAA-MM-DD)</label>
-        <input type="text" name="inicio" required><br>
+        <input type="date" name="inicio" required><br>
 
         <label for="final">Fecha de Finalización: (AAAA-MM-DD)</label>
-        <input type="text" name="final" required><br>
+        <input type="date" name="final" required><br>
 
         <label for="fk_profesor">DNI del Profesor:</label>
         <input type="text" name="fk_profesor" required><br>
 
         <label for="imagen">Imagen del curso (solo formato PNG):</label>
-        <input type="file" name="imagen" accept=".png"><br>
+        <input type="file" name="imagen" accept=".png" required><br>
         
         <input type="submit" value="Crear Curso">
     </form>

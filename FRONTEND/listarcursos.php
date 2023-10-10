@@ -22,12 +22,8 @@
             $datos = sessionAbrir($dni);
 
             encabezadoUsuario($datos);
-            $datosConcur = datosconcurso($dni);
-            
-                Concurso($dni);   
-
-
-            
+            $datosConcur = datosconcurso($dni);         
+            Concurso($dni);   
             listarCursos();
                 
             ?>

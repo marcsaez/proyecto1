@@ -91,7 +91,7 @@ function insertarCurso($nombre, $descripcion, $horas, $inicio, $final, $activo, 
     $sql = "SELECT * FROM cursos WHERE nombre = '$nombre'";
         $result = $connection->query($sql);
         if ($result->num_rows > 0) {
-            // Si el usuario ya existe en la base de datos, mostramos un mensaje de error
+            // Si el curso ya existe en la base de datos, mostramos un mensaje de error
             echo "<a href='menuadmin.php'>Volver al menu</a>";
         ?>
         <script>
@@ -101,18 +101,31 @@ function insertarCurso($nombre, $descripcion, $horas, $inicio, $final, $activo, 
         <?php
 
         } else {
+            if($inicio >= date('Y-m-d')){
+                echo "hola";
             // Si el usuario no existe en la base de datos, lo insertamos
             $sql = "INSERT INTO cursos (nombre, descripcion, horas, inicio, final, activo, foto, fk_profesor) VALUES ('$nombre', '$descripcion','$horas', '$inicio', '$final','$activo', '$imagen', '$fk_profesor')";
+            }else{
+                ?>
+                <script>
+                    alert("Error, NO puedes crear un curso anterior a la fecha de hoy");
+                </script>
+                <?php
+            }
     
-        if ($connection->query($sql) === TRUE) {
+        try  {
+            if($connection->query($sql) === TRUE){
+                header("Location: menuadmin.php");
+            }
             // Si se ha insertado el usuario correctamente, mostramos un mensaje de éxito
-            header("Location: menuadmin.php");
-        } else {
-            // Si ha habido un error al insertar el usuario, mostramos un mensaje de error
-            echo '<p>Error al registrar el usuario: ' . $connection->error . '</p>';
+        } catch(Exception $e) {
+            // Si ha habido un error al insertar el curso, mostramos un mensaje de error
+            echo "Error";
         }
         }
 }
+
+
 
 function crearcurso(){
     if($_POST){
@@ -124,12 +137,20 @@ function crearcurso(){
         $final = $_POST['final'];
         $activo = true;
         $fk_profesor = $_POST['fk_profesor'];
-        $imagen = moverImagenR("cursos", $_POST['imagen']);
+        try{
+            $imagencurso = moverImagenR("cursos", $nombre);
+        }catch(Exception $e){
+            echo "";
+        }
+        $timestamp = strtotime($inicio);
+        $TiempoInicio = date('Y-m-d', $timestamp);
+        $timestamp2 = strtotime($final);
+        $TiempoFinal = date('Y-m-d', $timestamp2);
 
         $connection = abrirBBDD();
         
         if ($connection){
-            insertarCurso($nombre,$descripcion,$horas,$inicio,$final,$activo,$imagen,$fk_profesor,$connection);
+            insertarCurso($nombre,$descripcion,$horas,$TiempoInicio,$TiempoFinal,$activo,$imagencurso,$fk_profesor,$connection);
         } else{
             header("Location: formulariocursos.php");
         }
@@ -585,33 +606,58 @@ function sessionAbrir($dni){
 // ############
 // MATRICULAR #
 // ############
+function DatosCurso($codigo){
+    $conex = abrirBBDD();
+    $sql = "SELECT inicio, final FROM cursos WHERE codigo = '$codigo'";
+    $result = $conex ->query($sql);
+    $fila = $result->fetch_assoc();
+    $inicio = $fila['inicio'];
+    $final = $fila['final'];
+    $datos = array(
+        'inicio' => $inicio,
+        'final' => $final
+    );
 
+    return $datos;
+}
 function matricular($dni, $codigo) {
     $conexion = abrirBBDD();
-    $sql = "INSERT INTO matriculados (codigo, dni) VALUES ('$codigo', '$dni')";
-    try {
-        if ($conexion->query($sql)) {
-            // La consulta se ejecutó correctamente.
+    $datos = DatosCurso($codigo);
+    $inicio = $datos['inicio'];
+    $final = $datos['final'];
+    if($final > date('Y-m-d')){
+        $sql = "INSERT INTO matriculados (codigo, dni) VALUES ('$codigo', '$dni')";
+        try {
+            if ($conexion->query($sql)) {
+                // La consulta se ejecutó correctamente.
+                ?>
+                <script>
+                    alert("¡Matriculado con éxito!");
+                    window.location.href = "listarcursos.php";
+                </script>
+                <?php
+                return true;
+            } else {
+                // Hubo un error en la consulta.
+                throw new Exception("Error en la consulta: " . $conexion->error);
+            }
+        } catch (Exception $ex) {
             ?>
             <script>
-                alert("¡Matriculado con éxito!");
-                window.location.href = "listarcursos.php";
+                alert("¡ERROR! Ya estas matriculado");
             </script>
             <?php
-            return true;
-        } else {
-            // Hubo un error en la consulta.
-            throw new Exception("Error en la consulta: " . $conexion->error);
+            return false;
         }
-    } catch (Exception $ex) {
+    } else{
         ?>
         <script>
-            alert("¡ERROR! Ya estas matriculado");
+            alert("¡ERROR! CURSO FINALIZADO");
             window.location.href = "listarcursos.php";
         </script>
         <?php
-        return false;
     }
+    
 }
 function desmatricular($dni, $codigo) {
     $conexion = abrirBBDD();
