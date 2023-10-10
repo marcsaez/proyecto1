@@ -767,6 +767,7 @@ function perfil($dni){
             // Botón para enviar el formulario
             echo "<input type='submit' value='Guardar'>";
             echo "</form>";
+            echo '<a href="cerrarsesion.php">Cerrar Sesión</a>';
             echo "</div>";
         }
         
