@@ -227,6 +227,7 @@ function listarCursos($dni){
             echo '<p> ERROR </p>';
         }
         else {
+            echo '<h2> Todos los cursos: </h2>';
             $sql = "SELECT * FROM cursos WHERE codigo NOT IN (SELECT codigo FROM matriculados WHERE dni = '$dni');";
             $result = $conexion->query($sql);
             if ($result->num_rows > 0) {
@@ -250,40 +251,78 @@ function listarCursos($dni){
         } 
 }
 
+function misCursos($dni,$nombre){
+    $conexion = abrirBBDD();
+    if($conexion == false) {
+        mysqli_connect_error();
+    }
+    else {
+        echo '<h2>Bienvenido, ' . $nombre . '</h2>';
+        echo '<h2>Mis cursos:</h2>';
+        $sql = "SELECT codigo FROM matriculados WHERE dni='$dni'";
+        $result = $conexion->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $curso=$row['codigo'];
+                $cursoSql = "SELECT * FROM cursos WHERE codigo=$curso";
+                $cursoResult = $conexion->query($cursoSql); 
+                if ($cursoResult->num_rows > 0) {
+                        echo '<div class="curso-wrapper">';
+                        while ($cursoRow = $cursoResult->fetch_assoc()) {
+                            echo '<div class="curso">';
+                            echo '<h2>' . $cursoRow['nombre'] . '</h2>';
+                            echo '<p>' . $cursoRow['descripcion'] . '</p>';
+                            echo '<p>' . $cursoRow['horas'] . '</p>';
+                            echo '<form action="paginacurso.php" method="POST">';
+                            echo '<input type="hidden" name="codigo" value="' . $cursoRow['codigo'] . '">';
+                            echo '<button type="submit" name="ver_curso">Ver Curso</button>';
+                            echo '</form>';
+                            echo '</div>';
+                        }
+                        echo '</div>';
+                    }
+            }
+        } else {
+            echo "No estas matriculado en ningun curso.";
+        }
+    }
+}
+
 function mostrarCurso($dni, $codigo){
         $conexion = abrirBBDD();
         if($conexion == false) {
             mysqli_connect_error();
         }
         else {
-        $sql1 = "SELECT * FROM cursos WHERE codigo = $codigo";
-        $result = $conexion->query($sql1);
-        $curso = $result->fetch_assoc();
-        
-        // Verificar si el estudiante está matriculado en el curso
-        $sql_verificar = "SELECT * FROM matriculados WHERE codigo = '$codigo' AND dni = '$dni'";
-        $result_verificar = $conexion->query($sql_verificar);
-        
-        echo '<div class="paginacurso">';
-        echo '<h2>' . $curso['nombre'] . '</h2>';
-        echo '<p>' . $curso['descripcion'] . '</p>';
-        echo '<p>' . $curso['horas'] . '</p>';
 
-        if ($result_verificar->num_rows > 0) {
-            // El estudiante ya está matriculado, muestra otro contenido en su lugar
-            echo '<p>Nota:</p>';
-            echo "<form action='desmatricularse.php' method='POST'>";
-            echo "<button type='submit' name='Darbaja'>Darse de baja</button>";
-            echo "</form>";
-        } else {
-            // El estudiante no está matriculado, muestra el formulario de matriculación
-            echo "<form action='matricularse.php' method='POST'>";
-            echo "<button type='submit' name='Matricularse'>Matricularse</button>";
-            echo "</form>";
+            $sql1 = "SELECT * FROM cursos WHERE codigo = $codigo";
+            $result = $conexion->query($sql1);
+            $curso = $result->fetch_assoc();
+        
+            // Verificar si el estudiante está matriculado en el curso
+            $sql_verificar = "SELECT * FROM matriculados WHERE codigo = '$codigo' AND dni = '$dni'";
+            $result_verificar = $conexion->query($sql_verificar);
+        
+            echo '<div class="paginacurso">';
+            echo '<h2>' . $curso['nombre'] . '</h2>';
+            echo '<p>' . $curso['descripcion'] . '</p>';
+            echo '<p>' . $curso['horas'] . '</p>';
+
+            if ($result_verificar->num_rows > 0) {
+                // El estudiante ya está matriculado, muestra otro contenido en su lugar
+                echo '<p>Nota:</p>';
+                echo "<form action='desmatricularse.php' method='POST'>";
+                echo "<button type='submit' name='Darbaja'>Darse de baja</button>";
+                echo "</form>";
+            } else {
+                // El estudiante no está matriculado, muestra el formulario de matriculación
+                echo "<form action='matricularse.php' method='POST'>";
+                echo "<button type='submit' name='Matricularse'>Matricularse</button>";
+                echo "</form>";
+            }
+            echo '</div>';
         }
-        echo '</div>';
-        }
-} 
+}
 
 // ############
 // Profesores #
