@@ -76,12 +76,12 @@ function Concurso($dni){
     $connection = abrirBBDD();
     $sql = "SELECT concurso FROM alumnos WHERE dni = '$dni'";
     $result = $connection->query($sql);
-    $concurso = false;
+   
     if ($result == true){
-        ?>
-        <script src = "./js/concurso.js"></script>
-        <?php
-        $sql2 = "UPDATE alumnos SET concurso = '$concurso' WHERE dni = '$dni'";
+         ?>
+         <script src = "./js/concurso.js"></script>
+         <?php
+        $sql2 = "UPDATE alumnos SET concurso = false WHERE dni = '$dni'";
         $result2 = $connection->query($sql2);
         
     }
