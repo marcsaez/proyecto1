@@ -424,7 +424,7 @@ function formularioRegistro() {
         else {
 
             $imagen_path = moverImagenR("perfiles", $_POST['dni']);
-            $contraseña = encriptacio();
+            $contraseña = encriptacio($_POST['contraseña']);
             $dni = $_POST['dni'];
             $nombre = $_POST['nombre'];
             $apellidos = $_POST['apellidos'];
@@ -505,8 +505,8 @@ function eliminarImagen($path) {
     }
 }
 
-function encriptacio() {
-    $contraseña = $_POST['contraseña'];
+function encriptacio($contraseña) {
+    //$contraseña = $_POST['contraseña'];
     $contraseña_encriptada = password_hash($contraseña, PASSWORD_BCRYPT);
 
     return $contraseña_encriptada;
@@ -702,30 +702,60 @@ function perfil($dni){
     else {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Comprobar si se ha enviado el formulario
-
             $nuevoNombre = $_POST['nombre'];
             $nuevoApellidos = $_POST['apellidos'];
             $nuevoEdad = $_POST['edad'];
-            $contraseña = $_POST['contraseña'];
-            $contraseñaNueva = $_POST['contraseña_nueva'];
+            //Si se cumplen las condiciones para cambiar la contraseña se guarda la nueva
+            if ($_POST['contraseña']) {
+                $sql = "SELECT contraseña FROM alumnos WHERE dni='".$_SESSION['dni']."';";
+                $contraseñaBBDD = contenido($conexion, $sql);
+                $contraseña = $_POST['contraseña'];
+                $verificacion = verificarContraseña($contraseña, $contraseñaBBDD);
+                if($verificacion == true) {
+                    $contraseñaNueva = $_POST['contraseña_nueva'];
+                }
+                else {
+                    ?>  
+                        <script>
+                            alert("La contraseña no se ha cambiado porque la contraseña actual no es correcta");
+                        </script>              
+                    <?php
+                    $contraseñaNueva = "";
+                } 
+            } 
             // Obtener el DNI de la sesión o de alguna otra fuente
             $dni = $_SESSION['dni']; // Asegúrate de que esta variable de sesión esté configurada correctamente
-            if(isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-                eliminarImagen($_SESSION['foto']);
-                $imagen_path = moverImagenR("perfiles", $dni);
-                // Actualizar los datos en la base de datos
-                $sqlUpdate = "UPDATE alumnos SET nombre = '$nuevoNombre', apellidos = '$nuevoApellidos', edad = '$nuevoEdad', foto = '$imagen_path' WHERE dni = '$dni'";
+            if(!empty($contraseñaNueva)) {
+                $contraseña = encriptacio($contraseñaNueva);
+                if(isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+                    eliminarImagen($_SESSION['foto']);
+                    $imagen_path = moverImagenR("perfiles", $dni);
+                    // Actualizar los datos en la base de datos
+                    $sqlUpdate = "UPDATE alumnos SET nombre = '$nuevoNombre', apellidos = '$nuevoApellidos', edad = '$nuevoEdad', contraseña = '$contraseña', foto = '$imagen_path' WHERE dni = '$dni'";
+                }
+                else {
+                    //Actualizar los datos en la base de datos sin la foto porque no se ha editado
+                    $sqlUpdate = "UPDATE alumnos SET nombre = '$nuevoNombre', apellidos = '$nuevoApellidos', edad = '$nuevoEdad', contraseña = '$contraseña' WHERE dni = '$dni'";
+                }
             }
             else {
-                //Actualizar los datos en la base de datos sin la foto porque no se ha editado
-                $sqlUpdate = "UPDATE alumnos SET nombre = '$nuevoNombre', apellidos = '$nuevoApellidos', edad = '$nuevoEdad' WHERE dni = '$dni'";
-            }
-            
+                if(isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+                    eliminarImagen($_SESSION['foto']);
+                    $imagen_path = moverImagenR("perfiles", $dni);
+                    // Actualizar los datos en la base de datos
+                    $sqlUpdate = "UPDATE alumnos SET nombre = '$nuevoNombre', apellidos = '$nuevoApellidos', edad = '$nuevoEdad', foto = '$imagen_path' WHERE dni = '$dni'";
+                }
+                else {
+                    //Actualizar los datos en la base de datos sin la foto porque no se ha editado
+                    $sqlUpdate = "UPDATE alumnos SET nombre = '$nuevoNombre', apellidos = '$nuevoApellidos', edad = '$nuevoEdad' WHERE dni = '$dni'";
+                }
+            } 
             
             if ($conexion->query($sqlUpdate) === TRUE) {
                 // Redirigir a la misma página después de la actualización
-                header("Location: " . $_SERVER['PHP_SELF']);
-                exit(); // Asegúrate de que no se ejecute más código después de la redirección
+                ?>               
+                    <meta http-equiv="REFRESH" content="0;url=perfil.php">
+                <?php
             } else {
                 echo "Error al actualizar los datos: " . $conexion->error;
             }
@@ -753,27 +783,30 @@ function perfil($dni){
             echo "<label for='edad'>Edad:</label>";
             echo "<input type='number' id='edad' name='edad' value='" . $row['edad'] . "' required><br>";
 
-            echo "<label for='contrasenya'>Contrasenya actual:</label>";
-            echo "<input type='password' id='contrasenya' name='contrasenya'><br>";
+            echo "<input type='checkbox' id='change_password_checkbox' onchange='togglePasswordFields()'>";
+            echo "<label for='change_password_checkbox'>Cambiar contraseña</label> <br>";
 
-            echo "<label for='contrasenya_nueva'>Contrasenya nueva:</label>";
-            echo "<input type='password' id='contrasenya_nueva' name='contrasenya_nueva'><br>";
+            //Si se selecciona el checkbox anterior se despliega el cambio de contraseña
+            echo "<div id='password_fields' style='display: none;'>";
+
+                echo "<label for='contraseña'>Contraseña actual:</label>";
+                echo "<input type='password' id='contraseña' name='contraseña'><br>";
+
+                echo "<label for='contraseña_nueva'>Contraseña nueva:</label>";
+                echo "<input type='password' id='contraseña_nueva' name='contraseña_nueva'><br>";
+
+            echo "</div>";
 
             echo "<label for='imagen'>Foto de perfil:</label>";
             echo "<input type='file' name='imagen' id='imagen' accept='img/*'><br>";
-
-            // Añade más campos según tus necesidades
 
             // Botón para enviar el formulario
             echo "<input type='submit' value='Guardar'>";
             echo "</form>";
             echo '<a href="cerrarsesion.php">Cerrar Sesión</a>';
             echo "</div>";
-        }
-        
+        }   
     }
-    
-
 }
 
 

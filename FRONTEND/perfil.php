@@ -15,6 +15,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <script>
+        function togglePasswordFields() {
+            var checkbox = document.getElementById("change_password_checkbox");
+            var passwordFields = document.getElementById("password_fields");
+            var passwordInputs = passwordFields.querySelectorAll("input[type='password']");
+            
+            if (checkbox.checked) {
+                passwordFields.style.display = "block";
+                passwordInputs.forEach(function(input) {
+                    input.setAttribute("required", "required");
+                });
+            } else {
+                passwordFields.style.display = "none";
+                passwordInputs.forEach(function(input) {
+                    input.removeAttribute("required");
+                });
+            }
+        }
+    </script>
 </head>
 <body>
     <script src = "./js/concurso.js"></script>
