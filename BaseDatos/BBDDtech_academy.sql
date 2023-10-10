@@ -20,7 +20,7 @@ CREATE TABLE alumnos (
     edad INT,
     contraseña VARCHAR(255) NOT NULL,
     foto VARCHAR(255),
-    concurso BOOLEAN
+    concurso BOOLEAN DEFAULT 1
 );
 
 -- Crear la tabla ADMINISTRADORES
@@ -34,7 +34,6 @@ CREATE TABLE administradores (
 CREATE TABLE cursos (
     codigo INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
-    imagen VARCHAR(255),
     descripcion TEXT,
     horas INT,
     inicio DATE,
