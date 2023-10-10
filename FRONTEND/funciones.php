@@ -594,6 +594,9 @@ function formularioInicio() {
                     <td> <label for="contraseña">Contraseña:</label> </td> <td> <input type="password" name="contraseña" id="contraseña" required> </td>
                 </tr>
                 <tr>
+                    <td> <input type="checkbox" name="profesor" id="profesor"> <label for="profesor">Soy profesor</label></td>
+                </tr>
+                <tr>
                     <td id="iniciar" style="text-align:center" colspan="2"> 
                         <input type="submit" name="Aceptar" value="Aceptar">
                     </td>
