@@ -220,14 +220,14 @@ function modificarCurso(){
 }
 
 // LISTAR CURSOS
-function listarCursos(){
+function listarCursos($dni){
     $conexion = abrirBBDD();
         if($conexion == false) {
             mysqli_connect_error();
             echo '<p> ERROR </p>';
         }
         else {
-            $sql = "SELECT * FROM cursos WHERE activo=1";
+            $sql = "SELECT * FROM cursos WHERE codigo NOT IN (SELECT codigo FROM matriculados WHERE dni = '$dni');";
             $result = $conexion->query($sql);
             if ($result->num_rows > 0) {
                 echo '<div class="curso-wrapper">';
@@ -243,7 +243,8 @@ function listarCursos(){
                     echo '</div>';
                 }
                 echo '</div>';
-            } else {
+            }
+            else {
                 echo "No se encontraron cursos.";
             }
         } 

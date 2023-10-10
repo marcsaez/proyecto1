@@ -24,7 +24,7 @@
             encabezadoUsuario($datos);
             $datosConcur = datosconcurso($dni);         
             Concurso($dni);   
-            listarCursos();
+            listarCursos($dni);
                 
             ?>
             
