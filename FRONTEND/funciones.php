@@ -220,13 +220,6 @@ function modificarCurso(){
 }
 
 // ADMIN
-function cursoModificar($codigo){
-    $conexion = abrirBBDD();
-    if($conexion == false) {
-        mysqli_connect_error();
-    }
-}
-
 function adminCursos(){
     echo '<h1>CURSOS</h1>
         <table class="admin">
@@ -243,36 +236,77 @@ function adminCursos(){
 
     $conexion = abrirBBDD();
     $sql = "SELECT * FROM cursos";
-    $consulta = mysqli_query($conexion, $sql);
-    if($consulta == false) {
-        mysqli_error($conexion);
-    }
-    else {
-        $numlinias = mysqli_num_rows($consulta);
-        for($i=0; $i<$numlinias; $i++) {
-            $linia = mysqli_fetch_array($consulta);
-            echo "<tr>";
-            echo "<td>".$linia['codigo']."</td>";
-            echo "<td>".$linia['nombre']."</td>";
-            echo "<td>".$linia['inicio']."</td>";
-            echo "<td>".$linia['final']."</td>"; 
-            echo "<td>".$linia['horas']."</td>";
-            if($linia['activo'] == "1") {
-                echo "<td> <img src='./img/punto_verde.png' alt='Verde'> </td>";
-            }
-            else {
-                echo "<td> <img src='./img/punto_rojo.png' alt='Rojo'> </td>";
-            }
-            echo "<td>";
-            echo '<form action="cursomodificar.php" method="POST">';
-            echo '<input type="hidden" name="codigo" value="' . $linia['codigo'] . '">';
-            echo '<button type="submit" name="ver_curso"><img src="./img/editar.png" alt="TechAcademy"></button></td>';
+    $result = $conexion->query($sql);
+    if ($result->num_rows > 0) {
+        while ($linia = $result->fetch_assoc()){
+            echo '<tr>
+                    <td>' . $linia['codigo'] . '</td>
+                    <td>' . $linia['nombre'] . '</td>
+                    <td>' . $linia['inicio'] . '</td>
+                    <td>' . $linia['final'] . '</td>
+                    <td>' . $linia['horas'] . '</td>';
 
-            echo "<td><a href='eliminarcurso.php'><img src='./img/eliminar.png' alt='TechAcademy'></a></td>";
-            echo "</tr>";
+                if ($linia['activo'] == "1") {
+                    echo '<td> <img src="./img/punto_verde.png" alt="Verde"> </td>';
+                } else {
+                    echo '<td> <img src="./img/punto_rojo.png" alt="Rojo"> </td>';
+                }
+
+                echo '<td>
+                    <form action="cursomodificar.php" method="POST">
+                        <input type="hidden" name="codigo" value="' . $linia['codigo'] . '">
+                        <button type="submit" name="mod_curso"><img src="./img/editar.png" alt="TechAcademy"></button>
+                    </form>
+                </td>
+                <td><a href="eliminarcurso.php"><img src="./img/eliminar.png" alt="TechAcademy"></a></td>
+                </tr>';
+
         }
     }
-    echo '</table>';
+    else {
+        echo "NO HAY CURSOS";      
+    }
+    //echo '</table>';
+}
+
+function cursoModificar($codigo){
+    $conexion = abrirBBDD();
+    if($conexion == false) {
+        mysqli_connect_error();
+    } else {
+
+        $sql = "SELECT * FROM cursos WHERE codigo='$codigo'";
+        $result = $conexion->query($sql);
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            echo "<div class='perfil'>";
+
+            echo "<form action='procesarcurso.php' method='POST' enctype='multipart/form-data'>";
+            echo "<label for='codigo'>CODIGO:</label>";
+            echo "<input type='text' id='codigo' name='codigo' value='" . $row['codigo'] . "' disabled><br>";
+            echo "<label for='nombre'>Nombre:</label>";
+            echo "<input type='text' id='nombre' name='nombre' value='" . $row['nombre'] . "' required><br>";
+            echo "<label for='descripcion'>Descripcion:</label>";
+            echo "<textarea name='descripcion' rows='4' cols='50' required>" . $row['descripcion'] . "</textarea><br>";
+            echo "<label for='horas'>Horas:</label>";
+            echo "<input type='number' name='horas' value='" . $row['horas'] . "' required><br>";
+            echo "<label for='Inicio'>Inicio:</label>";
+            echo "<input type='date' name='inicio' value='" . $row['inicio'] . "' required><br>";
+            echo "<label for='final'>final:</label>";
+            echo "<input type='date' name='final' value='" . $row['final'] . "' required><br>";
+
+            // echo "<img src='./".$row['foto']."' alt='fotocurso' id='fotocurso'>";
+            // echo "<label for='Foto'>Foto:</label>";
+            // echo "<input type='file' name='imagen' accept='img/*' value='./".$row['foto']."' required><br>";
+
+            echo "<input type='submit' value='Guardar'>";
+            echo "</form>";
+            echo "</div>";
+
+        }
+
+    }
 }
 
 // LISTAR CURSOS

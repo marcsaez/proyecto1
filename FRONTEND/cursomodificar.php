@@ -1,8 +1,5 @@
 <?php 
     include("funciones.php");
-    if ($_POST){
-        modificarCurso();
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,14 +26,14 @@
     </header>
         <h2>Modificar Curso</h2>
         <?php
-            $codigo = $_POST['codigo'];
-
-
-            if ($_POST){
-            cursoModificar($codigo);
-            }else {
-                echo "NO HAY POST";
-            }    
+            if (isset($_POST['codigo'])) {
+                $codigoCurso = $_POST['codigo'];
+                cursoModificar($codigoCurso);
+            
+            } else {
+                echo 'No se proporcionó un código de curso válido.';
+            }
+                                 
         ?>
 
     <footer>
