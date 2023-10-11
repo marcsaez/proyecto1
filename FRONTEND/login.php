@@ -34,7 +34,7 @@
                 mysqli_connect_error();
             }
             else {
-                if($_POST['profesor'] == 'on') {
+                if(isset($_POST['profesor']) && $_POST['profesor'] == 'on') {
                     $tabla = "profesor";
                 }
                 else {

@@ -42,8 +42,16 @@
         <label for="titulo_academico">Titulo del profesor:</label>
         <input type="text" name="titulo_academico" required><br>
 
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" name="contraseña" id="contraseña" required><br>
+
+        <label for="foto">Foto de perfil:</label>
+        <input type="file" name="foto" id="foto" accept="img/*"><br>
+
+        <!--
         <label for="foto">Foto (en proceso):</label>
         <input type="text" name="foto"><br>
+        -->
 
         <input type="submit" value="Crear Profesor">
     </form>

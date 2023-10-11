@@ -329,7 +329,7 @@ function mostrarCurso($dni, $codigo){
 // Profesores #
 // ############
 
-function insertarProfesor($dni, $nombre, $apellidos, $titulo_academico, $foto, $activo, $connection){
+function insertarProfesor($dni, $nombre, $apellidos, $titulo_academico, $foto, $activo, $contraseña, $connection){
     $sql = "SELECT * FROM profesor WHERE dni = '$dni'";
     $result = $connection->query($sql);
     
@@ -343,7 +343,7 @@ function insertarProfesor($dni, $nombre, $apellidos, $titulo_academico, $foto, $
 
     } else {
         // Si el usuario no existe en la base de datos, lo insertamos
-        $sql = "INSERT INTO profesor (dni, nombre, apellidos, titulo_academico, foto, activo) VALUES ('$dni', '$nombre','$apellidos', '$titulo_academico', '$foto','$activo')";
+        $sql = "INSERT INTO profesor (dni, nombre, apellidos, titulo_academico, foto, activo, contraseña) VALUES ('$dni', '$nombre','$apellidos', '$titulo_academico', '$foto','$activo', '$contraseña')";
 
         if ($connection->query($sql) === TRUE) {
             // Si se ha insertado el usuario correctamente, mostramos un mensaje de éxito
@@ -408,17 +408,18 @@ function eliminarprofes(){
 function crearProfe(){
     if($_POST){
         //COGEMOS LOS DATOS DEL FORMULARIO
+        $foto = moverImagenR("perfiles", $_POST['dni']);
+        $contraseña = encriptacio($_POST['contraseña']);
         $dni = $_POST['dni'];
         $nombre = $_POST['nombre'];
         $apellidos = $_POST['apellidos'];
         $titulo_academico = $_POST['titulo_academico'];
-        $foto = $_POST['foto'];
         $activo = true;
 
         $connection = abrirBBDD();
 
         if ($connection){
-            insertarProfesor($dni, $nombre, $apellidos, $titulo_academico, $foto, $activo, $connection);
+            insertarProfesor($dni, $nombre, $apellidos, $titulo_academico, $foto, $activo, $contraseña, $connection);
         } else{
             header("Location: formulariocursos.php");
         }
