@@ -16,53 +16,60 @@
             <h2 id="titulo">TECH ACADEMY</h2>
         </div>
         <div class="usuario">
-            <!-- FOTO DE PRUEBA PARA MEDIDAS (HAY QUE SACARLA DE LA BBDD) -->
             <p id="username" >Pablo de Gregorio</p>
             <img src="./img/98-1.jpg" alt="fotoperfil" id="fotoperfil">
         </div>
     </header>
-
-    <h1>CURSOS</h1>
-    <table class="admin">
-        <tr class="blanco">
-            <td>Codigo</td>
-            <td>Nombre</td>
-            <td>Fecha inicio</td>
-            <td>Fecha final</td>
-            <td>Horas</td>
-            <td>Activo</td>
-            <td>Editar</td>
-            <td>Eliminar</td>
-        </tr>
         <?php
             include_once("funciones.php");
-            $conexion = abrirBBDD();
-            $sql = "SELECT * FROM cursos";
-            $consulta = mysqli_query($conexion, $sql);
-            if($consulta == false) {
-                mysqli_error($conexion);
-            }
-            else {
-                $numlinias = mysqli_num_rows($consulta);
-                for($i=0; $i<$numlinias; $i++) {
-                    $linia = mysqli_fetch_array($consulta);
-                    echo "<tr>";
-                    echo "<td>".$linia['codigo']."</td>";
-                    echo "<td>".$linia['nombre']."</td>";
-                    echo "<td>".$linia['inicio']."</td>";
-                    echo "<td>".$linia['final']."</td>"; 
-                    echo "<td>".$linia['horas']."</td>";
-                    if($linia['activo'] == "1") {
-                        echo "<td> <img src='./img/punto_verde.png' alt='Verde'> </td>";
-                    }
-                    else {
-                        echo "<td> <img src='./img/punto_rojo.png' alt='Rojo'> </td>";
-                    }
-                    echo "<td><a href='formulariomodificarcursos.php'><img src='./img/editar.png' alt='TechAcademy'></a></td>";
-                    echo "<td><a href='eliminarcurso.php'><img src='./img/eliminar.png' alt='TechAcademy'></a></td>";
-                    echo "</tr>";
+            function adminCursos(){
+                echo '<h1>CURSOS</h1>
+                    <table class="admin">
+                        <tr class="blanco">
+                            <td>Codigo</td>
+                            <td>Nombre</td>
+                            <td>Fecha inicio</td>
+                            <td>Fecha final</td>
+                            <td>Horas</td>
+                            <td>Activo</td>
+                            <td>Editar</td>
+                            <td>Eliminar</td>
+                        </tr>';
+
+                $conexion = abrirBBDD();
+                $sql = "SELECT * FROM cursos";
+                $consulta = mysqli_query($conexion, $sql);
+                if($consulta == false) {
+                    mysqli_error($conexion);
                 }
+                else {
+                    $numlinias = mysqli_num_rows($consulta);
+                    for($i=0; $i<$numlinias; $i++) {
+                        $linia = mysqli_fetch_array($consulta);
+                        echo "<tr>";
+                        echo "<td>".$linia['codigo']."</td>";
+                        echo "<td>".$linia['nombre']."</td>";
+                        echo "<td>".$linia['inicio']."</td>";
+                        echo "<td>".$linia['final']."</td>"; 
+                        echo "<td>".$linia['horas']."</td>";
+                        if($linia['activo'] == "1") {
+                            echo "<td> <img src='./img/punto_verde.png' alt='Verde'> </td>";
+                        }
+                        else {
+                            echo "<td> <img src='./img/punto_rojo.png' alt='Rojo'> </td>";
+                        }
+                        echo "<td>";
+                        echo '<form action="cursomodificar.php" method="POST">';
+                        echo '<input type="hidden" name="codigo" value="' . $linia['codigo'] . '">';
+                        echo '<button type="submit" name="ver_curso"><img src="./img/editar.png" alt="TechAcademy"></button></td>';
+
+                        echo "<td><a href='eliminarcurso.php'><img src='./img/eliminar.png' alt='TechAcademy'></a></td>";
+                        echo "</tr>";
+                    }
+                }
+                echo '</table>';
             }
+            adminCursos();
         ?>
     </table>
 </body>
