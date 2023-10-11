@@ -228,7 +228,8 @@ function listarCursos($dni){
         }
         else {
             echo '<h2> Todos los cursos: </h2>';
-            $sql = "SELECT * FROM cursos WHERE codigo NOT IN (SELECT codigo FROM matriculados WHERE dni = '$dni');";
+            $control = date('Y-m-d');
+            $sql = "SELECT * FROM cursos WHERE codigo NOT IN (SELECT codigo FROM matriculados WHERE dni = '$dni') AND inicio > '$control';";
             $result = $conexion->query($sql);
             if ($result->num_rows > 0) {
                 echo '<div class="curso-wrapper">';
@@ -663,7 +664,7 @@ function DatosCurso($codigo){
 
     return $datos;
 }
-//cambiar el control a el select 
+//EL CODIGO CONTIENE CONTROL DE FECHAS POR SI HICIERAN FALTA EN UN FUTURO. 
 function matricular($dni, $codigo) {
     $conexion = abrirBBDD();
     $datos = DatosCurso($codigo);
