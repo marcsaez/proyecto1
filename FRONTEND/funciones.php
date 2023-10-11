@@ -663,34 +663,44 @@ function DatosCurso($codigo){
 
     return $datos;
 }
+//cambiar el control a el select 
 function matricular($dni, $codigo) {
     $conexion = abrirBBDD();
     $datos = DatosCurso($codigo);
     $inicio = $datos['inicio'];
     $final = $datos['final'];
     if($final > date('Y-m-d')){
-        $sql = "INSERT INTO matriculados (codigo, dni) VALUES ('$codigo', '$dni')";
-        try {
-            if ($conexion->query($sql)) {
-                // La consulta se ejecutó correctamente.
+        if($inicio > date('Y-m-d')){
+            $sql = "INSERT INTO matriculados (codigo, dni) VALUES ('$codigo', '$dni')";
+            try {
+                if ($conexion->query($sql)) {
+                    // La consulta se ejecutó correctamente.
+                    ?>
+                    <script>
+                        alert("¡Matriculado con éxito!");
+                        window.location.href = "listarcursos.php";
+                    </script>
+                    <?php
+                    return true;
+                } else {
+                    // Hubo un error en la consulta.
+                    throw new Exception("Error en la consulta: " . $conexion->error);
+                }
+            } catch (Exception $ex) {
                 ?>
                 <script>
-                    alert("¡Matriculado con éxito!");
-                    window.location.href = "listarcursos.php";
+                    alert("¡ERROR! Ya estas matriculado");
                 </script>
                 <?php
-                return true;
-            } else {
-                // Hubo un error en la consulta.
-                throw new Exception("Error en la consulta: " . $conexion->error);
+                return false;
             }
-        } catch (Exception $ex) {
+        } else{
             ?>
             <script>
-                alert("¡ERROR! Ya estas matriculado");
+                alert("¡ERROR! CURSO INICIADO");
+                window.location.href = "listarcursos.php";
             </script>
             <?php
-            return false;
         }
     } else{
         ?>
