@@ -31,7 +31,46 @@ function navegadorUsuario(){
   </nav>';
 
 }
+function EncabaezadoAlternativo(){
+    echo "<header>
+    <div class='header'>
+    <a href='bienvenida.php'><img src='./img/TECHrecortada.png' alt='TechAcademy' id='logo'></a>
+        <h2 id='titulo'>TECH ACADEMY</h2>
+    </div>";
+    navegadorBienvenida2();
+    echo "</header>";
+}
+function encabezadoBienvenida($datos){
+    echo "<header>
+    <div class='header'>
+    <a href='bienvenida.php'><img src='./img/TECHrecortada.png' alt='TechAcademy' id='logo'></a>
+        <h2 id='titulo'>TECH ACADEMY</h2>
+    </div>";
+    navegadorBienvenida();
+    datosUserVisibles($datos);
+    echo "</header>";
+}
+function navegadorBienvenida2(){
+    echo '<nav>
+    <ul>
+        <li><a href="sobrenosotros.php">Sobre nosotros</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="login.php">Iniciar Sesion</a></li>
 
+    </ul>
+  </nav>';
+}
+function navegadorBienvenida(){
+    echo '<nav>
+    <ul>
+        <li><a href="sobrenosotros.php">Sobre nosotros</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="miscursos.php">Mis Cursos</a></li>
+    </ul>
+  </nav>';
+}
 function encabezadoUsuario($datos){
     echo "<header>
     <div class='header'>

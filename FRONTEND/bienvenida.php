@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    include_once('funciones.php');
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,21 +11,15 @@
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
 </head>
 <body class="home">
-    <header>
-        <div class="header">
-            <img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo">
-            <h2 id="titulo">TECH ACADEMY</h2>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="sobrenosotros.php">Sobre nosotros</a></li>
-                <li><a href="#">Servicios</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="login.php">Iniciar sesión</a></li>
-            </ul>
-        </nav>
-    </header>
-
+    <?php
+        if($_SESSION){
+                $dni = $_SESSION['dni'];
+                $datos = sessionAbrir($dni);
+                encabezadoBienvenida($datos);
+        }else{
+            EncabaezadoAlternativo();
+        }  
+    ?>
     <table>
         <tr>
             <td colspan="3">Mira a tu alrededor. Estás rodeado de informática. Es tan importante su papel en la actualidad que, muchas veces, ni siquiera nos paramos a pensarlo. Si tu sueño es ser informático y eres consciente de esta necesidad, este artículo te interesa. ¿No sabes qué especialidad de la informática escoger? </td>
