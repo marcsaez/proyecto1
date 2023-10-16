@@ -1,8 +1,5 @@
 <?php 
     include("funciones.php");
-    if ($_POST){
-        modificarCurso();
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,38 +24,17 @@
             <img src="./img/98-1.jpg" alt="fotoperfil" id="fotoperfil">
         </div>
     </header>
-<h2>Modificar Curso</h2>
-
-    <form method="post" action="">
-        <label for="codigo">Selecciona un curso:</label>
-        <select name="codigo">
-            <?php
-            include_once('funciones.php');
-            // Esta funcion devuelve la conexion o false si no se establece la conexión
-            $conexion = abrirBBDD();
-
-            // Consulta SQL para obtener la lista de cursos
-            $consulta = "SELECT codigo, nombre FROM cursos";
-            $resultados = $conexion->query($consulta);
-
-            // Generar las opciones del select
-            while ($fila = $resultados->fetch_assoc()) {
-                echo "<option value='" . $fila['codigo'] . "'>" . $fila['nombre'] . "</option>";
+        <h2>Modificar Curso</h2>
+        <?php
+            if (isset($_POST['codigo'])) {
+                $codigoCurso = $_POST['codigo'];
+                cursoModificar($codigoCurso);
+            
+            } else {
+                echo 'No se proporcionó un código de curso válido.';
             }
-
-            // Cerrar la conexión a la base de datos
-            $conexion->close();
-            ?>
-        </select>
-        <br>
-        <label for="nombre">Nuevo nombre del curso:</label>
-        <input type="text" name="nombre">
-        <br>
-        <label for="descripcion">Nueva descripción del curso:</label>
-        <textarea name="descripcion"></textarea>
-        <br>
-        <input type="submit" value="Modificar Curso">
-    </form>
+                                 
+        ?>
 
     <footer>
         <div class="contacto">

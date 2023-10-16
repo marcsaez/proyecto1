@@ -260,6 +260,96 @@ function modificarCurso(){
 
 }
 
+// ADMIN
+function adminCursos(){
+    echo '<h1>CURSOS</h1>
+        <table class="admin">
+            <tr class="blanco">
+                <td>Codigo</td>
+                <td>Nombre</td>
+                <td>Fecha inicio</td>
+                <td>Fecha final</td>
+                <td>Horas</td>
+                <td>Activo</td>
+                <td>Editar</td>
+                <td>Eliminar</td>
+            </tr>';
+
+    $conexion = abrirBBDD();
+    $sql = "SELECT * FROM cursos";
+    $result = $conexion->query($sql);
+    if ($result->num_rows > 0) {
+        while ($linia = $result->fetch_assoc()){
+            echo '<tr>
+                    <td>' . $linia['codigo'] . '</td>
+                    <td>' . $linia['nombre'] . '</td>
+                    <td>' . $linia['inicio'] . '</td>
+                    <td>' . $linia['final'] . '</td>
+                    <td>' . $linia['horas'] . '</td>';
+
+                if ($linia['activo'] == "1") {
+                    echo '<td> <img src="./img/punto_verde.png" alt="Verde"> </td>';
+                } else {
+                    echo '<td> <img src="./img/punto_rojo.png" alt="Rojo"> </td>';
+                }
+
+                echo '<td>
+                    <form action="cursomodificar.php" method="POST">
+                        <input type="hidden" name="codigo" value="' . $linia['codigo'] . '">
+                        <button type="submit" name="mod_curso"><img src="./img/editar.png" alt="TechAcademy"></button>
+                    </form>
+                </td>
+                <td><a href="eliminarcurso.php"><img src="./img/eliminar.png" alt="TechAcademy"></a></td>
+                </tr>';
+
+        }
+    }
+    else {
+        echo "NO HAY CURSOS";      
+    }
+    //echo '</table>';
+}
+
+function cursoModificar($codigo){
+    $conexion = abrirBBDD();
+    if($conexion == false) {
+        mysqli_connect_error();
+    } else {
+
+        $sql = "SELECT * FROM cursos WHERE codigo='$codigo'";
+        $result = $conexion->query($sql);
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            echo "<div class='perfil'>";
+
+            echo "<form action='procesarcurso.php' method='POST' enctype='multipart/form-data'>";
+            echo "<label for='codigo'>CODIGO:</label>";
+            echo "<input type='text' id='codigo' name='codigo' value='" . $row['codigo'] . "' disabled><br>";
+            echo "<label for='nombre'>Nombre:</label>";
+            echo "<input type='text' id='nombre' name='nombre' value='" . $row['nombre'] . "' required><br>";
+            echo "<label for='descripcion'>Descripcion:</label>";
+            echo "<textarea name='descripcion' rows='4' cols='50' required>" . $row['descripcion'] . "</textarea><br>";
+            echo "<label for='horas'>Horas:</label>";
+            echo "<input type='number' name='horas' value='" . $row['horas'] . "' required><br>";
+            echo "<label for='Inicio'>Inicio:</label>";
+            echo "<input type='date' name='inicio' value='" . $row['inicio'] . "' required><br>";
+            echo "<label for='final'>final:</label>";
+            echo "<input type='date' name='final' value='" . $row['final'] . "' required><br>";
+
+            // echo "<img src='./".$row['foto']."' alt='fotocurso' id='fotocurso'>";
+            // echo "<label for='Foto'>Foto:</label>";
+            // echo "<input type='file' name='imagen' accept='img/*' value='./".$row['foto']."' required><br>";
+
+            echo "<input type='submit' value='Guardar'>";
+            echo "</form>";
+            echo "</div>";
+
+        }
+
+    }
+}
+
 // LISTAR CURSOS
 function listarCursos($dni){
     $conexion = abrirBBDD();
