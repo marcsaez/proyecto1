@@ -21,7 +21,7 @@
             $datos = sessionAbrir($dni);
     ?>
     <script src = "./js/concurso.js"></script>
-    <header>
+    <!-- <header>
         <div class="header">
         <a href="menuadmin.php"><img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo"></a>
             <h2 id="titulo">TECH ACADEMY</h2>
@@ -29,8 +29,9 @@
         <?php 
             datosUserVisibles($datos);
         ?>
-    </header>
+    </header> -->
     <?php
+    encabezadoUsuario($datos);
 
     $codigo = $_POST['codigo'];
     $_SESSION ['codigo'] = $codigo;
