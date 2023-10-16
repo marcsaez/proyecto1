@@ -35,12 +35,53 @@ function navegadorUsuario(){
 function encabezadoUsuario($datos){
     echo "<header>
     <div class='header'>
-    <a href='menuadmin.php'><img src='./img/TECHrecortada.png' alt='TechAcademy' id='logo'></a>
+    <a href='bienvenida.php'><img src='./img/TECHrecortada.png' alt='TechAcademy' id='logo'></a>
         <h2 id='titulo'>TECH ACADEMY</h2>
     </div>";
     //echo "<h1> PRUEBA</h1>";
     navegadorUsuario();
     datosUserVisibles($datos);
+    echo "</header>";
+}
+// ###################
+// ENCABEZADO PROFES #
+// ###################
+function datosProfeVisibles($datos){
+    echo "<a href='perfil.php'>";
+    echo "<div class='usuario'>";
+    echo "<p id='username' >";
+    echo $datos['nombre']. ' ' .$datos['apellidos'] ;
+    echo "</p>";
+    $foto = $datos['foto'];
+    $info = pathinfo($foto);
+    if (isset($info['extension']) && $info['extension'] !== '') {
+    echo "<img src='./".$datos['foto']."' alt='fotoperfil' id='fotoperfil'>";
+    } else {
+        echo "<img src='./img/perfiles/default.png' alt='fotoperfil' id='fotoperfil'>";
+    }
+
+    echo "</div>";
+    echo "</a>";
+}
+
+function navegadorProfe(){
+    echo '<nav>
+    <ul>
+        <li><a href="miscursosprofe.php">Mis cursos</a></li>
+    </ul>
+  </nav>';
+
+}
+
+function encabezadoProfe($datos){
+    echo "<header>
+    <div class='header'>
+    <a href='bienvenida.php'><img src='./img/TECHrecortada.png' alt='TechAcademy' id='logo'></a>
+        <h2 id='titulo'>TECH ACADEMY</h2>
+    </div>";
+    //echo "<h1> PRUEBA</h1>";
+    navegadorProfe();
+    datosProfeVisibles($datos);
     echo "</header>";
 }
 
@@ -673,7 +714,7 @@ function matricular($dni, $codigo) {
     $final = $datos['final'];
     if($final > date('Y-m-d')){
         if($inicio > date('Y-m-d')){
-            $sql = "INSERT INTO matriculados (codigo, dni) VALUES ('$codigo', '$dni')";
+            $sql = "INSERT INTO matriculados (codigo, dni, nota) VALUES ('$codigo', '$dni',0)";
             try {
                 if ($conexion->query($sql)) {
                     // La consulta se ejecutó correctamente.
@@ -863,5 +904,146 @@ function perfil($dni){
     }
 }
 
+#PROFES
 
+function CursosPorfe($dni){
+    $conexion = abrirBBDD();  
+    if($conexion == false) {
+        mysqli_connect_error();
+    }
+    else {
+        //echo '<h2>Bienvenido, ' . $nombre . '</h2>';
+        echo '<h2>Mis cursos:</h2>';
+        $sql = "SELECT * FROM cursos WHERE fk_profesor = '$dni'";
+        $result = $conexion->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $curso=$row['codigo'];
+                $cursoSql = "SELECT * FROM cursos WHERE codigo=$curso";
+                $cursoResult = $conexion->query($cursoSql); 
+                if ($cursoResult->num_rows > 0) {
+                        echo '<div class="curso-wrapper">';
+                        while ($cursoRow = $cursoResult->fetch_assoc()) {
+                            echo '<div class="curso">';
+                            echo '<h2>' . $cursoRow['nombre'] . '</h2>';
+                            echo '<p>' . $cursoRow['descripcion'] . '</p>';
+                            echo '<p>' . $cursoRow['horas'] . '</p>';
+                            echo '<form action="paginacursoprofe.php" method="POST">';
+                            echo '<input type="hidden" name="codigo" value="' . $cursoRow['codigo'] . '">';
+                            echo '<button type="submit" name="ver_curso">Ver Curso</button>';
+                            echo '</form>';
+                            echo '</div>';
+                        }
+                        echo '</div>';
+                    }
+            }
+        } else {
+            echo "No tienes ningun curso habilitado.";
+        }
+    }
+}
+function sessionProfe($dni){
+    $conexion = abrirBBDD();
+
+    $sql = "SELECT * FROM profesor WHERE dni = '$dni'";
+    $result = $conexion->query($sql);
+    $lineas = $result -> fetch_assoc();
+
+    $nombre = $lineas['nombre'];
+    $apellidos = $lineas['apellidos'];
+    $foto = $lineas['foto'];
+
+    $datos = array(
+        'nombre'=>$nombre,
+        'apellidos' => $apellidos,
+        'foto' => $foto
+    );
+
+    return $datos;
+}
+function mostrarCursoProfe($dni, $codigo){
+    $conexion = abrirBBDD();
+    if($conexion == false) {
+        mysqli_connect_error();
+    }
+    else {
+
+        $sql1 = "SELECT * FROM cursos WHERE codigo = $codigo";
+        $result = $conexion->query($sql1);
+        $curso = $result->fetch_assoc();
+    
+
+        echo '<div class="paginacurso">';
+        echo '<h2>' . $curso['nombre'] . '</h2>';
+        echo '<p>' . $curso['descripcion'] . '</p>';
+        echo '<p>' . $curso['horas'] . '</p>';
+
+        if ($result->num_rows > 0) {
+            echo "<form action='notas.php' method='POST'>";
+            echo "<button type='submit' name='Notas'>Poner notas</button>";
+            echo "</form>";
+        }
+        echo '</div>';
+    }
+}
+function DatosAlumnos($dni){
+    $conexion = abrirBBDD();
+    $sql = "SELECT nombre, apellidos FROM alumnos WHERE dni = '$dni'";
+    $result = $conexion->query($sql);
+    $cosas = $result->fetch_assoc();
+    $nombre = $cosas['nombre'];
+    $apellido = $cosas['apellidos'];
+
+    $datos = array(
+        'nombre' => $nombre,
+        'apellidos' => $apellido,
+        'dni' => $dni
+    );
+    return $datos;
+}
+function SubirNotas($codigo){
+    if(isset($_POST['notas'])){
+        $notas = $_POST['notas'];
+        $conexion = abrirBBDD();
+        foreach($notas as $dni => $nota){
+            $nota = intval($nota);
+            $sql = "UPDATE matriculados SET nota = '$nota' WHERE dni = '$dni' AND codigo = '$codigo'"; 
+            $result = $conexion->query($sql);
+        }
+        echo '<meta http-equiv="REFRESH" content="0;url=notas.php">';
+    }
+}
+function notas($codigo){
+    $conexion = abrirBBDD();
+    $sql = "SELECT dni FROM matriculados WHERE codigo = '$codigo'";
+    $result = $conexion->query($sql);
+    echo "<form action='notas.php' method='POST'>";
+    echo '<div class="curso">';
+    while ($curso = $result->fetch_assoc()){
+        $dni = $curso['dni'];
+        $datos = DatosAlumnos($dni);
+
+        // Obtener la nota actual de la base de datos
+        $notaActual = ObtenerNotaAlumno($dni);
+
+        echo "<p>" . $datos['nombre'] ." ".  $datos['apellidos']." ";
+        echo "<input type='number' id='nota' name='notas[$dni]' min='1' max='10' value='$notaActual'>"."</p>";
+    }
+    echo "<button type='submit' name='Notas'>Subir notas</button>";
+    echo '</div>';
+    echo "</form>";
+    SubirNotas($codigo);
+}
+
+// Función para obtener la nota actual de un alumno por su DNI
+function ObtenerNotaAlumno($dni) {
+    $conexion = abrirBBDD();
+    $sql = "SELECT nota FROM matriculados WHERE dni = '$dni'";
+    $result = $conexion->query($sql);
+    if ($result && $result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['nota'];
+    }
+    return ''; // Valor predeterminado si no se encuentra una nota en la base de datos
+}
 ?>

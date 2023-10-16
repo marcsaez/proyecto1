@@ -47,9 +47,15 @@
                 if($verificacion == true) {
                     $_SESSION['dni'] = $_POST['dni'];
                     $_SESSION['contraseña'] = $_POST['contraseña'];
+                    if($tabla == 'alumnos'){
                     ?>
                     <meta http-equiv="REFRESH" content="0;url=miscursos.php">
                     <?php
+                    }else{
+                        ?>
+                            <meta http-equiv="REFRESH" content="0;url=miscursosprofe.php">
+                        <?php
+                    }
                 }
                 else {
                     ?>  
