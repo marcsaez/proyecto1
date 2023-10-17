@@ -823,14 +823,18 @@ function sessionAbrir($dni){
 // ############
 function DatosCurso($codigo){
     $conex = abrirBBDD();
-    $sql = "SELECT inicio, final FROM cursos WHERE codigo = '$codigo'";
+    $sql = "SELECT inicio, final,nombre, descripcion FROM cursos WHERE codigo = '$codigo'";
     $result = $conex ->query($sql);
     $fila = $result->fetch_assoc();
     $inicio = $fila['inicio'];
     $final = $fila['final'];
+    $nombre = $fila['nombre'];
+    $descripcion = $fila['descripcion'];
     $datos = array(
         'inicio' => $inicio,
-        'final' => $final
+        'final' => $final,
+        'nombre' => $nombre,
+        'descripcion' => $descripcion
     );
 
     return $datos;
@@ -1144,24 +1148,32 @@ function SubirNotas($codigo){
 }
 function notas($codigo){
     $conexion = abrirBBDD();
+    $datos = DatosCurso($codigo);
+    $nombre = $datos['nombre'];
     $sql = "SELECT dni FROM matriculados WHERE codigo = '$codigo'";
     $result = $conexion->query($sql);
-    echo "<form action='notas.php' method='POST'>";
-    echo '<div class="curso">';
-    while ($curso = $result->fetch_assoc()){
-        $dni = $curso['dni'];
-        $datos = DatosAlumnos($dni);
+    if ($result->num_rows > 0) {
+        echo "<form action='notas.php' method='POST'>";
+        echo '<div class="notas">';
+        echo "<h1>$nombre</h1>";
+        
+        while ($curso = $result->fetch_assoc()){
+            $dni = $curso['dni'];
+            $datos = DatosAlumnos($dni);
 
-        // Obtener la nota actual de la base de datos
-        $notaActual = ObtenerNotaAlumno($dni);
+            // Obtener la nota actual de la base de datos
+            $notaActual = ObtenerNotaAlumno($dni);
 
-        echo "<p>" . $datos['nombre'] ." ".  $datos['apellidos']." ";
-        echo "<input type='number' id='nota' name='notas[$dni]' min='1' max='10' value='$notaActual'>"."</p>";
+            echo "<p>" . $datos['nombre'] ." ".  $datos['apellidos']." ";
+            echo "<input type='number' id='nota' name='notas[$dni]' min='1' max='10' value='$notaActual'>"."</p>";
+        }
+        echo "<button type='submit' name='Notas'>Subir notas</button>";
+        echo '</div>';
+        echo "</form>";
+        SubirNotas($codigo);
+    } else{
+        echo "<h1>No hay alumnos inscritos</h1>";
     }
-    echo "<button type='submit' name='Notas'>Subir notas</button>";
-    echo '</div>';
-    echo "</form>";
-    SubirNotas($codigo);
 }
 
 // Función para obtener la nota actual de un alumno por su DNI

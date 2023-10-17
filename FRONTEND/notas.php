@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
     <title>Mis Cursos</title>
 </head>
-<body>
+<body class="notas2">
     <?php
         if($_SESSION){
             $dni = $_SESSION['dni'];

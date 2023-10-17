@@ -9,3 +9,7 @@
     display: flex;
     align-items: center;
 }
+@mixin centrar{
+    display: grid;
+    place-items: center;
+}

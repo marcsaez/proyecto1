@@ -52,7 +52,7 @@ header {
 }
 
 footer{
-    display: flex;
+    display: grid;
     position: relative;
     background-color: $color-primary;
     height: 88px;
@@ -142,4 +142,15 @@ nav {
         margin: 1%;
         padding: 1% 5%;
     }
+}
+
+//PARTE PROFES
+.notas{
+    @include centrar;
+    width: 25%;                
+    margin: 10px;               
+    padding: 10px;              
+    border: 1px solid #ccc;     
+    box-sizing: border-box;
+    margin-left: 40%;
 }
