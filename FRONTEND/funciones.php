@@ -338,7 +338,12 @@ function adminCursos(){
                         <button type="submit" name="mod_curso"><img src="./img/editar.png" alt="TechAcademy"></button>
                     </form>
                 </td>
-                <td><a href="eliminarcurso.php"><img src="./img/eliminar.png" alt="TechAcademy"></a></td>
+                <td>
+                    <form action="cursodesactivar.php" method="POST">
+                    <input type="hidden" name="codigo" value="' . $linia['codigo'] . '">
+                    <button type="submit" name="des_curso"><img src="./img/eliminar.png" alt="TechAcademy"></button>
+                    </form>
+                </td>
                 </tr>';
 
         }
@@ -354,7 +359,6 @@ function cursoModificar($codigo){
     if($conexion == false) {
         mysqli_connect_error();
     } else {
-
         $sql = "SELECT * FROM cursos WHERE codigo='$codigo'";
         $result = $conexion->query($sql);
         if ($result->num_rows > 0) {
@@ -362,9 +366,9 @@ function cursoModificar($codigo){
 
             echo "<div class='perfil'>";
 
-            echo "<form action='procesarcurso.php' method='POST' enctype='multipart/form-data'>";
+            echo "<form action='cursoprocesar.php' method='POST' enctype='multipart/form-data'>";
             echo "<label for='codigo'>CODIGO:</label>";
-            echo "<input type='text' id='codigo' name='codigo' value='" . $row['codigo'] . "' disabled><br>";
+            echo "<input type='text' id='codigo' name='codigo' value='" . $row['codigo'] . "' readonly required><br>";
             echo "<label for='nombre'>Nombre:</label>";
             echo "<input type='text' id='nombre' name='nombre' value='" . $row['nombre'] . "' required><br>";
             echo "<label for='descripcion'>Descripcion:</label>";
