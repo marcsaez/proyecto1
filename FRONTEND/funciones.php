@@ -338,7 +338,12 @@ function adminCursos(){
                         <button type="submit" name="mod_curso"><img src="./img/editar.png" alt="TechAcademy"></button>
                     </form>
                 </td>
-                <td><a href="eliminarcurso.php"><img src="./img/eliminar.png" alt="TechAcademy"></a></td>
+                <td>
+                    <form action="cursodesactivar.php" method="POST">
+                    <input type="hidden" name="codigo" value="' . $linia['codigo'] . '">
+                    <button type="submit" name="des_curso"><img src="./img/eliminar.png" alt="TechAcademy"></button>
+                    </form>
+                </td>
                 </tr>';
 
         }
