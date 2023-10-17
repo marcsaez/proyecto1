@@ -354,7 +354,6 @@ function cursoModificar($codigo){
     if($conexion == false) {
         mysqli_connect_error();
     } else {
-
         $sql = "SELECT * FROM cursos WHERE codigo='$codigo'";
         $result = $conexion->query($sql);
         if ($result->num_rows > 0) {
@@ -362,9 +361,9 @@ function cursoModificar($codigo){
 
             echo "<div class='perfil'>";
 
-            echo "<form action='procesarcurso.php' method='POST' enctype='multipart/form-data'>";
+            echo "<form action='cursoprocesar.php' method='POST' enctype='multipart/form-data'>";
             echo "<label for='codigo'>CODIGO:</label>";
-            echo "<input type='text' id='codigo' name='codigo' value='" . $row['codigo'] . "' disabled><br>";
+            echo "<input type='text' id='codigo' name='codigo' value='" . $row['codigo'] . "' readonly required><br>";
             echo "<label for='nombre'>Nombre:</label>";
             echo "<input type='text' id='nombre' name='nombre' value='" . $row['nombre'] . "' required><br>";
             echo "<label for='descripcion'>Descripcion:</label>";
