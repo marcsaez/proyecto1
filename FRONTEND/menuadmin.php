@@ -21,7 +21,6 @@
 
     <a href="./admincursos.php"><h2>Cursos</h2></a>
     <a href="./formulariocursos.php"><h2>Crear cursos</h2></a>
-    <a href="./cursomodificar.php"><h2>Modificar cursos</h2></a>
     <a href="./eliminarcurso.php"><h2>Eliminar cursos</h2></a>
     <a href="./formularioprofes.php"><h2>Crear Profesores</h2></a>
     <a href="./formulariomodificarprofes.php"><h2>Modificar Profesores</h2></a>

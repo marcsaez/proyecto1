@@ -27,6 +27,7 @@
             <img src="./img/98-1.jpg" alt="fotoperfil" id="fotoperfil">
         </div>
     </header>
+    <a href="./admincursos.php"><h2>Modificar cursos</h2></a>
     <h2>Crear Nuevo Curso</h2>
 
     <form action="" method="post" enctype = "multipart/form-data">
