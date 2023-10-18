@@ -79,8 +79,10 @@ footer {
 }
 
 .curso {
-  width: 100%;
-  margin: 10px;
+  display: grid;
+  place-items: center;
+  width: 75%;
+  margin: 5px;
   padding: 10px;
   border: 1px solid #ccc;
   box-sizing: border-box;
@@ -141,4 +143,9 @@ nav ul li a:hover {
   border: 1px solid #ccc;
   box-sizing: border-box;
   margin-left: 40%;
+}
+
+#fotocurso {
+  width: 60%;
+  height: 60%;
 }/*# sourceMappingURL=styles.css.map */

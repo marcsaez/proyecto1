@@ -410,6 +410,13 @@ function listarCursos($dni){
                     echo '<h2>' . $row['nombre'] . '</h2>';
                     echo '<p>' . $row['descripcion'] . '</p>';
                     echo '<p>' . $row['horas'] . '</p>';
+                    $foto = $row['foto'];
+                            $info = pathinfo($foto);
+                            if (isset($info['extension']) && $info['extension'] !== '') {
+                            echo "<img src='./".$row['foto']."' alt='fotocurso' id='fotocurso'>";
+                            } else {
+                                echo "";
+                            }
                     echo '<form action="paginacurso.php" method="POST">';
                     echo '<input type="hidden" name="codigo" value="' . $row['codigo'] . '">';
                     echo '<button type="submit" name="ver_curso">Ver Curso</button>';
@@ -435,12 +442,13 @@ function misCursos($dni,$nombre){
         $sql = "SELECT codigo FROM matriculados WHERE dni='$dni'";
         $result = $conexion->query($sql);
         if ($result->num_rows > 0) {
+            echo '<div class="curso-wrapper">';
             while ($row = $result->fetch_assoc()) {
                 $curso=$row['codigo'];
                 $cursoSql = "SELECT * FROM cursos WHERE codigo=$curso";
                 $cursoResult = $conexion->query($cursoSql); 
                 if ($cursoResult->num_rows > 0) {
-                        echo '<div class="curso-wrapper">';
+                       
                         while ($cursoRow = $cursoResult->fetch_assoc()) {
                             echo '<div class="curso">';
                             echo '<h2>' . $cursoRow['nombre'] . '</h2>';
@@ -452,9 +460,10 @@ function misCursos($dni,$nombre){
                             echo '</form>';
                             echo '</div>';
                         }
-                        echo '</div>';
+                        
                     }
             }
+            echo '</div>';
         } else {
             echo "No estas matriculado en ningun curso.";
         }
@@ -1052,26 +1061,35 @@ function CursosPorfe($dni){
         $sql = "SELECT * FROM cursos WHERE fk_profesor = '$dni'";
         $result = $conexion->query($sql);
         if ($result->num_rows > 0) {
+            echo '<div class="curso-wrapper">';
             while ($row = $result->fetch_assoc()) {
                 $curso=$row['codigo'];
                 $cursoSql = "SELECT * FROM cursos WHERE codigo=$curso";
                 $cursoResult = $conexion->query($cursoSql); 
                 if ($cursoResult->num_rows > 0) {
-                        echo '<div class="curso-wrapper">';
+                        
                         while ($cursoRow = $cursoResult->fetch_assoc()) {
                             echo '<div class="curso">';
                             echo '<h2>' . $cursoRow['nombre'] . '</h2>';
                             echo '<p>' . $cursoRow['descripcion'] . '</p>';
-                            echo '<p>' . $cursoRow['horas'] . '</p>';
-                            echo '<form action="paginacursoprofe.php" method="POST">';
+                            echo '<p>'.'Horas: ' . $cursoRow['horas'] . '</p>';
+                            $foto = $cursoRow['foto'];
+                            $info = pathinfo($foto);
+                            if (isset($info['extension']) && $info['extension'] !== '') {
+                            echo "<img src='./".$cursoRow['foto']."' alt='fotocurso' id='fotocurso'>";
+                            } else {
+                                echo "";
+                            }
+                            echo '<form action="notas.php" method="POST">';
                             echo '<input type="hidden" name="codigo" value="' . $cursoRow['codigo'] . '">';
-                            echo '<button type="submit" name="ver_curso">Ver Curso</button>';
+                            echo '<button type="submit" name="ver_curso">Poner Notas</button>';
                             echo '</form>';
                             echo '</div>';
                         }
-                        echo '</div>';
+                        
                     }
             }
+            echo '</div>';
         } else {
             echo "No tienes ningun curso habilitado.";
         }
@@ -1096,31 +1114,6 @@ function sessionProfe($dni){
 
     return $datos;
 }
-function mostrarCursoProfe($dni, $codigo){
-    $conexion = abrirBBDD();
-    if($conexion == false) {
-        mysqli_connect_error();
-    }
-    else {
-
-        $sql1 = "SELECT * FROM cursos WHERE codigo = $codigo";
-        $result = $conexion->query($sql1);
-        $curso = $result->fetch_assoc();
-    
-
-        echo '<div class="paginacurso">';
-        echo '<h2>' . $curso['nombre'] . '</h2>';
-        echo '<p>' . $curso['descripcion'] . '</p>';
-        echo '<p>' . $curso['horas'] . '</p>';
-
-        if ($result->num_rows > 0) {
-            echo "<form action='notas.php' method='POST'>";
-            echo "<button type='submit' name='Notas'>Poner notas</button>";
-            echo "</form>";
-        }
-        echo '</div>';
-    }
-}
 function DatosAlumnos($dni){
     $conexion = abrirBBDD();
     $sql = "SELECT nombre, apellidos FROM alumnos WHERE dni = '$dni'";
@@ -1137,6 +1130,7 @@ function DatosAlumnos($dni){
     return $datos;
 }
 function SubirNotas($codigo){
+    try{
     if(isset($_POST['notas'])){
         $notas = $_POST['notas'];
         $conexion = abrirBBDD();
@@ -1146,6 +1140,9 @@ function SubirNotas($codigo){
             $result = $conexion->query($sql);
         }
         echo '<meta http-equiv="REFRESH" content="0;url=notas.php">';
+    }
+    } catch (Exception $e){
+        echo '<meta http-equiv="REFRESH" content="0;url=miscurosprofe.php">';
     }
 }
 function notas($codigo){
