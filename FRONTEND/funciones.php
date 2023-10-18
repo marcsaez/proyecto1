@@ -86,7 +86,6 @@ function encabezadoUsuario($datos){
 // ENCABEZADO PROFES #
 // ###################
 function datosProfeVisibles($datos){
-    echo "<a href='perfil.php'>";
     echo "<div class='usuario'>";
     echo "<p id='username' >";
     echo $datos['nombre']. ' ' .$datos['apellidos'] ;
@@ -100,7 +99,6 @@ function datosProfeVisibles($datos){
     }
 
     echo "</div>";
-    echo "</a>";
 }
 
 function navegadorProfe(){
