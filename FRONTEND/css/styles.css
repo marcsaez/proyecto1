@@ -51,7 +51,7 @@ header {
 }
 
 footer {
-  display: flex;
+  display: grid;
   position: relative;
   background-color: #3500A6;
   height: 88px;
@@ -81,8 +81,8 @@ footer {
 .curso {
   display: grid;
   place-items: center;
-  width: 75%;
-  margin: 5px;
+  width: 70%;
+  margin: 10px;
   padding: 10px;
   border: 1px solid #ccc;
   box-sizing: border-box;
@@ -148,4 +148,42 @@ nav ul li a:hover {
 #fotocurso {
   width: 60%;
   height: 60%;
+}
+
+.paginacurso {
+  display: grid;
+  place-items: center;
+  margin-left: 10%;
+  width: 80%;
+  text-align: justify;
+  justify-content: center;
+  align-items: center;
+}
+.paginacurso img {
+  width: 60%;
+  height: 60%;
+}
+
+#tablaContainer table {
+  border-collapse: collapse;
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+#tablaContainer thead {
+  background-color: #3500A6;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+#tablaContainer tr {
+  height: 20px;
+}
+#tablaContainer tr:nth-child(even) {
+  background-color: rgb(226, 226, 226);
+}
+#tablaContainer th, #tablaContainer td {
+  width: 14.28%;
+  padding: 15px;
 }/*# sourceMappingURL=styles.css.map */
