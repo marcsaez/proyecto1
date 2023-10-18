@@ -1,5 +1,6 @@
 <?php 
     include("funciones.php");
+    adminLogin();
 ?>
 <!DOCTYPE html>
 <html lang="en">

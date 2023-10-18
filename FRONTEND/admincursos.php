@@ -23,7 +23,7 @@
         <a href="./formulariocursos.php"><h2>Crear cursos</h2></a>
         <?php
             include_once("funciones.php");
-            
+            adminLogin();
             adminCursos();
         ?>
     </table>
