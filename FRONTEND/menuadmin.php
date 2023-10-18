@@ -25,6 +25,7 @@
     </header>
 
     <a href="./admincursos.php"><h2>Cursos</h2></a>
+    <a href="./adminprofes.php"><h2>Profesores</h2></a>
     <a href="./formularioprofes.php"><h2>Crear Profesores</h2></a>
     <a href="./formulariomodificarprofes.php"><h2>Modificar Profesores</h2></a>
     <a href="./profesdesactivar.php"><h2>Desactivar Profesores</h2></a>
