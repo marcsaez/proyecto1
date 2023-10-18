@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" type="text/css" href="Log%20In_fitxers/inicio.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="Log%20In_fitxers/css2.css" rel="stylesheet">
+</head>
+<body>
+        <div>
+        <h1>INICIO DE SESIÓN</h1>
+        <form enctype="multipart/form-data" action="login.php" method="POST">
+            <table>
+                <tbody><tr>
+                    <td class="imagen" colspan="2"> <img src="Log%20In_fitxers/TECHrecortada.png" alt="Descripción de la imagen"></td>
+                </tr>
+                <tr>
+                    <td> <label for="dni">DNI:</label> </td> <td> <input type="text" name="dni" id="dni" required=""> </td>
+                </tr>
+                <tr>
+                    <td> <label for="contraseña">Contraseña:</label> </td> <td> <input type="password" name="contraseña" id="contraseña" required=""> </td>
+                </tr>
+                <tr>
+                    <td> <input type="checkbox" name="profesor" id="profesor"> <label for="profesor">Soy profesor</label></td>
+                </tr>
+                <tr>
+                    <td id="iniciar" style="text-align:center" colspan="2"> 
+                        <input type="submit" name="Aceptar" value="Aceptar">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center" colspan="2">
+                        <a href="http://localhost/signup.php">Registrarse</a>
+                    </td>
+                </tr>
+            </tbody></table>
+        </form>
+    </div>
+    
+</body></html>

@@ -15,6 +15,7 @@ if($_POST){
     $row = $result->fetch_assoc();
     if ($usuario == $row['usuario'] && $contraseña == $row['contraseña']) {
         // Almacenar los datos en la sesión
+        $_SESSION['id'] = $id;
         $_SESSION['usuario'] = $usuario;
         $_SESSION['contraseña'] = $contraseña;
         ?>

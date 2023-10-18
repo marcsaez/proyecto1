@@ -298,6 +298,45 @@ function modificarCurso(){
 }
 
 // ADMIN
+function adminLogin(){
+    session_start();
+    if($_SESSION){
+    
+        $id = $_SESSION['id'];
+        $usuario = $_SESSION['usuario'];
+        $contraseña = $_SESSION['contraseña'];
+
+        $conexion = abrirBBDD();
+        $sql = "SELECT usuario, contraseña FROM administradores WHERE id=$id";
+    
+        $result = $conexion->query($sql);
+        $row = $result->fetch_assoc();
+        if ($usuario == $row['usuario'] && $contraseña == $row['contraseña']) {
+            // Almacenar los datos en la sesión
+            $_SESSION['id'] = $id;
+            $_SESSION['usuario'] = $usuario;
+            $_SESSION['contraseña'] = $contraseña;
+            
+        } else {
+            ?>  
+                <script>
+                    alert("No se ha iniciado session correctamente");
+                </script>              
+                <meta http-equiv="REFRESH" content="0;url=admin.php">
+            <?php
+        }
+
+    } else {
+        ?>  
+                <script>
+                    alert("No se ha iniciado session correctamente");
+                </script>              
+                <meta http-equiv="REFRESH" content="0;url=admin.php">
+            <?php
+
+    }
+
+}
 function adminCursos(){
     echo '<h1>CURSOS</h1>
         <table class="admin">

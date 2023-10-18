@@ -1,3 +1,7 @@
+<?php
+    include_once('funciones.php');
+    adminLogin();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,8 +17,9 @@
             <h2 id="titulo">TECH ACADEMY</h2>
         </div>
         <div class="usuario">
-            <!-- FOTO DE PRUEBA PARA MEDIDAS (HAY QUE SACARLA DE LA BBDD) -->
-            <p id="username" >Admin</p>
+        <?php
+            echo '<p id="username" >'. $_SESSION['usuario'] .'</p>'
+        ?>
             <img src="./img/98-1.jpg" alt="fotoperfil" id="fotoperfil">
         </div>
     </header>
@@ -23,7 +28,7 @@
     <a href="./formularioprofes.php"><h2>Crear Profesores</h2></a>
     <a href="./formulariomodificarprofes.php"><h2>Modificar Profesores</h2></a>
     <a href="./profesdesactivar.php"><h2>Desactivar Profesores</h2></a>
-    <a href="./listarcursos.php"><h2>Listar Cursos</h2></a>
+    <a href="./insertalumnos.php"><h2>Insertar Alumnos</h2></a>
 
     <footer>
         <div class="contacto">
