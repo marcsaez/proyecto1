@@ -1110,7 +1110,7 @@ function perfil($dni){
 }
 
 #PROFES
-function CursosPorfe($dni){
+function CursosProfe($dni){
     $conexion = abrirBBDD();  
     if($conexion == false) {
         mysqli_connect_error();
@@ -1150,7 +1150,6 @@ function CursosPorfe($dni){
                     }
             }
             echo '</div>';
-            return $curso;
         } else {
             echo "No tienes ningun curso habilitado.";
         }
@@ -1196,7 +1195,6 @@ function SubirNotas($codigo){
         $notas = $_POST['notas'];
         $conexion = abrirBBDD();
         foreach($notas as $dni => $nota){
-            $nota = floatval($nota);
             $sql = "UPDATE matriculados SET nota = '$nota' WHERE dni = '$dni' AND codigo = '$codigo'"; 
             $result = $conexion->query($sql);
         }
@@ -1220,17 +1218,15 @@ function notas($codigo){
         while ($curso = $result->fetch_assoc()){
             $dni = $curso['dni'];
             $datos = DatosAlumnos($dni);
-
             // Obtener la nota actual de la base de datos
             $notaActual = ObtenerNotaAlumno($dni);
-
             echo "<p>" . $datos['nombre'] ." ".  $datos['apellidos']." ";
-            echo "<input type='text' id='nota' name='notas[$dni]' pattern='^[1-9]|10$' 'value='$notaActual'>"."</p>";
+            echo "<input type='number' step='0.01' id='nota' name='notas[$dni]' pattern='^[1-9]|10$' value='$notaActual'>"."</p>";
         }
         echo "<button type='submit' name='Notas'>Subir notas</button>";
         echo '</div>';
         echo "</form>";
-        SubirNotas($codigo);
+        
     } else{
         echo "<h1>No hay alumnos inscritos</h1>";
     }
