@@ -13,3 +13,4 @@
 62348174G;Lucas;Moreno;19;l;default.png;(1,2)
 25965333N;Carlos;Sainz;26;c;default.png;(1)
 95550411Q;Max;Verstappen;25;m;default.png;(3)
+17450804Z;Montse;Riu;45;p;default.png;(2)

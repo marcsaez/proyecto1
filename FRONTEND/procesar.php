@@ -14,7 +14,7 @@ if ($data) {
         $repetidos = [];
         $noValidos = [];
         foreach($data as $alumno) {
-            $contraseña = encriptacio($alumno['DNI']);
+            $contraseña = encriptacio($alumno['contraseña']);
             $imagen_path = "img/perfiles/".$alumno['foto'];
             $dni = $alumno['DNI'];
             $nombre = $alumno['nombre'];
