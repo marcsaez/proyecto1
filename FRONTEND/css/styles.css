@@ -148,4 +148,18 @@ nav ul li a:hover {
 #fotocurso {
   width: 60%;
   height: 60%;
+}
+
+.paginacurso {
+  display: grid;
+  place-items: center;
+  margin-left: 10%;
+  width: 80%;
+  text-align: justify;
+  justify-content: center;
+  align-items: center;
+}
+.paginacurso img {
+  width: 60%;
+  height: 60%;
 }/*# sourceMappingURL=styles.css.map */

@@ -159,4 +159,17 @@ nav {
 #fotocurso {
     width: 60%;
     height: 60%;
-  }
+}
+
+.paginacurso{
+    @include centrar;
+    margin-left: 10%;
+    width: 80%;
+    text-align: justify;
+    justify-content: center;
+    align-items: center;
+    img{
+        width: 60%;
+        height: 60%;
+    }
+}

@@ -454,6 +454,13 @@ function misCursos($dni,$nombre){
                             echo '<h2>' . $cursoRow['nombre'] . '</h2>';
                             echo '<p>' . $cursoRow['descripcion'] . '</p>';
                             echo '<p>' . $cursoRow['horas'] . '</p>';
+                            $foto = $cursoRow['foto'];
+                            $info = pathinfo($foto);
+                            if (isset($info['extension']) && $info['extension'] !== '') {
+                            echo "<img src='./".$cursoRow['foto']."' alt='fotocurso' id='fotocurso'>";
+                            } else {
+                                echo "";
+                            }
                             echo '<form action="paginacurso.php" method="POST">';
                             echo '<input type="hidden" name="codigo" value="' . $cursoRow['codigo'] . '">';
                             echo '<button type="submit" name="ver_curso">Ver Curso</button>';
@@ -488,11 +495,26 @@ function mostrarCurso($dni, $codigo){
             echo '<div class="paginacurso">';
             echo '<h2>' . $curso['nombre'] . '</h2>';
             echo '<p>' . $curso['descripcion'] . '</p>';
-            echo '<p>' . $curso['horas'] . '</p>';
+            echo '<p>'. 'Horas: '. $curso['horas'] . '</p>';
+            $foto = $curso['foto'];
+            $info = pathinfo($foto);
+            if (isset($info['extension']) && $info['extension'] !== '') {
+            echo "<img src='./".$curso['foto']."' alt='fotocurso' id='fotocurso2'>";
+            } else {
+                echo "";
+            }
 
             if ($result_verificar->num_rows > 0) {
                 // El estudiante ya está matriculado, muestra otro contenido en su lugar
-                echo '<p>Nota:</p>';
+                // Obtener la nota actual de la base de datos
+                $notaActual = ObtenerNotaAlumno($dni);
+                if ($notaActual < 1){
+                    echo '<h3>Nota todavia no disponible</h3>';
+                }else{
+                    echo '<h3>'.'Nota: ' ."$notaActual".'</h3>';
+                }
+
+                
                 echo "<form action='desmatricularse.php' method='POST'>";
                 echo "<button type='submit' name='Darbaja'>Darse de baja</button>";
                 echo "</form>";
@@ -1049,7 +1071,6 @@ function perfil($dni){
 }
 
 #PROFES
-
 function CursosPorfe($dni){
     $conexion = abrirBBDD();  
     if($conexion == false) {
@@ -1090,6 +1111,7 @@ function CursosPorfe($dni){
                     }
             }
             echo '</div>';
+            return $curso;
         } else {
             echo "No tienes ningun curso habilitado.";
         }
@@ -1135,7 +1157,7 @@ function SubirNotas($codigo){
         $notas = $_POST['notas'];
         $conexion = abrirBBDD();
         foreach($notas as $dni => $nota){
-            $nota = intval($nota);
+            $nota = floatval($nota);
             $sql = "UPDATE matriculados SET nota = '$nota' WHERE dni = '$dni' AND codigo = '$codigo'"; 
             $result = $conexion->query($sql);
         }
@@ -1152,7 +1174,7 @@ function notas($codigo){
     $sql = "SELECT dni FROM matriculados WHERE codigo = '$codigo'";
     $result = $conexion->query($sql);
     if ($result->num_rows > 0) {
-        echo "<form action='notas.php' method='POST'>";
+        echo "<form action='subirnotas.php' method='POST'>";
         echo '<div class="notas">';
         echo "<h1>$nombre</h1>";
         
@@ -1164,7 +1186,7 @@ function notas($codigo){
             $notaActual = ObtenerNotaAlumno($dni);
 
             echo "<p>" . $datos['nombre'] ." ".  $datos['apellidos']." ";
-            echo "<input type='number' id='nota' name='notas[$dni]' min='1' max='10' value='$notaActual'>"."</p>";
+            echo "<input type='text' id='nota' name='notas[$dni]' pattern='^[1-9]|10$' 'value='$notaActual'>"."</p>";
         }
         echo "<button type='submit' name='Notas'>Subir notas</button>";
         echo '</div>';
