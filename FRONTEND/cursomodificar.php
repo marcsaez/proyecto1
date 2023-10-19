@@ -16,8 +16,9 @@
 <body>
     <header>
         <div class="header">
-        <a href="menuadmin.php"><img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo"></a>
+        <a href="menuadmin.php"><img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo">
             <h2 id="titulo">TECH ACADEMY</h2>
+        </a>
         </div>
         <div class="usuario">
             <!-- FOTO DE PRUEBA PARA MEDIDAS (HAY QUE SACARLA DE LA BBDD) -->
