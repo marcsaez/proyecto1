@@ -47,12 +47,18 @@
                 $result = $conexion->query($sql);
                 if ($result->num_rows > 0) {
                     while ($linia = $result->fetch_assoc()){
+                        $info = pathinfo($linia['foto']);
+                        if (isset($info['extension']) && $info['extension'] !== '') {
+                            $foto = "<img src='./".$linia['foto']."' alt='fotoperfil' id='fotoperfil'>";
+                            } else {
+                            $foto = "<img src='./img/perfiles/default.png' alt='fotoperfil' id='fotoperfil'>";
+                            }
                         echo '<tr>
                                 <td>' . $linia['dni'] . '</td>
                                 <td>' . $linia['nombre'] . '</td>
                                 <td>' . $linia['apellidos'] . '</td>
                                 <td>' . $linia['titulo_academico'] . '</td>
-                                <td>' . $linia['foto'] . '</td>';
+                                <td>' . $foto . '</td>';
             
                             if ($linia['activo'] == "1") {
                                 echo '<td> <img src="./img/punto_verde.png" alt="Verde"> </td>';
@@ -67,7 +73,7 @@
                                 </form>
                             </td>
                             <td>
-                                <form action="cursodesactivar.php" method="POST">
+                                <form action="profesdesactivar.php" method="POST">
                                 <input type="hidden" name="dni" value="' . $linia['dni'] . '">
                                 <button type="submit" name="des_profes"><img src="./img/eliminar.png" alt="TechAcademy"></button>
                                 </form>
