@@ -1229,8 +1229,18 @@ function SubirNotas($codigo){
         $notas = $_POST['notas'];
         $conexion = abrirBBDD();
         foreach($notas as $dni => $nota){
-            $sql = "UPDATE matriculados SET nota = '$nota' WHERE dni = '$dni' AND codigo = '$codigo'"; 
-            $result = $conexion->query($sql);
+            if ($nota <= 10 && $nota >=1){
+                $sql = "UPDATE matriculados SET nota = '$nota' WHERE dni = '$dni' AND codigo = '$codigo'"; 
+                $result = $conexion->query($sql);
+            } else{
+                ?>
+                <script>
+                    alert("Una nota introducida esta fuera del limite(1-10)\nVuelve a introducir las notas correctamente");
+                </script>
+                <?php
+                echo '<meta http-equiv="REFRESH" content="0;url=notas.php">';
+            }
+           
         }
         echo '<meta http-equiv="REFRESH" content="0;url=notas.php">';
     }
