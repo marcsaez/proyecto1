@@ -105,6 +105,7 @@ function navegadorProfe(){
     echo '<nav>
     <ul>
         <li><a href="miscursosprofe.php">Mis cursos</a></li>
+        <li><a href ="login.php">Cerrar Sesion</a></li>
     </ul>
   </nav>';
 
@@ -113,7 +114,7 @@ function navegadorProfe(){
 function encabezadoProfe($datos){
     echo "<header>
     <div class='header'>
-    <a href='bienvenida.php'><img src='./img/TECHrecortada.png' alt='TechAcademy' id='logo'></a>
+    <img src='./img/TECHrecortada.png' alt='TechAcademy' id='logo'>
         <h2 id='titulo'>TECH ACADEMY</h2>
     </div>";
     //echo "<h1> PRUEBA</h1>";
@@ -1252,6 +1253,7 @@ function notas($codigo){
     $conexion = abrirBBDD();
     $datos = DatosCurso($codigo);
     $nombre = $datos['nombre'];
+    $datafinal = $datos['final'];
     $sql = "SELECT dni FROM matriculados WHERE codigo = '$codigo'";
     $result = $conexion->query($sql);
     if ($result->num_rows > 0) {
@@ -1263,13 +1265,20 @@ function notas($codigo){
             $dni = $curso['dni'];
             $datos = DatosAlumnos($dni);
             // Obtener la nota actual de la base de datos
-            $notaActual = ObtenerNotaAlumno($dni);
+            $notaActual = ObtenerNotaAlumno($dni,$codigo);
             echo "<p>" . $datos['nombre'] ." ".  $datos['apellidos']." ";
             echo "<input type='number' step='0.01' id='nota' name='notas[$dni]' pattern='^[1-9]|10$' value='$notaActual'>"."</p>";
         }
-        echo "<button type='submit' name='Notas'>Subir notas</button>";
-        echo '</div>';
-        echo "</form>";
+        if($datafinal < date('Y-m-d')){
+            echo "<button type='submit' name='Notas'>Subir notas</button>";
+            echo '</div>';
+            echo "</form>";
+        } else{
+            echo "<h3>El curso debe finalizar para poder poner notas</h3>";
+            echo '</div>';
+            echo "</form>";
+        }
+        
         
     } else{
         echo "<h1>No hay alumnos inscritos</h1>";
@@ -1277,9 +1286,9 @@ function notas($codigo){
 }
 
 // Función para obtener la nota actual de un alumno por su DNI
-function ObtenerNotaAlumno($dni) {
+function ObtenerNotaAlumno($dni,$codigo) {
     $conexion = abrirBBDD();
-    $sql = "SELECT nota FROM matriculados WHERE dni = '$dni'";
+    $sql = "SELECT nota FROM matriculados WHERE dni = '$dni' AND codigo = $codigo";
     $result = $conexion->query($sql);
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
