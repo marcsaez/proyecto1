@@ -12,7 +12,6 @@ if ($data) {
     }
     else {
         $repetidos = [];
-        $noValidos = [];
         foreach($data as $alumno) {
             $contraseña = encriptacio($alumno['contraseña']);
             $imagen_path = "img/perfiles/".$alumno['foto'];
@@ -37,9 +36,6 @@ if ($data) {
                         $consulta = mysqli_query($conexion, $sql2); 
                     }
                     
-                }
-                else {
-                    $noValidos[] = $dni;
                 }
             }   
         }
