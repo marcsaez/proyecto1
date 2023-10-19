@@ -581,7 +581,7 @@ function mostrarCurso($dni, $codigo){
             if ($result_verificar->num_rows > 0) {
                 // El estudiante ya está matriculado, muestra otro contenido en su lugar
                 // Obtener la nota actual de la base de datos
-                $notaActual = ObtenerNotaAlumno($dni);
+                $notaActual = ObtenerNotaAlumno($dni, $codigo);
                 if ($notaActual < 1){
                     echo '<h3>Nota todavia no disponible</h3>';
                 }else{
