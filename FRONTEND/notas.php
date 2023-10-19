@@ -20,9 +20,14 @@
             include_once('funciones.php');
             $datos = sessionProfe($dni);
             encabezadoProfe($datos);
-
-            $codigo = $_POST['codigo'];
-            $_SESSION ['codigo'] = $codigo;
+            if(isset($_POST['codigo'])){
+                $codigo = $_POST['codigo'];
+                $_SESSION ['codigo'] = $codigo;
+            }else{
+                $codigo = $_SESSION['codigo'];
+            }
+            
+           
             notas($codigo);
    
     ?>

@@ -19,7 +19,7 @@
             $dni = $_SESSION['dni'];
             $datos = sessionProfe($dni);
             encabezadoProfe($datos);
-            CursosPorfe($dni);
+            CursosProfe($dni);
                
     ?>
      <footer>
