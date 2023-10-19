@@ -448,7 +448,7 @@ function listarCursos($dni){
                     echo '<div class="curso">';
                     echo '<h2>' . $row['nombre'] . '</h2>';
                     echo '<p>' . $row['descripcion'] . '</p>';
-                    echo '<p>' . $row['horas'] . '</p>';
+                    echo '<p>'.'Horas: ' . $row['horas'] . '</p>';
                     $foto = $row['foto'];
                             $info = pathinfo($foto);
                             if (isset($info['extension']) && $info['extension'] !== '') {
@@ -458,7 +458,7 @@ function listarCursos($dni){
                             }
                     echo '<form action="paginacurso.php" method="POST">';
                     echo '<input type="hidden" name="codigo" value="' . $row['codigo'] . '">';
-                    echo '<button type="submit" name="ver_curso">Ver Curso</button>';
+                    echo '<button type="submit" name="ver_curso" class="botonvercurso">Ver Curso</button>';
                     echo '</form>';
                     echo '</div>';
                 }
@@ -476,8 +476,7 @@ function misCursos($dni,$nombre){
         mysqli_connect_error();
     }
     else {
-        echo '<h2>Bienvenido, ' . $nombre . '</h2>';
-        echo '<h2>Mis cursos:</h2>';
+        echo '<h2>Bienvenido ' . $nombre . ', estos son tus cursos:'. '</h2>';
         $sql = "SELECT codigo FROM matriculados WHERE dni='$dni'";
         $result = $conexion->query($sql);
         if ($result->num_rows > 0) {
@@ -492,7 +491,7 @@ function misCursos($dni,$nombre){
                             echo '<div class="curso">';
                             echo '<h2>' . $cursoRow['nombre'] . '</h2>';
                             echo '<p>' . $cursoRow['descripcion'] . '</p>';
-                            echo '<p>' . $cursoRow['horas'] . '</p>';
+                            echo '<p>' .'Horas: ' . $cursoRow['horas'] . '</p>';
                             $foto = $cursoRow['foto'];
                             $info = pathinfo($foto);
                             if (isset($info['extension']) && $info['extension'] !== '') {
@@ -502,7 +501,7 @@ function misCursos($dni,$nombre){
                             }
                             echo '<form action="paginacurso.php" method="POST">';
                             echo '<input type="hidden" name="codigo" value="' . $cursoRow['codigo'] . '">';
-                            echo '<button type="submit" name="ver_curso">Ver Curso</button>';
+                            echo '<button type="submit" name="ver_curso" class="botonvercurso">Ver Curso</button>';
                             echo '</form>';
                             echo '</div>';
                         }

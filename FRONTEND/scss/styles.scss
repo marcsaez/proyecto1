@@ -74,6 +74,7 @@ footer{
 
 /*  LISTAR CURSOS */ 
 .curso-wrapper {
+    @include center-element;
     display: grid;              
     grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); 
     gap: 10px;                 
@@ -84,9 +85,32 @@ footer{
     width: 70%;                
     margin: 10px;               
     padding: 10px;              
-    border: 1px solid #ccc;     
-    box-sizing: border-box;     
+    border: 1px solid #ccc;        
+    width: 70%;
+    height: 80%;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: justify;
 }
+
+.curso {
+    display: grid;
+    place-items: center;
+    width: 70%;
+    height: 80%;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: justify;
+    img {
+        width: 60%;
+        height: 60%;
+      }
+    p{
+        margin: 5px;
+    }
+  }
 
 nav {
     ul {
@@ -168,9 +192,12 @@ nav {
     justify-content: center;
     align-items: center;
     img{
-        width: 60%;
-        height: 60%;
+        width: 50%;
+        height: 50%;
     }
+}
+.botonvercurso{
+    margin: 5px;
 }
 
 #tablaContainer {

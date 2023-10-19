@@ -76,16 +76,26 @@ footer {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
   gap: 10px;
+  
 }
 
 .curso {
   display: grid;
   place-items: center;
   width: 70%;
+  height: 80%;
   margin: 10px;
   padding: 10px;
   border: 1px solid #ccc;
-  box-sizing: border-box;
+ 
+  text-align: justify;
+}
+.curso img {
+  width: 60%;
+  height: 60%;
+}
+.curso p {
+  margin: 5px;
 }
 
 nav ul {
@@ -185,4 +195,7 @@ nav ul li a:hover {
 #tablaContainer th, #tablaContainer td {
   width: 14.28%;
   padding: 15px;
+}
+.botonvercurso {
+  margin: 5px;
 }/*# sourceMappingURL=styles.css.map */
