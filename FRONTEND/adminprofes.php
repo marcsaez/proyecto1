@@ -26,7 +26,7 @@
             <img src="./img/98-1.jpg" alt="fotoperfil" id="fotoperfil">
         </div>
     </header>
-        <a href="./formulariocursos.php"><h2>Crear cursos</h2></a>
+        <a href="./formularioprofes.php"><h2>Crear profesor</h2></a>
         <?php
             function adminProfes(){
                 echo '<h1>PROFESORES</h1>
