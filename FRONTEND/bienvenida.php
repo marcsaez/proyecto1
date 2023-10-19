@@ -12,7 +12,9 @@
 </head>
 <body class="home">
     <?php
-        if($_SESSION){
+        if ($_SESSION['tipo']=='admin') {
+            EncabaezadoAlternativo();
+        }elseif($_SESSION){
                 $dni = $_SESSION['dni'];
                 $datos = sessionAbrir($dni);
                 encabezadoBienvenida($datos);
