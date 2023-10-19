@@ -430,6 +430,41 @@ function cursoModificar($codigo){
     }
 }
 
+function profeModificar($dni){
+    $conexion = abrirBBDD();
+    if($conexion == false) {
+        mysqli_connect_error();
+    } else {
+        $sql = "SELECT * FROM profesor WHERE dni='$dni'";
+        $result = $conexion->query($sql);
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            echo "<div class='perfil'>";
+
+            echo "<form action='profesprocesar.php' method='POST' enctype='multipart/form-data'>";
+            echo "<label for='dni'>dni:</label>";
+            echo "<input type='text' id='dni' name='dni' value='" . $row['dni'] . "' readonly required><br>";
+            echo "<label for='nombre'>Nombre:</label>";
+            echo "<input type='text' id='nombre' name='nombre' value='" . $row['nombre'] . "' required><br>";
+            echo "<label for='apellidos'>apellidos:</label>";
+            echo "<input type='text' id='apellidos' name='apellidos' value='" . $row['apellidos'] . "' required><br>";
+            echo "<label for='titulo_academico'>Titulo academico:</label>";
+            echo "<input type='text' id='titulo_academico' name='titulo_academico' value='" . $row['titulo_academico'] . "' required><br>";
+
+            // echo "<img src='./".$row['foto']."' alt='fotocurso' id='fotocurso'>";
+            // echo "<label for='Foto'>Foto:</label>";
+            // echo "<input type='file' name='imagen' accept='img/*' value='./".$row['foto']."' required><br>";
+
+            echo "<input type='submit' value='Guardar'>";
+            echo "</form>";
+            echo "</div>";
+
+        }
+
+    }
+}
+
 // LISTAR CURSOS
 function listarCursos($dni){
     $conexion = abrirBBDD();

@@ -14,7 +14,7 @@
     <header>
         <div class="header">
             <img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo">
-            <h2 id="titulo">TECH ACADEMY</h2>
+            <h2 id="titulo">TECH ACADEMY</h2>  
         </div>
         <div class="usuario">
         <?php
@@ -26,9 +26,6 @@
 
     <a href="./admincursos.php"><h2>Cursos</h2></a>
     <a href="./adminprofes.php"><h2>Profesores</h2></a>
-    <a href="./formularioprofes.php"><h2>Crear Profesores</h2></a>
-    <a href="./formulariomodificarprofes.php"><h2>Modificar Profesores</h2></a>
-    <a href="./profesdesactivar.php"><h2>Desactivar Profesores</h2></a>
     <a href="./insertalumnos.php"><h2>Insertar Alumnos</h2></a>
 
     <footer>
