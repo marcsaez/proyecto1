@@ -27,6 +27,7 @@
 
     <input type="file" id="archivoInput" />
     <button id="procesarArchivo">Procesar Archivo</button>
+    <div id="mensaje" style="display: none;">Archivos procesados correctamente</div>
     <div id="tablaContainer"></div>
 
     <script>
@@ -35,6 +36,11 @@
         let datosAlumnos = [];
 
         archivoInput.addEventListener('change', function(e) {
+            // Obtén una referencia al elemento div por su ID
+            var divMensaje = document.getElementById("mensaje");
+
+            // Cambia el valor de la propiedad 'display' a 'block'
+            divMensaje.style.display = "none";
             const archivo = e.target.files[0];
 
             if (archivo) {
@@ -82,6 +88,12 @@
 
                 // Enviar el array de datos como JSON al servidor
                 xhr.send(JSON.stringify(datosAlumnos));
+                // Obtén una referencia al elemento div por su ID
+                var divMensaje = document.getElementById("mensaje");
+
+                // Cambia el valor de la propiedad 'display' a 'block'
+                divMensaje.style.display = "block";
+
             }
             
         });
