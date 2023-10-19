@@ -12,10 +12,8 @@
 <body>
     <header>
         <div class="header">
-            <a href="./menuadmin.php">
-            <img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo">
+        <a href="menuadmin.php"><img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo"></a>
             <h2 id="titulo">TECH ACADEMY</h2>
-            </a>
         </div>
         <div class="usuario">
             <p id="username" >Pablo de Gregorio</p>
