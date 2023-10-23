@@ -864,7 +864,7 @@ function formularioInicio() {
         <form enctype="multipart/form-data" action="login.php" method="POST">
             <table>
                 <tr>
-                    <td class="imagen" colspan="2"> <img src="./img/TECHrecortada.png" alt="Descripción de la imagen"></td>
+                    <td class="imagen" colspan="2"> <a href="bienvenida.php"> <img src="./img/TECHrecortada.png" alt="Descripción de la imagen"> </a> </td>
                 </tr>
                 <tr>
                     <td> <label for="dni">DNI:</label> </td> <td> <input type="text" name="dni" id="dni" required> </td>

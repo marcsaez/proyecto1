@@ -73,10 +73,28 @@ footer {
 
 /*  LISTAR CURSOS */
 .curso-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
   gap: 10px;
-  
+}
+
+.curso {
+  display: grid;
+  place-items: center;
+  width: 70%;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 70%;
+  height: 80%;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: justify;
 }
 
 .curso {
@@ -87,7 +105,6 @@ footer {
   margin: 10px;
   padding: 10px;
   border: 1px solid #ccc;
- 
   text-align: justify;
 }
 .curso img {
@@ -169,8 +186,12 @@ nav ul li a:hover {
   align-items: center;
 }
 .paginacurso img {
-  width: 60%;
-  height: 60%;
+  width: 50%;
+  height: 50%;
+}
+
+.botonvercurso {
+  margin: 5px;
 }
 
 #tablaContainer table {
@@ -195,7 +216,4 @@ nav ul li a:hover {
 #tablaContainer th, #tablaContainer td {
   width: 14.28%;
   padding: 15px;
-}
-.botonvercurso {
-  margin: 5px;
 }/*# sourceMappingURL=styles.css.map */
