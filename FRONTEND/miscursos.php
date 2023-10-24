@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
 </head>
 <body>
-<?php 
+    <?php 
         if($_SESSION){
             $sesion = $_SESSION['tipo'];
             $control = ControlUsuario($sesion);
@@ -24,8 +24,14 @@
                 
                 $datos = sessionAbrir($dni);
                 encabezadoUsuario($datos);
+    ?>
+            <div class="pablo">
+    <?php
                 
                 misCursos($dni,$datos['nombre']);
+    ?>
+            </div>
+    <?php
                 
                 $conexion = abrirBBDD();
                

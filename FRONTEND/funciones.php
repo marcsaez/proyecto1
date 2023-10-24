@@ -129,7 +129,7 @@ function encabezadoProfe($datos){
 
 function abrirBBDD(){
     try {
-        $connection = mysqli_connect("localhost", "root", "", "tech_academy");
+        $connection = mysqli_connect("localhost", "admmin", "password", "tech_academy");
         return $connection;
     } 
     catch (Exception $e) {
@@ -772,7 +772,6 @@ function formularioRegistro() {
                     <?php
                 }
                 else {
-                    $_SESSION['tipo'] = "alumno";
                     $consulta = mysqli_query($conexion, $sql);
                     $datoconcursos = datosconcurso($dni);
                     header("Location: listarcursos.php?registro_exitoso=true");
