@@ -31,23 +31,13 @@
         ?>
     </header> -->
     <?php
-    encabezadoUsuario($datos);
+            encabezadoUsuario($datos);
 
-    $codigo = $_POST['codigo'];
-    $_SESSION ['codigo'] = $codigo;
-    mostrarCurso($dni, $codigo);
-   
-    ?>
-    <footer>
-        <div class="contacto">
-            <p>consultas@techacademy.com</p>
-            <p>C/de la Batlloria, Badalona</p>
-        </div>
-        <div class="copyright">
-            <p>© 2023 TECH ACADEMY</p>
-        </div>
-    </footer>
-    <?php
+            $codigo = $_POST['codigo'];
+            $_SESSION ['codigo'] = $codigo;
+            mostrarCurso($dni, $codigo);
+        
+            footer();
         } else{
             ?>
             <h2>ERROR: ¡SESION NO INICIADA!</h2>
