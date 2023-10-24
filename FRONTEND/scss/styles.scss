@@ -52,8 +52,8 @@ header {
 }
 
 footer{
-    display: grid;
-    position: relative;
+    // display: grid;
+    // position: relative;
     background-color: $color-primary;
     height: 88px;
     color: white;
@@ -74,7 +74,7 @@ footer{
 
 /*  LISTAR CURSOS */ 
 .curso-wrapper {
-    @include center-element;
+    // @include center-element;
     display: grid;              
     grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); 
     gap: 10px;                 
@@ -229,4 +229,10 @@ nav {
         width: 14.28%; //Es tan exacto porque hay 7 columnas
         padding: 15px;
     }
+}
+
+.pie {
+    position: absolute;
+    bottom: 0;
+    width: 99%;
 }

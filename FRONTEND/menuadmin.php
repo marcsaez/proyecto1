@@ -28,14 +28,5 @@
     <a href="./adminprofes.php"><h2>Profesores</h2></a>
     <a href="./insertalumnos.php"><h2>Insertar Alumnos</h2></a>
 
-    <footer>
-        <div class="contacto">
-            <p>consultas@techacademy.com</p>
-            <p>C/de la Batlloria, Badalona</p>
-        </div>
-        <div class="copyright">
-            <p>© 2023 TECH ACADEMY</p>
-        </div>
-    </footer>
 </body>
 </html>

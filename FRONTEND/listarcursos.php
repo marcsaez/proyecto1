@@ -26,18 +26,7 @@
             Concurso($dni);   
             listarCursos($dni);
                 
-            ?>
-            
-    <footer>
-        <div class="contacto">
-            <p>consultas@techacademy.com</p>
-            <p>C/de la Batlloria, Badalona</p>
-        </div>
-        <div class="copyright">
-            <p>© 2023 TECH ACADEMY</p>
-        </div>
-    </footer>
-    <?php
+            footer();
         } else{
             ?>
             <h2>ERROR: ¡SESION NO INICIADA!</h2>

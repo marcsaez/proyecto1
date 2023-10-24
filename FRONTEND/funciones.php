@@ -1306,4 +1306,24 @@ function ObtenerNotaAlumno($dni,$codigo) {
     }
     return ''; // Valor predeterminado si no se encuentra una nota en la base de datos
 }
+
+
+// ########
+// FOOTER #
+// ########
+function footer() {
+    ?>
+    <div class="pie">
+        <footer>
+            <div class="contacto">
+                <p>consultas@techacademy.com</p>
+                <p>C/de la Batlloria, Badalona</p>
+            </div>
+            <div class="copyright">
+                <p>© 2023 TECH ACADEMY</p>
+            </div>
+        </footer>
+    </div>
+    <?php
+}
 ?>
