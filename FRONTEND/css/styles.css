@@ -51,11 +51,14 @@ header {
 }
 
 footer {
+  display: grid;
+  position: relative;
   background-color: #3500A6;
   height: 88px;
   color: white;
   justify-content: space-between;
   text-align: center;
+  margin-bottom: 0;
 }
 
 .contacto {
@@ -195,10 +198,4 @@ nav ul li a:hover {
 #tablaContainer th, #tablaContainer td {
   width: 14.28%;
   padding: 15px;
-}
-
-.pie {
-  position: absolute;
-  bottom: 0;
-  width: 99%;
 }/*# sourceMappingURL=styles.css.map */

@@ -52,13 +52,14 @@ header {
 }
 
 footer{
-    // display: grid;
-    // position: relative;
+    display: grid;
+    position: relative;
     background-color: $color-primary;
     height: 88px;
     color: white;
     justify-content: space-between;
     text-align: center;
+    margin-bottom: 0;
 }
 
 .contacto{
@@ -231,12 +232,8 @@ nav {
     }
 }
 
-.pie {
-    position: absolute;
-    bottom: 0;
-    width: 99%;
-}
-
-.pablo {
-    width: 100%;
-}
+// .pie {
+//     position: absolute;
+//     bottom: 0;
+//     width: 99%;
+// }
