@@ -129,7 +129,7 @@ function encabezadoProfe($datos){
 
 function abrirBBDD(){
     try {
-        $connection = mysqli_connect("localhost", "admmin", "password", "tech_academy");
+        $connection = mysqli_connect("localhost", "admin", "password", "tech_academy");
         return $connection;
     } 
     catch (Exception $e) {
