@@ -36,9 +36,11 @@
             else {
                 if(isset($_POST['profesor']) && $_POST['profesor'] == 'on') {
                     $tabla = "profesor";
+                    $_SESSION['tipo'] = "profesor";
                 }
                 else {
                     $tabla = "alumnos";
+                    $_SESSION['tipo'] = "alumno";
                 }
                 $sql = "SELECT contraseña FROM $tabla WHERE dni='".$_POST['dni']."';";
                 $contraseñaBBDD = contenido($conexion, $sql);

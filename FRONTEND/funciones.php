@@ -317,6 +317,7 @@ function adminLogin(){
             $_SESSION['id'] = $id;
             $_SESSION['usuario'] = $usuario;
             $_SESSION['contraseña'] = $contraseña;
+            $_SESSION['tipo'] = "admin";
             
         } else {
             ?>  

@@ -12,15 +12,19 @@
 </head>
 <body class="home">
     <?php
-        if ($_SESSION['tipo']=='admin') {
+    if($_SESSION){
+        if ($_SESSION ['tipo']=='alumno') { 
+            $dni = $_SESSION['dni'];
+            $datos = sessionAbrir($dni);
+            encabezadoUsuario($datos);
+        }elseif($_SESSION ['tipo']=='admin'){
             EncabaezadoAlternativo();
-        }elseif($_SESSION){
-                $dni = $_SESSION['dni'];
-                $datos = sessionAbrir($dni);
-                encabezadoBienvenida($datos);
-        }else{
-            EncabaezadoAlternativo();
+        }elseif ($_SESSION ['tipo']=='profesor'){
+            $dni = $_SESSION['dni'];
+            $datos = sessionProfe($dni);
+            encabezadoProfe($datos);
         }  
+    }
     ?>
     <table>
         <tr>
