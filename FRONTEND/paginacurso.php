@@ -22,9 +22,6 @@
     ?>
     <script src = "./js/concurso.js"></script>
 
-        <?php 
-            datosUserVisibles($datos);
-        ?>
     </header> 
     <?php
             encabezadoUsuario($datos);
