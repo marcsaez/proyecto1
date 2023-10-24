@@ -78,6 +78,9 @@ footer {
   grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
   gap: 10px;
 }
+.curso-wrapper a {
+  text-decoration: none;
+}
 
 .curso {
   display: grid;
@@ -198,4 +201,27 @@ nav ul li a:hover {
 #tablaContainer th, #tablaContainer td {
   width: 14.28%;
   padding: 15px;
+}
+
+.menu {
+  display: grid;
+  place-items: center;
+  width: 90%;
+  height: 80%;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: justify;
+  background-color: lightgray;
+}
+.menu img {
+  width: 60%;
+  height: 60%;
+}
+.menu h1 {
+  color: black;
+}
+
+.menu:hover {
+  background-color: rgb(170, 170, 170);
 }/*# sourceMappingURL=styles.css.map */

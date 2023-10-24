@@ -24,9 +24,27 @@
         </div>
     </header>
 
-    <a href="./admincursos.php"><h2>Cursos</h2></a>
-    <a href="./adminprofes.php"><h2>Profesores</h2></a>
-    <a href="./insertalumnos.php"><h2>Insertar Alumnos</h2></a>
+    <div class="curso-wrapper">
+        <a href="./admincursos.php">
+            <div class="menu">
+                <img src="./img/curso.png">
+                <h1>Cursos</h1>
+            </div>
+        </a>
+        <a href="./adminprofes.php">
+            <div class="menu">
+                <img src="./img/profesor.png">
+                <h1>Profesores</h1>
+            </div>
+        </a>
+        <a href="./insertalumnos.php">
+            <div class="menu">
+                <img src="./img/alumno.png">
+                <h1>Alumnos</h1>
+            </div>
+        </a>       
+    </div>
+    
 
 </body>
 </html>

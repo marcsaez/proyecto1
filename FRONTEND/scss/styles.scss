@@ -78,7 +78,10 @@ footer{
     // @include center-element;
     display: grid;              
     grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); 
-    gap: 10px;                 
+    gap: 10px;
+    a {
+        text-decoration: none;
+    }                
 }
 
 // .curso {
@@ -237,3 +240,26 @@ nav {
 //     bottom: 0;
 //     width: 99%;
 // }
+
+.menu {
+    display: grid;
+    place-items: center;
+    width: 90%;
+    height: 80%;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: justify;
+    background-color: lightgray;
+    img {
+        width: 60%;
+        height: 60%;
+    }
+    h1 {
+        color: black;
+    }
+}
+
+.menu:hover {
+    background-color: rgb(170, 170, 170);
+}
