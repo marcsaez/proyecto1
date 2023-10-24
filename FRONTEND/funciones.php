@@ -302,6 +302,7 @@ function modificarCurso(){
 function adminLogin(){
     session_start();
     if($_SESSION){
+        if($_SESSION['tipo']=='admin'){
     
         $id = $_SESSION['id'];
         $usuario = $_SESSION['usuario'];
@@ -317,7 +318,7 @@ function adminLogin(){
             $_SESSION['id'] = $id;
             $_SESSION['usuario'] = $usuario;
             $_SESSION['contraseña'] = $contraseña;
-            $_SESSION['tipo'] = "admin";
+            $_SESSION['tipo']=='admin';
             
         } else {
             ?>  
@@ -327,6 +328,14 @@ function adminLogin(){
                 <meta http-equiv="REFRESH" content="0;url=admin.php">
             <?php
         }
+    } else {
+        ?>  
+                <script>
+                    alert("No tienes permisos de admin");
+                </script>              
+                <meta http-equiv="REFRESH" content="0;url=login.php">
+            <?php
+    }
 
     } else {
         ?>  
