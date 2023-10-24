@@ -80,19 +80,19 @@ footer{
     gap: 10px;                 
 }
 
-.curso {
-    @include centrar;
-    width: 70%;                
-    margin: 10px;               
-    padding: 10px;              
-    border: 1px solid #ccc;        
-    width: 70%;
-    height: 80%;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: justify;
-}
+// .curso {
+//     @include centrar;
+//     width: 70%;                
+//     margin: 10px;               
+//     padding: 10px;              
+//     border: 1px solid #ccc;        
+//     width: 70%;
+//     height: 80%;
+//     margin: 10px;
+//     padding: 10px;
+//     border: 1px solid #ccc;
+//     text-align: justify;
+// }
 
 .curso {
     display: grid;
@@ -110,7 +110,7 @@ footer{
     p{
         margin: 5px;
     }
-  }
+}
 
 nav {
     ul {

@@ -80,21 +80,6 @@ footer {
   display: grid;
   place-items: center;
   width: 70%;
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  width: 70%;
-  height: 80%;
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  text-align: justify;
-}
-
-.curso {
-  display: grid;
-  place-items: center;
-  width: 70%;
   height: 80%;
   margin: 10px;
   padding: 10px;
