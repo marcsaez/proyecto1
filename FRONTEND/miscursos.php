@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    include_once('funciones.php');
     
 ?>
 <!DOCTYPE html>
@@ -16,25 +17,29 @@
 <body>
 <?php 
         if($_SESSION){
-            $dni = $_SESSION['dni'];
-            include_once('funciones.php');
-            $datos = sessionAbrir($dni);
-            encabezadoUsuario($datos);
-            
-            misCursos($dni,$datos['nombre']);
-            
-            $conexion = abrirBBDD();
+            $sesion = $_SESSION['tipo'];
+            $control = ControlUsuario($sesion);
+            if ($control){
+                $dni = $_SESSION['dni'];
+                
+                $datos = sessionAbrir($dni);
+                encabezadoUsuario($datos);
+                
+                misCursos($dni,$datos['nombre']);
+                
+                $conexion = abrirBBDD();
                
     ?>
 
     
     <?php
         footer();
+            }
         } else{
-            ?>
-            <h2>ERROR: ¡SESION NO INICIADA!</h2>
-            <meta http-equiv="REFRESH" content="3;url=login.php">
-            <?php
+            echo "<script> 
+                    alert('Acceso denegado, accede como alumno')
+                </script>";
+                echo "<meta http-equiv='REFRESH' content='0;url=login.php'>";
         }
     ?>
 </body>

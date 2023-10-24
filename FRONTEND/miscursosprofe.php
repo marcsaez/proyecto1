@@ -15,7 +15,7 @@
 </head>
 <body>
     <?php
-        if($_SESSION){
+        if($_SESSION['tipo'] == "profesor"){
             $dni = $_SESSION['dni'];
             $datos = sessionProfe($dni);
             encabezadoProfe($datos);
@@ -23,10 +23,10 @@
                
         footer();
         } else{
-            ?>
-            <h2>ERROR: ¡SESION NO INICIADA!</h2>
-            <meta http-equiv="REFRESH" content="3;url=login.php">
-            <?php
+            echo "<script> 
+                    alert('Acceso denegado, accede como profesor')
+                </script>";
+                echo "<meta http-equiv='REFRESH' content='0;url=login.php'>";
         }
     ?>
 </body>

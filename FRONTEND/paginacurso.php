@@ -15,21 +15,17 @@
 </head>
 <body>
 <?php 
-        if($_SESSION){
+        if($_SESSION['tipo'] == "alumno"){
             $dni = $_SESSION['dni'];
             include_once('funciones.php');
             $datos = sessionAbrir($dni);
     ?>
     <script src = "./js/concurso.js"></script>
-    <!-- <header>
-        <div class="header">
-        <a href="menuadmin.php"><img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo"></a>
-            <h2 id="titulo">TECH ACADEMY</h2>
-        </div>
+
         <?php 
             datosUserVisibles($datos);
         ?>
-    </header> -->
+    </header> 
     <?php
             encabezadoUsuario($datos);
 
@@ -39,10 +35,10 @@
         
             footer();
         } else{
-            ?>
-            <h2>ERROR: ¡SESION NO INICIADA!</h2>
-            <meta http-equiv="REFRESH" content="3;url=login.php">
-            <?php
+            echo "<script> 
+                    alert('Acceso denegado, accede como alumno')
+                </script>";
+                echo "<meta http-equiv='REFRESH' content='0;url=login.php'>";
         }
     ?>
 </body>

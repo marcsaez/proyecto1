@@ -16,9 +16,9 @@
 </head>
 <body>
     <?php 
-        if($_SESSION){
+        if($_SESSION['tipo'] == "alumno"){
             $dni = $_SESSION['dni'];
-            include_once('funciones.php');
+            
             $datos = sessionAbrir($dni);
 
             encabezadoUsuario($datos);
@@ -28,10 +28,10 @@
                 
             footer();
         } else{
-            ?>
-            <h2>ERROR: ¡SESION NO INICIADA!</h2>
-            <meta http-equiv="REFRESH" content="3;url=login.php">
-            <?php
+            echo "<script> 
+                    alert('Acceso denegado, accede como alumno')
+                </script>";
+                echo "<meta http-equiv='REFRESH' content='0;url=login.php'>";
         }
     ?>
 </body>

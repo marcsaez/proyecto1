@@ -1326,4 +1326,11 @@ function footer() {
     </div>
     <?php
 }
+function ControlUsuario($sesion){
+    if($sesion != "alumno"){
+        return false;
+    } else{
+        return true;
+    }
+}
 ?>

@@ -24,6 +24,8 @@
             $datos = sessionProfe($dni);
             encabezadoProfe($datos);
         }  
+    } else{
+        EncabaezadoAlternativo();
     }
     ?>
     <table>
