@@ -61,10 +61,10 @@
                 }
                 else {
                     ?>  
-                        <!-- <script>
+                        <script>
                             alert("El usuario no está registrado o alguno de los datos no es correcto");
-                        </script>               -->
-                        <meta http-equiv="REFRESH" content="3;url=login.php">
+                        </script>
+                        <meta http-equiv="REFRESH" content="0;url=login.php">
                     <?php
                 }
     
