@@ -1202,9 +1202,10 @@ function CursosProfe($dni){
                             echo '<p>' . $cursoRow['descripcion'] . '</p>';
                             echo '<p>'.'Horas: ' . $cursoRow['horas'] . '</p>';
                             $foto = $cursoRow['foto'];
+                            $fotoSinEspacios= str_replace(' ', '', $foto);
                             $info = pathinfo($foto);
                             if (isset($info['extension']) && $info['extension'] !== '') {
-                            echo "<img src='./".$cursoRow['foto']."' alt='fotocurso' class='fotocurso'>";
+                            echo "<img src='./".$fotoSinEspacios."' alt='fotocurso' class='fotocurso'>";
                             } else {
                                 echo "";
                             }
