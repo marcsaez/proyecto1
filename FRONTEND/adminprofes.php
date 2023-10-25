@@ -33,9 +33,9 @@
                             <td colspan="8"><h1>PROFESORES</h1></td>
                         </tr>
                         <tr class="titulo">
-                            <td colspan="7">
-                                <form action="../../form-result.php" method="post" target="_blank">
-                                    <p>Busqueda por nombre:<input type="search" name="busqueda" placeholder="Nombre"></p>
+                            <td colspan="8">
+                                <form enctype="multipart/form-data" action="" method="POST">
+                                    Busqueda por nombre/DNI:<input type="search" name="busqueda" placeholder="Nombre o DNI">
                                 </form>
                             </td> 
                             <td class="añadir" colspan="1"><a href="./formularioprofes.php"><img src="./img/añadir.png" alt="añadir" id="añadir"></a></td>
@@ -52,7 +52,13 @@
                         </tr>';
             
                 $conexion = abrirBBDD();
-                $sql = "SELECT * FROM profesor";
+                if(isset($_POST['busqueda']) && strlen($_POST['busqueda']) > 0) {
+                    $busqueda = $_POST['busqueda'];
+                    $sql = "SELECT * FROM profesor WHERE nombre LIKE '%$busqueda%' OR dni LIKE '%$busqueda%'";
+                }
+                else {
+                    $sql = "SELECT * FROM profesor"; 
+                }
                 $result = $conexion->query($sql);
                 if ($result->num_rows > 0) {
                     while ($linia = $result->fetch_assoc()){
@@ -94,9 +100,10 @@
                 else {
                     echo "NO HAY CURSOS";      
                 }
-                //echo '</table>';
+                echo '</table>';
             }
             adminProfes();
         ?>
-    </table>
+    <!-- </table> -->
 </body>
+</html>
