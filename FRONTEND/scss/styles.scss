@@ -160,8 +160,23 @@ nav {
 
 //No implementado aun
 .admin {
+    width: 80%;
+    margin: 0 auto;
     img {
         width: 30px;
+    }
+
+    .titulo {
+        background-color: white;
+    }
+
+    .añadir {
+        padding-bottom: 2%;
+        a {
+            img {
+                width: 40px;
+            }
+        }
     }
 
     .blanco {

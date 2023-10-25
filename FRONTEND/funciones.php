@@ -351,6 +351,12 @@ function adminLogin(){
 function adminCursos(){
     echo '<h1>CURSOS</h1>
         <table class="admin">
+        <tr class="titulo">
+        <td colspan="8"><h1>CURSOS</h1></td>
+        </tr>
+        <tr class="titulo">
+            <td class="añadir" colspan="8"><a href="./formulariocursos.php"><img src="./img/añadir.png" alt="añadir" id="añadir"></a></td>
+        </tr>
             <tr class="blanco">
                 <td>Codigo</td>
                 <td>Nombre</td>
