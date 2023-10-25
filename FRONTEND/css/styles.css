@@ -147,6 +147,9 @@ nav ul li a:hover {
 .admin .titulo {
   background-color: white;
 }
+.admin .titulo .buscador {
+  text-align: left;
+}
 .admin .añadir {
   padding-bottom: 2%;
 }
@@ -175,7 +178,7 @@ nav ul li a:hover {
   margin-left: 40%;
 }
 
-#fotocurso {
+.fotocurso {
   width: 60%;
 }
 

@@ -33,12 +33,12 @@
                             <td colspan="8"><h1>PROFESORES</h1></td>
                         </tr>
                         <tr class="titulo">
-                            <td colspan="8">
+                            <td colspan="7" class="buscador">
                                 <form enctype="multipart/form-data" action="" method="POST">
-                                    Busqueda por nombre/DNI:<input type="search" name="busqueda" placeholder="Nombre o DNI">
+                                    Busqueda por DNI/Nombre:<input type="search" name="busqueda" placeholder="DNI o Nombre">
                                 </form>
                             </td> 
-                            <td class="añadir" colspan="1"><a href="./formularioprofes.php"><img src="./img/añadir.png" alt="añadir" id="añadir"></a></td>
+                            <td class="añadir" colspan="1"><a href="./formularioprofes.php"><span title="Añadir profesor"><img src="./img/añadir.png" alt="añadir" id="añadir"></span></a></td>
                         </tr>
                         <tr class="blanco">
                             <td>DNI</td>
