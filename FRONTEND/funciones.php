@@ -583,7 +583,9 @@ function mostrarCurso($dni, $codigo){
             $foto = $curso['foto'];
             $info = pathinfo($foto);
             if (isset($info['extension']) && $info['extension'] !== '') {
-            echo "<img src='./".$curso['foto']."' alt='fotocurso' id='fotocurso2'>";
+                echo "
+                <img src='./".$curso['foto']."' alt='fotocurso' id='fotocurso2'>
+                ";
             } else {
                 echo "";
             }

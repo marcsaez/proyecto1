@@ -173,10 +173,12 @@ nav ul li a:hover {
   text-align: justify;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
 }
 .paginacurso img {
-  width: 50%;
-  height: 50%;
+  width: 600px;
+  height: 250px;
+  padding-bottom: 15px;
 }
 
 .botonvercurso {
