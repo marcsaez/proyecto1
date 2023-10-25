@@ -583,7 +583,9 @@ function mostrarCurso($dni, $codigo){
             $foto = $curso['foto'];
             $info = pathinfo($foto);
             if (isset($info['extension']) && $info['extension'] !== '') {
-            echo "<img src='./".$curso['foto']."' alt='fotocurso' id='fotocurso2'>";
+                echo "
+                <img src='./".$curso['foto']."' alt='fotocurso' id='fotocurso2'>
+                ";
             } else {
                 echo "";
             }
@@ -772,6 +774,7 @@ function formularioRegistro() {
                     <?php
                 }
                 else {
+                    $_SESSION['tipo'] = "alumno";
                     $consulta = mysqli_query($conexion, $sql);
                     $datoconcursos = datosconcurso($dni);
                     header("Location: listarcursos.php?registro_exitoso=true");
@@ -883,7 +886,7 @@ function formularioInicio() {
                     <td> <label for="contraseña">Contraseña:</label> </td> <td> <input type="password" name="contraseña" id="contraseña" required> </td>
                 </tr>
                 <tr>
-                    <td> <input type="checkbox" name="profesor" id="profesor"> <label for="profesor">Soy profesor</label></td>
+                    <td colspan="2"> <input type="checkbox" name="profesor" id="profesor"> <label for="profesor">Soy profesor</label></td>
                 </tr>
                 <tr>
                     <td id="iniciar" style="text-align:center" colspan="2"> 
@@ -1113,6 +1116,7 @@ function perfil($dni){
             $_SESSION['foto'] = $row['foto']; //ayudita
 
             echo "<div class='perfil'>";
+            echo "<div class = 'textosperfil'";
             echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='post' enctype='multipart/form-data'>";
 
             // Rellenar el formulario con los valores de la consulta
@@ -1127,9 +1131,9 @@ function perfil($dni){
 
             echo "<label for='edad'>Edad:</label>";
             echo "<input type='number' id='edad' name='edad' value='" . $row['edad'] . "' required><br>";
-
-            echo "<input type='checkbox' id='change_password_checkbox' onchange='togglePasswordFields()'>";
-            echo "<label for='change_password_checkbox'>Cambiar contraseña</label> <br>";
+            echo "</div>";
+            echo "<label for='change_password_checkbox'>Cambiar contraseña</label> <input type='checkbox' id='change_password_checkbox' onchange='togglePasswordFields()'>";
+            
 
             //Si se selecciona el checkbox anterior se despliega el cambio de contraseña
             echo "<div id='password_fields' style='display: none;'>";
