@@ -27,19 +27,19 @@
     <div class="curso-wrapper">
         <a href="./admincursos.php">
             <div class="menu">
-                <img src="./img/curso.png">
+                <img src="./img/curso.png" alt='Cursos'>
                 <h1>Cursos</h1>
             </div>
         </a>
         <a href="./adminprofes.php">
             <div class="menu">
-                <img src="./img/profesor.png">
+                <img src="./img/profesor.png" alt='Profesores'>
                 <h1>Profesores</h1>
             </div>
         </a>
         <a href="./insertalumnos.php">
             <div class="menu">
-                <img src="./img/alumno.png">
+                <img src="./img/alumno.png" alt='Alumnos'>
                 <h1>Alumnos</h1>
             </div>
         </a>       

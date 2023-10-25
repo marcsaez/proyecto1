@@ -3,7 +3,7 @@
     adminLogin();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Enviar Datos de Alumnos a PHP con XMLHttpRequest</title>
     <link rel="stylesheet" type="text/css" href="./css/styles.css">

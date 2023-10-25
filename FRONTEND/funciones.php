@@ -216,8 +216,9 @@ function crearcurso(){
         $final = $_POST['final'];
         $activo = true;
         $fk_profesor = $_POST['fk_profesor'];
+        $nombresinespacio = str_replace(' ', '',$nombre);
         try{
-            $imagencurso = moverImagenR("cursos", $nombre);
+            $imagencurso = moverImagenR("cursos", $nombresinespacio);
         }catch(Exception $e){
             echo "";
         }
@@ -498,7 +499,7 @@ function listarCursos($dni){
                     $foto = $row['foto'];
                             $info = pathinfo($foto);
                             if (isset($info['extension']) && $info['extension'] !== '') {
-                            echo "<img src='./".$row['foto']."' alt='fotocurso' id='fotocurso'>";
+                            echo "<img src='./".$row['foto']."' alt='fotocurso' class='fotocurso'>";
                             } else {
                                 echo "";
                             }
@@ -541,7 +542,7 @@ function misCursos($dni,$nombre){
                             $foto = $cursoRow['foto'];
                             $info = pathinfo($foto);
                             if (isset($info['extension']) && $info['extension'] !== '') {
-                            echo "<img src='./".$cursoRow['foto']."' alt='fotocurso' id='fotocurso'>";
+                            echo "<img src='./".$cursoRow['foto']."' alt='fotocurso' class='fotocurso'>";
                             } else {
                                 echo "";
                             }
@@ -1116,9 +1117,9 @@ function perfil($dni){
             $_SESSION['foto'] = $row['foto']; //ayudita
 
             echo "<div class='perfil'>";
-            echo "<div class = 'textosperfil'";
+            
             echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='post' enctype='multipart/form-data'>";
-
+            echo "<div class = 'textosperfil'>";
             // Rellenar el formulario con los valores de la consulta
             echo "<label for='dni'>DNI:</label>";
             echo "<input type='text' id='dni' name='dni' value='" . $row['dni'] . "' disabled><br>";
@@ -1131,8 +1132,8 @@ function perfil($dni){
 
             echo "<label for='edad'>Edad:</label>";
             echo "<input type='number' id='edad' name='edad' value='" . $row['edad'] . "' required><br>";
-            echo "</div>";
-            echo "<label for='change_password_checkbox'>Cambiar contraseña</label> <input type='checkbox' id='change_password_checkbox' onchange='togglePasswordFields()'>";
+            
+            echo "<label for='change_password_checkbox'>Cambiar contraseña</label><br> <input type='checkbox' id='change_password_checkbox' onchange='togglePasswordFields()'>";
             
 
             //Si se selecciona el checkbox anterior se despliega el cambio de contraseña
@@ -1151,6 +1152,7 @@ function perfil($dni){
 
             // Botón para enviar el formulario
             echo "<input type='submit' value='Guardar'>";
+            echo "</div>";
             echo "</form>";
             echo '<a href="cerrarsesion.php">Cerrar Sesión</a>';
             echo "</div>";
@@ -1185,7 +1187,7 @@ function CursosProfe($dni){
                             $foto = $cursoRow['foto'];
                             $info = pathinfo($foto);
                             if (isset($info['extension']) && $info['extension'] !== '') {
-                            echo "<img src='./".$cursoRow['foto']."' alt='fotocurso' id='fotocurso'>";
+                            echo "<img src='./".$cursoRow['foto']."' alt='fotocurso' class='fotocurso'>";
                             } else {
                                 echo "";
                             }
@@ -1243,9 +1245,12 @@ function SubirNotas($codigo){
     if(isset($_POST['notas'])){
         $notas = $_POST['notas'];
         $conexion = abrirBBDD();
-        foreach($notas as $dni => $nota){
-            if ($nota <= 10 && $nota >=1){
-                $sql = "UPDATE matriculados SET nota = '$nota' WHERE dni = '$dni' AND codigo = '$codigo'"; 
+        $notanumero = floatval($notas); 
+        
+        foreach($notas as $dni => $notanumero){
+            if ($notanumero <= 10 && $notanumero >=1){
+                
+                $sql = "UPDATE matriculados SET nota = '$notanumero' WHERE dni = '$dni' AND codigo = '$codigo'"; 
                 $result = $conexion->query($sql);
             } else{
                 ?>
@@ -1281,7 +1286,7 @@ function notas($codigo){
             // Obtener la nota actual de la base de datos
             $notaActual = ObtenerNotaAlumno($dni,$codigo);
             echo "<p>" . $datos['nombre'] ." ".  $datos['apellidos']." ";
-            echo "<input type='number' step='0.01' id='nota' name='notas[$dni]' pattern='^[1-9]|10$' value='$notaActual'>"."</p>";
+            echo "<input type='text' class='nota' name='notas[$dni]' pattern='^(10|\d(\.\d{1,2})?)$' value='$notaActual'>"."</p>";
         }
         if($datafinal < date('Y-m-d')){
             echo "<button type='submit' name='Notas'>Subir notas</button>";

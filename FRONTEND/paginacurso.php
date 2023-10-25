@@ -22,7 +22,6 @@
     ?>
     <script src = "./js/concurso.js"></script>
 
-    </header> 
     <?php
             encabezadoUsuario($datos);
 

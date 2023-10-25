@@ -36,7 +36,7 @@
                     <td> <label for="id">ID:</label> </td> <td> <input type="text" name="id" id="id" required> </td>
                 </tr>
                 <tr>
-                    <td> <label for="name">usuario:</label> </td> <td> <input type="text" name="usuario" id="usuario" required> </td>
+                    <td> <label for="name">usuario:</label> </td> <td> <input type="text" name="usuario" id="name" required> </td>
                 </tr>
                 <tr>
                     <td> <label for="contraseña">Contraseña:</label> </td> <td> <input type="password" name="contraseña" id="contraseña" required> </td>
