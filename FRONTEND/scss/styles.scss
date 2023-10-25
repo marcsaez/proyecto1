@@ -138,15 +138,19 @@ nav {
 }
 
 .home {
-    background-image: url('../img/fondo.jpg');
+    background-color: $color-primary;
     background-size: 100%;
 
     table {
-        background-color: rgb(53, 0, 166, 0.5);
         margin: 3% 7%;
-        font-size: x-large;
-        text-align: center;
+        font-size: 23px;
+        text-align: justify;
         color: white;
+        th{
+            font-size: 35px;
+            text-align: center;
+            padding-bottom:  20px;
+        }
     }
 
     img {
@@ -262,4 +266,29 @@ nav {
 
 .menu:hover {
     background-color: rgb(170, 170, 170);
+}
+
+//BIENVENIDA
+.bienvenida{
+    position: relative;
+}
+.FotoBienvenida{
+    position: relative;
+    h1{
+        width: 98vh;
+        height: 60vh;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+        font-size: 90px;
+        color: white;
+        align-items: center;
+    }
+    img{
+        width: 98vw;
+        height: 60vh;
+        margin-top: 5px;
+    }
 }
