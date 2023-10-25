@@ -20,7 +20,6 @@
             <img src="./img/98-1.jpg" alt="fotoperfil" id="fotoperfil">
         </div>
     </header>
-        <a href="./formulariocursos.php"><h2>Crear cursos</h2></a>
         <?php
             include_once("funciones.php");
             adminLogin();

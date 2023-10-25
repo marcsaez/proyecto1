@@ -350,14 +350,18 @@ function adminLogin(){
 
 }
 function adminCursos(){
-    echo '<h1>CURSOS</h1>
-        <table class="admin">
-        <tr class="titulo">
-        <td colspan="8"><h1>CURSOS</h1></td>
-        </tr>
-        <tr class="titulo">
-            <td class="añadir" colspan="8"><a href="./formulariocursos.php"><img src="./img/añadir.png" alt="añadir" id="añadir"></a></td>
-        </tr>
+    echo '<table class="admin">
+            <tr class="titulo">
+                <td colspan="8"><h1>CURSOS</h1></td>
+            </tr>
+            <tr class="titulo">
+                <td colspan="7" class="buscador">
+                    <form enctype="multipart/form-data" action="" method="POST">
+                        Busqueda por Codigo/Nombre:<input type="search" name="busqueda" placeholder="Codigo o Nombre">
+                    </form>
+                </td> 
+                <td class="añadir" colspan="1"><a href="./formulariocursos.php"><span title="Añadir curso"><img src="./img/añadir.png" alt="añadir" id="añadir"></span></a></td>
+            </tr>
             <tr class="blanco">
                 <td>Codigo</td>
                 <td>Nombre</td>
@@ -366,11 +370,17 @@ function adminCursos(){
                 <td>Horas</td>
                 <td>Activo</td>
                 <td>Editar</td>
-                <td>Eliminar</td>
+                <td>Desactivar</td>
             </tr>';
 
     $conexion = abrirBBDD();
-    $sql = "SELECT * FROM cursos";
+    if(isset($_POST['busqueda']) && strlen($_POST['busqueda']) > 0) {
+        $busqueda = $_POST['busqueda'];
+        $sql = "SELECT * FROM cursos WHERE nombre LIKE '%$busqueda%' OR codigo LIKE '%$busqueda%'";
+    }
+    else {
+        $sql = "SELECT * FROM cursos";
+    }
     $result = $conexion->query($sql);
     if ($result->num_rows > 0) {
         while ($linia = $result->fetch_assoc()){
