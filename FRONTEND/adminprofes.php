@@ -26,11 +26,20 @@
             <img src="./img/98-1.jpg" alt="fotoperfil" id="fotoperfil">
         </div>
     </header>
-        <a href="./formularioprofes.php"><h2>Crear profesor</h2></a>
         <?php
             function adminProfes(){
-                echo '<h1>PROFESORES</h1>
-                    <table class="admin">
+                echo '<table class="admin">
+                        <tr class="titulo">
+                            <td colspan="8"><h1>PROFESORES</h1></td>
+                        </tr>
+                        <tr class="titulo">
+                            <td colspan="7">
+                                <form action="../../form-result.php" method="post" target="_blank">
+                                    <p>Busqueda por nombre:<input type="search" name="busqueda" placeholder="Nombre"></p>
+                                </form>
+                            </td> 
+                            <td class="añadir" colspan="1"><a href="./formularioprofes.php"><img src="./img/añadir.png" alt="añadir" id="añadir"></a></td>
+                        </tr>
                         <tr class="blanco">
                             <td>DNI</td>
                             <td>Nombre</td>
@@ -39,7 +48,7 @@
                             <td>Foto</td>
                             <td>Activo</td>
                             <td>Editar</td>
-                            <td>Eliminar</td>
+                            <td>Desactivar</td>
                         </tr>';
             
                 $conexion = abrirBBDD();
