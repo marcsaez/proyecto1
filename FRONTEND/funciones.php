@@ -1115,6 +1115,7 @@ function perfil($dni){
             $_SESSION['foto'] = $row['foto']; //ayudita
 
             echo "<div class='perfil'>";
+            echo "<div class = 'textosperfil'";
             echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='post' enctype='multipart/form-data'>";
 
             // Rellenar el formulario con los valores de la consulta
@@ -1129,9 +1130,9 @@ function perfil($dni){
 
             echo "<label for='edad'>Edad:</label>";
             echo "<input type='number' id='edad' name='edad' value='" . $row['edad'] . "' required><br>";
-
-            echo "<input type='checkbox' id='change_password_checkbox' onchange='togglePasswordFields()'>";
-            echo "<label for='change_password_checkbox'>Cambiar contraseña</label> <br>";
+            echo "</div>";
+            echo "<label for='change_password_checkbox'>Cambiar contraseña</label> <input type='checkbox' id='change_password_checkbox' onchange='togglePasswordFields()'>";
+            
 
             //Si se selecciona el checkbox anterior se despliega el cambio de contraseña
             echo "<div id='password_fields' style='display: none;'>";

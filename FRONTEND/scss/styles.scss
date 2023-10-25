@@ -294,3 +294,19 @@ nav {
         margin-top: 5px;
     }
 }
+
+.perfil{  
+        background-color: $color-primary;
+        color: white;
+        padding: 3%;
+        border-radius: 5%;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        width: 400px;
+        text-align: justify;
+        margin-left: 35%;
+        @include centrar;
+        .textosperfil{
+            @include centrar;
+        }
+    }
