@@ -831,7 +831,7 @@ function moverImagen() {
 
 function moverImagenR($path, $name) {
     $imagen_ext = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
-    $imagen_path = 'img/'. $path .'/' . $name .'.'. $imagen_ext;
+    $imagen_path = './img/'. $path .'/' . $name .'.'. $imagen_ext;
     move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_path);
     
     return $imagen_path;

@@ -30,7 +30,7 @@ if($_POST){
 <body>
     <div>
         <h1>REGISTRO</h1>
-        <form enctype="multipart/form-data" action="" method="POST" id="registrofrom">
+        <form enctype="multipart/form-data" action="signup.php" method="POST" id="registrofrom">
             <table>
                 <tr>
                     <td class="imagen" colspan="2"> <a href="bienvenida.php"> <img src="./img/TECHrecortada.png" alt="Descripción de la imagen"> </a></td>
@@ -54,7 +54,7 @@ if($_POST){
                     <td> <label for="imagen">Foto de perfil:</label> </td> <td> <input type="file" name="imagen" id="imagen" accept="img/*"> </td>
                 </tr>
                 <tr>
-                    <td id="registrar" style="text-align:center" colspan="2"> 
+                    <td style="text-align:center" colspan="2"> 
                         <input type="submit" name="Sign Up" value="Sign Up" id="registrar">
                     </td>
                 </tr>
