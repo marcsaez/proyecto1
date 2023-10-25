@@ -24,14 +24,8 @@
                 
                 $datos = sessionAbrir($dni);
                 encabezadoUsuario($datos);
-    ?>
-            <div class="pablo">
-    <?php
                 
                 misCursos($dni,$datos['nombre']);
-    ?>
-            </div>
-    <?php
                 
                 $conexion = abrirBBDD();
                

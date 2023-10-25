@@ -513,12 +513,13 @@ function listarCursos($dni){
                     echo '<p>' . $row['descripcion'] . '</p>';
                     echo '<p>'.'Horas: ' . $row['horas'] . '</p>';
                     $foto = $row['foto'];
-                            $info = pathinfo($foto);
-                            if (isset($info['extension']) && $info['extension'] !== '') {
-                            echo "<img src='./".$row['foto']."' alt='fotocurso' class='fotocurso'>";
-                            } else {
-                                echo "";
-                            }
+                    $fotoSinEspacios= str_replace(' ', '', $foto);
+                    $info = pathinfo($foto);
+                    if (isset($info['extension']) && $info['extension'] !== '') {
+                    echo "<img src='./".$fotoSinEspacios."' alt='fotocurso' class='fotocurso'>";
+                    } else {
+                        echo "";
+                    }
                     echo '<form action="paginacurso.php" method="POST">';
                     echo '<input type="hidden" name="codigo" value="' . $row['codigo'] . '">';
                     echo '<button type="submit" name="ver_curso" class="botonvercurso">Ver Curso</button>';
@@ -556,9 +557,10 @@ function misCursos($dni,$nombre){
                             echo '<p>' . $cursoRow['descripcion'] . '</p>';
                             echo '<p>' .'Horas: ' . $cursoRow['horas'] . '</p>';
                             $foto = $cursoRow['foto'];
+                            $fotoSinEspacios= str_replace(' ', '', $foto);
                             $info = pathinfo($foto);
                             if (isset($info['extension']) && $info['extension'] !== '') {
-                            echo "<img src='./".$cursoRow['foto']."' alt='fotocurso' class='fotocurso'>";
+                            echo "<img src='./".$fotoSinEspacios."' alt='fotocurso' class='fotocurso'>";
                             } else {
                                 echo "";
                             }
@@ -598,11 +600,10 @@ function mostrarCurso($dni, $codigo){
             echo '<p>' . $curso['descripcion'] . '</p>';
             echo '<p>'. 'Horas: '. $curso['horas'] . '</p>';
             $foto = $curso['foto'];
+            $fotoSinEspacios= str_replace(' ', '', $foto);
             $info = pathinfo($foto);
             if (isset($info['extension']) && $info['extension'] !== '') {
-                echo "
-                <img src='./".$curso['foto']."' alt='fotocurso' id='fotocurso2'>
-                ";
+                echo "<img src='./".$fotoSinEspacios."' alt='fotocurso' id='fotocurso2'>";
             } else {
                 echo "";
             }
