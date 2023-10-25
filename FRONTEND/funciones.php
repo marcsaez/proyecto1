@@ -774,6 +774,7 @@ function formularioRegistro() {
                     <?php
                 }
                 else {
+                    $_SESSION['tipo'] = "alumno";
                     $consulta = mysqli_query($conexion, $sql);
                     $datoconcursos = datosconcurso($dni);
                     header("Location: listarcursos.php?registro_exitoso=true");
