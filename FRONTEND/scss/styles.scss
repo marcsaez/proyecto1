@@ -271,6 +271,7 @@ nav {
     width: 90%;
     height: 80%;
     margin: 10px;
+    margin-top: 20%;
     padding: 10px;
     border: 1px solid #ccc;
     text-align: justify;
@@ -326,5 +327,15 @@ nav {
         @include centrar;
         .textosperfil{
             @include centrar;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            padding-top: 7%;
+            font-size: larger;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: lightcoral;
         }
     }

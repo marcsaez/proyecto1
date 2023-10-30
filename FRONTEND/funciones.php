@@ -1150,7 +1150,7 @@ function perfil($dni){
             echo "<label for='edad'>Edad:</label>";
             echo "<input type='number' id='edad' name='edad' value='" . $row['edad'] . "' required><br>";
             
-            echo "<label for='change_password_checkbox'>Cambiar contraseña</label><br> <input type='checkbox' id='change_password_checkbox' onchange='togglePasswordFields()'>";
+            echo "<label for='change_password_checkbox'>Cambiar contraseña</label> <input type='checkbox' id='change_password_checkbox' onchange='togglePasswordFields()'><br>";
             
 
             //Si se selecciona el checkbox anterior se despliega el cambio de contraseña
@@ -1160,7 +1160,7 @@ function perfil($dni){
                 echo "<input type='password' id='contraseña' name='contraseña'><br>";
 
                 echo "<label for='contraseña_nueva'>Contraseña nueva:</label>";
-                echo "<input type='password' id='contraseña_nueva' name='contraseña_nueva'><br>";
+                echo "<input type='password' id='contraseña_nueva' name='contraseña_nueva'><br><br>";
 
             echo "</div>";
 

@@ -29,7 +29,7 @@
             $_SESSION ['codigo'] = $codigo;
             mostrarCurso($dni, $codigo);
         
-            footer();
+            // footer();
         } else{
             echo "<script> 
                     alert('Acceso denegado, accede como alumno')
