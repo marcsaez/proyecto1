@@ -502,8 +502,21 @@ function listarCursos($dni){
         }
         else {
             echo '<h2> Todos los cursos: </h2>';
+            //Poner buscador
+            ?>
+            <form enctype="multipart/form-data" action="" method="POST">
+                Busqueda de curso por nombre:<input type="search" name="busqueda" placeholder="Nombre">
+            </form>
+            <?php
             $control = date('Y-m-d');
-            $sql = "SELECT * FROM cursos WHERE codigo NOT IN (SELECT codigo FROM matriculados WHERE dni = '$dni') AND inicio > '$control';";
+            if(isset($_POST['busqueda']) && strlen($_POST['busqueda']) > 0) {
+                $busqueda = $_POST['busqueda'];
+                $sql = "SELECT * FROM cursos WHERE codigo NOT IN (SELECT codigo FROM matriculados WHERE dni = '$dni') AND inicio > '$control' AND nombre LIKE '%$busqueda%';";
+                // $sql = "SELECT * FROM cursos WHERE nombre LIKE '%$busqueda%' OR codigo LIKE '%$busqueda%'";
+            }
+            else {
+                $sql = "SELECT * FROM cursos WHERE codigo NOT IN (SELECT codigo FROM matriculados WHERE dni = '$dni') AND inicio > '$control';";
+            }
             $result = $conexion->query($sql);
             if ($result->num_rows > 0) {
                 echo '<div class="curso-wrapper">';
