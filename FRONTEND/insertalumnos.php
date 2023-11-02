@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Enviar Datos de Alumnos a PHP con XMLHttpRequest</title>
+    <title>Alumnos</title>
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
