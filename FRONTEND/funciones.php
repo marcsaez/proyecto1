@@ -357,7 +357,7 @@ function adminCursos(){
             <tr class="titulo">
                 <td colspan="7" class="buscador">
                     <form enctype="multipart/form-data" action="" method="POST">
-                        Busqueda por Codigo/Nombre:<input type="search" name="busqueda" placeholder="Codigo o Nombre">
+                        <p>Busqueda por Codigo/Nombre: <input type="search" name="busqueda" placeholder="Codigo o Nombre"><a href = "admincursos.php"><img src="./img/refresh.png" alt="RefrescarBusqueda" id ="Refresh"></a></p>
                     </form>
                 </td> 
                 <td class="añadir" colspan="1"><a href="./formulariocursos.php"><span title="Añadir curso"><img src="./img/añadir.png" alt="añadir" id="añadir"></span></a></td>
@@ -505,7 +505,7 @@ function listarCursos($dni){
             //Poner buscador
             ?>
             <form enctype="multipart/form-data" action="" method="POST">
-                Busqueda de curso por nombre:<input type="search" name="busqueda" placeholder="Nombre">
+                <p>Busqueda de curso por nombre: <input type="search" name="busqueda" placeholder="Nombre"> <a href="listarcursos.php"><img src="./img/refresh.png" alt="RefrescarBusqueda" id ="Refresh"></a></p>
             </form>
             <?php
             $control = date('Y-m-d');
@@ -542,7 +542,7 @@ function listarCursos($dni){
                 echo '</div>';
             }
             else {
-                echo "No se encontraron cursos.";
+                echo "<h2>No se encontraron cursos.</h2>";
             }
         } 
 }

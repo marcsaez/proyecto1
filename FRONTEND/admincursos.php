@@ -24,7 +24,11 @@
             include_once("funciones.php");
             adminLogin();
             adminCursos();
+           
         ?>
     </table>
+    <?php
+    footer();
+    ?>
 </body>
 </html>

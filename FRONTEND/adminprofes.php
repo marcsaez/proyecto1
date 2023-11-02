@@ -35,7 +35,7 @@
                         <tr class="titulo">
                             <td colspan="7" class="buscador">
                                 <form enctype="multipart/form-data" action="" method="POST">
-                                    Busqueda por DNI/Nombre:<input type="search" name="busqueda" placeholder="DNI o Nombre">
+                                    <p>Busqueda por DNI/Nombre: <input type="search" name="busqueda" placeholder="DNI o Nombre"><a href = "adminprofes.php"><img src="./img/refresh.png" alt="RefrescarBusqueda" id ="Refresh"></a></p>
                                 </form>
                             </td> 
                             <td class="añadir" colspan="1"><a href="./formularioprofes.php"><span title="Añadir profesor"><img src="./img/añadir.png" alt="añadir" id="añadir"></span></a></td>
@@ -103,6 +103,7 @@
                 echo '</table>';
             }
             adminProfes();
+            footer();
         ?>
     <!-- </table> -->
 </body>
