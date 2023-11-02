@@ -30,8 +30,10 @@
            
             notas($codigo);
    
-
-        } else{
+            footer();
+        } 
+        
+        else{
             echo "<script> 
             alert('Acceso denegado, accede como profesor')
             </script>";
