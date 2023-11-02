@@ -39,7 +39,7 @@
     <script src = "./js/concurso.js"></script>
     <header>
         <div class="header">
-        <a href="menuadmin.php"><img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo"></a>
+        <a href="listarcursos.php"><img src="./img/TECHrecortada.png" alt="TechAcademy" id="logo"></a>
             <h2 id="titulo">TECH ACADEMY</h2>
         </div>
         <nav>
