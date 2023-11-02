@@ -27,84 +27,8 @@
         </div>
     </header>
         <?php
-            function adminProfes(){
-                echo '<table class="admin">
-                        <tr class="titulo">
-                            <td colspan="8"><h1>PROFESORES</h1></td>
-                        </tr>
-                        <tr class="titulo">
-                            <td colspan="7" class="buscador">
-                                <form enctype="multipart/form-data" action="" method="POST">
-                                    <p>Busqueda por DNI/Nombre: <input type="search" name="busqueda" placeholder="DNI o Nombre"><a href = "adminprofes.php"><img src="./img/refresh.png" alt="RefrescarBusqueda" id ="Refresh"></a></p>
-                                </form>
-                            </td> 
-                            <td class="añadir" colspan="1"><a href="./formularioprofes.php"><span title="Añadir profesor"><img src="./img/añadir.png" alt="añadir" id="añadir"></span></a></td>
-                        </tr>
-                        <tr class="blanco">
-                            <td>DNI</td>
-                            <td>Nombre</td>
-                            <td>Apellidos</td>
-                            <td>Titulo Academico</td>
-                            <td>Foto</td>
-                            <td>Activo</td>
-                            <td>Editar</td>
-                            <td>Desactivar</td>
-                        </tr>';
-            
-                $conexion = abrirBBDD();
-                if(isset($_POST['busqueda']) && strlen($_POST['busqueda']) > 0) {
-                    $busqueda = $_POST['busqueda'];
-                    $sql = "SELECT * FROM profesor WHERE nombre LIKE '%$busqueda%' OR dni LIKE '%$busqueda%'";
-                }
-                else {
-                    $sql = "SELECT * FROM profesor"; 
-                }
-                $result = $conexion->query($sql);
-                if ($result->num_rows > 0) {
-                    while ($linia = $result->fetch_assoc()){
-                        $info = pathinfo($linia['foto']);
-                        if (isset($info['extension']) && $info['extension'] !== '') {
-                            $foto = "<img src='./".$linia['foto']."' alt='fotoperfil' id='fotoperfil'>";
-                            } else {
-                            $foto = "<img src='./img/perfiles/default.png' alt='fotoperfil' id='fotoperfil'>";
-                            }
-                        echo '<tr>
-                                <td>' . $linia['dni'] . '</td>
-                                <td>' . $linia['nombre'] . '</td>
-                                <td>' . $linia['apellidos'] . '</td>
-                                <td>' . $linia['titulo_academico'] . '</td>
-                                <td>' . $foto . '</td>';
-            
-                            if ($linia['activo'] == "1") {
-                                echo '<td> <img src="./img/punto_verde.png" alt="Verde"> </td>';
-                            } else {
-                                echo '<td> <img src="./img/punto_rojo.png" alt="Rojo"> </td>';
-                            }
-            
-                            echo '<td>
-                                <form action="profesmodificar.php" method="POST">
-                                    <input type="hidden" name="dni" value="' . $linia['dni'] . '">
-                                    <button type="submit" name="mod_profe"><img src="./img/editar.png" alt="TechAcademy"></button>
-                                </form>
-                            </td>
-                            <td>
-                                <form action="profesdesactivar.php" method="POST">
-                                <input type="hidden" name="dni" value="' . $linia['dni'] . '">
-                                <button type="submit" name="des_profes"><img src="./img/eliminar.png" alt="TechAcademy"></button>
-                                </form>
-                            </td>
-                            </tr>';
-            
-                    }
-                }
-                else {
-                    echo "NO HAY CURSOS";      
-                }
-                echo '</table>';
-            }
             adminProfes();
             footer();
         ?>
-    <!-- </table> -->
 </body>
 </html>
