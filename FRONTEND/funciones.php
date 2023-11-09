@@ -123,9 +123,9 @@ function encabezadoProfe($datos){
     echo "</header>";
 }
 
-// ############
+// ###############
 // Base de Datos #
-// ############
+// ###############
 
 function abrirBBDD(){
     try {
@@ -349,6 +349,36 @@ function adminLogin(){
     }
 
 }
+
+function comprobacionDatosLogInAdmin() {
+    $id = $_POST['id'];
+    $usuario = $_POST['usuario'];
+    $contraseña = $_POST['contraseña'];
+    
+    $conexion = abrirBBDD();
+    $sql = "SELECT usuario, contraseña FROM administradores WHERE id=$id";
+
+    $result = $conexion->query($sql);
+    $row = $result->fetch_assoc();
+    if ($usuario == $row['usuario'] && $contraseña == $row['contraseña']) {
+        // Almacenar los datos en la sesión
+        $_SESSION['tipo'] = 'admin';
+        $_SESSION['id'] = $id;
+        $_SESSION['usuario'] = $usuario;
+        $_SESSION['contraseña'] = $contraseña;
+        ?>
+        <meta http-equiv="REFRESH" content="0;url=menuadmin.php">
+    <?php
+    } else {
+        ?>  
+            <script>
+                alert("El usuario no está registrado o alguno de los datos no es correcto");
+            </script>              
+            <meta http-equiv="REFRESH" content="0;url=admin.php">
+        <?php
+    }
+}
+
 function adminCursos(){
     echo '<table class="admin">
             <tr class="titulo">
@@ -975,6 +1005,9 @@ function comprobacionEdad($edad) {
 	}
 }
 
+// ############
+// Log in     #
+// ############
 
 function formularioInicio() {
     ?>
@@ -1008,6 +1041,49 @@ function formularioInicio() {
         </form>
     </div>
     <?php
+}
+
+function comprobarDatosLogIn() {
+    $conexion = abrirBBDD();
+    if($conexion == false) {
+        mysqli_connect_error();
+    }
+    else {
+        if(isset($_POST['profesor']) && $_POST['profesor'] == 'on') {
+            $tabla = "profesor";
+            $_SESSION['tipo'] = "profesor";
+        }
+        else {
+            $tabla = "alumnos";
+            $_SESSION['tipo'] = "alumno";
+        }
+        $sql = "SELECT contraseña FROM $tabla WHERE dni='".$_POST['dni']."';";
+        $contraseñaBBDD = contenido($conexion, $sql);
+        $contraseña = $_POST['contraseña'];
+        $verificacion = verificarContraseña($contraseña, $contraseñaBBDD);
+        if($verificacion == true) {
+            $_SESSION['dni'] = $_POST['dni'];
+            $_SESSION['contraseña'] = $_POST['contraseña'];
+            if($tabla == 'alumnos'){
+            ?>
+            <meta http-equiv="REFRESH" content="0;url=miscursos.php">
+            <?php
+            }else{
+                ?>
+                    <meta http-equiv="REFRESH" content="0;url=miscursosprofe.php">
+                <?php
+            }
+        }
+        else {
+            ?>  
+                <script>
+                    alert("El usuario no está registrado o alguno de los datos no es correcto");
+                </script>
+                <meta http-equiv="REFRESH" content="0;url=login.php">
+            <?php
+        }
+
+    }
 }
 
 function contenido($conexion, $sql) {
