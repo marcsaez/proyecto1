@@ -13,15 +13,33 @@ if($conexion == false) {
         $final = $_POST['final'];
         
         $sqlUpdate = "UPDATE cursos SET nombre='$nombre', descripcion='$descripcion', horas='$horas', inicio='$inicio', final='$final' WHERE codigo='$codigo'";
-
-        if ($conexion->query($sqlUpdate) === TRUE) {
-            // Redirigir a la misma página después de la actualización
-             ?>               
-                 <meta http-equiv="REFRESH" content="0;url=admincursos.php">
-             <?php
-        } else {
-            echo "Error al actualizar los datos: " . $conexion->error;
+        if($horas > 0){
+            if($inicio >= date('Y-m-d')){
+                if ($conexion->query($sqlUpdate) === TRUE) {
+                    // Redirigir a la misma página después de la actualización
+                     ?>               
+                         <meta http-equiv="REFRESH" content="0;url=admincursos.php">
+                     <?php
+                } else {
+                    echo "Error al actualizar los datos: " . $conexion->error;
+                }
+            }else{
+                    ?>
+                    <script>
+                        alert("Error, NO puedes crear un curso anterior a la fecha de hoy");
+                    </script>
+                    <?php
+                }
+            
+            
+        } else{
+            ?>
+            <script>
+                alert("Error: 'Las horas han de ser un numero mayor a 0'");
+            </script>
+            <?php
         }
+        
 
     }
 }

@@ -32,13 +32,13 @@
 
     <form action="" method="post" enctype = "multipart/form-data">
         <label for="nombre">Nombre del Curso:</label>
-        <input type="text" name="nombre" required><br>
+        <input type="text" name="nombre" required maxlength="100"><br>
 
         <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" rows="4" cols="50" required></textarea><br>
+        <textarea name="descripcion" rows="4" cols="50" required maxlength="250"></textarea><br>
 
         <label for="horas">Horas:</label>
-        <input type="number" name="horas" required><br>
+        <input type="number" name="horas" required maxlength="3"><br>
 
         <label for="inicio">Fecha de Inicio: (AAAA-MM-DD)</label>
         <input type="date" name="inicio" required><br>
@@ -47,10 +47,10 @@
         <input type="date" name="final" required><br>
 
         <label for="fk_profesor">DNI del Profesor:</label>
-        <input type="text" name="fk_profesor" required><br>
+        <input type="text" name="fk_profesor" required maxlength="9"><br>
 
         <label for="imagen">Imagen del curso:</label>
-        <input type="file" name="imagen" accept="img/*" required><br>
+        <input type="file" name="imagen" accept=".jpg, .png, .jpeg" required><br>
         
         <input type="submit" value="Crear Curso">
     </form>

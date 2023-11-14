@@ -174,14 +174,13 @@ function insertarCurso($nombre, $descripcion, $horas, $inicio, $final, $activo, 
             echo "<a href='menuadmin.php'>Volver al menu</a>";
         ?>
         <script>
-            alert("EL CURSO YA ESTA CREADO!");
+            alert("EL CURSO YA HA SIDO CREADO ANTERIOMENTE!");
         </script>
         
         <?php
 
         } else {
             if($inicio >= date('Y-m-d')){
-                echo "hola";
             // Si el usuario no existe en la base de datos, lo insertamos
             $sql = "INSERT INTO cursos (nombre, descripcion, horas, inicio, final, activo, foto, fk_profesor) VALUES ('$nombre', '$descripcion','$horas', '$inicio', '$final','$activo', '$imagen', '$fk_profesor')";
             }else{
@@ -226,14 +225,22 @@ function crearcurso(){
         $TiempoInicio = date('Y-m-d', $timestamp);
         $timestamp2 = strtotime($final);
         $TiempoFinal = date('Y-m-d', $timestamp2);
-
-        $connection = abrirBBDD();
+        if($horas > 0){
+            $connection = abrirBBDD();
         
-        if ($connection){
-            insertarCurso($nombre,$descripcion,$horas,$TiempoInicio,$TiempoFinal,$activo,$imagencurso,$fk_profesor,$connection);
+            if ($connection){
+                insertarCurso($nombre,$descripcion,$horas,$TiempoInicio,$TiempoFinal,$activo,$imagencurso,$fk_profesor,$connection);
+            } else{
+                header("Location: formulariocursos.php");
+            }
         } else{
-            header("Location: formulariocursos.php");
+            ?>
+            <script>
+                alert("Error: 'Las horas han de ser un numero mayor a 0'");
+            </script>
+            <?php
         }
+        
     } else{
         header("Location: formulariocursos.php");
     }
