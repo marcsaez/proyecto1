@@ -22,13 +22,16 @@ if($conexion == false) {
                      <?php
                 } else {
                     echo "Error al actualizar los datos: " . $conexion->error;
+                    echo "<meta http-equiv='REFRESH' content='0;url=admincursos.php'>";
                 }
             }else{
                     ?>
                     <script>
                         alert("Error, NO puedes crear un curso anterior a la fecha de hoy");
                     </script>
+                    
                     <?php
+                    echo "<meta http-equiv='REFRESH' content='0;url=admincursos.php'>";
                 }
             
             
@@ -38,6 +41,7 @@ if($conexion == false) {
                 alert("Error: 'Las horas han de ser un numero mayor a 0'");
             </script>
             <?php
+            echo "<meta http-equiv='REFRESH' content='0;url=admincursos.php'>";
         }
         
 
