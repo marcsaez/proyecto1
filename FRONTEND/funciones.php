@@ -584,11 +584,11 @@ function profeModificar($dni){
             echo "<div class='perfil'>";
 
             echo "<form action='profesprocesar.php' method='POST' enctype='multipart/form-data'>";
-            echo "<label for='dni'>dni:</label>";
+            echo "<label for='dni'>DNI:</label>";
             echo "<input type='text' id='dni' name='dni' value='" . $row['dni'] . "' readonly required><br>";
             echo "<label for='nombre'>Nombre:</label>";
             echo "<input type='text' id='nombre' name='nombre' value='" . $row['nombre'] . "' required><br>";
-            echo "<label for='apellidos'>apellidos:</label>";
+            echo "<label for='apellidos'>Apellidos:</label>";
             echo "<input type='text' id='apellidos' name='apellidos' value='" . $row['apellidos'] . "' required><br>";
             echo "<label for='titulo_academico'>Titulo academico:</label>";
             echo "<input type='text' id='titulo_academico' name='titulo_academico' value='" . $row['titulo_academico'] . "' required><br>";
