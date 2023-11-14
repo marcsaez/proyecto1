@@ -36,7 +36,7 @@ if($_POST){
                     <td class="imagen" colspan="2"> <a href="bienvenida.php"> <img src="./img/TECHrecortada.png" alt="Descripción de la imagen"> </a></td>
                 </tr>
                 <tr>
-                    <td> <label for="nombre">Nombre:</label> </td> <td> <input type="text" name="nombre" id="nombre" maxlength="100" required> </td>
+                    <td> <label for="nombre">Nombre:</label> </td> <td> <input type="text" name="nombre" id="nombre" maxlength="50" required> </td>
                 </tr>
                 <tr>
                     <td> <label for="apellidos">Apellidos:</label> </td> <td> <input type="text" name="apellidos" id="apellidos" maxlength="100" required> </td>

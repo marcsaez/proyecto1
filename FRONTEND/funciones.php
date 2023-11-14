@@ -1313,13 +1313,13 @@ function perfil($dni){
             echo "<input type='text' id='dni' name='dni' value='" . $row['dni'] . "' disabled><br>";
 
             echo "<label for='nombre'>Nombre:</label>";
-            echo "<input type='text' id='nombre' name='nombre' value='" . $row['nombre'] . "' required><br>";
+            echo "<input type='text' id='nombre' name='nombre' value='" . $row['nombre'] . "' maxlength='50' required><br>";
 
             echo "<label for='apellidos'>Apellidos:</label>";
-            echo "<input type='text' id='apellidos' name='apellidos' value='" . $row['apellidos'] . "' required><br>";
+            echo "<input type='text' id='apellidos' name='apellidos' value='" . $row['apellidos'] . "' maxlength='100' required><br>";
 
             echo "<label for='edad'>Edad:</label>";
-            echo "<input type='number' id='edad' name='edad' value='" . $row['edad'] . "' required><br>";
+            echo "<input type='number' id='edad' name='edad' value='" . $row['edad'] . "' maxlength='2' required><br>";
             
             echo "<label for='change_password_checkbox'>Cambiar contraseña</label> <input type='checkbox' id='change_password_checkbox' onchange='togglePasswordFields()'><br>";
             
@@ -1328,15 +1328,15 @@ function perfil($dni){
             echo "<div id='password_fields' style='display: none;'>";
 
                 echo "<label for='contraseña'>Contraseña actual:</label>";
-                echo "<input type='password' id='contraseña' name='contraseña'><br>";
+                echo "<input type='password' id='contraseña' name='contraseña' maxlength='100'><br>";
 
                 echo "<label for='contraseña_nueva'>Contraseña nueva:</label>";
-                echo "<input type='password' id='contraseña_nueva' name='contraseña_nueva'><br><br>";
+                echo "<input type='password' id='contraseña_nueva' name='contraseña_nueva' maxlength='100'><br><br>";
 
             echo "</div>";
 
             echo "<label for='imagen'>Foto de perfil:</label>";
-            echo "<input type='file' name='imagen' id='imagen' accept='img/*'><br>";
+            echo "<input type='file' name='imagen' id='imagen' accept='.jpg, .png, .jpeg'><br>";
 
             // Botón para enviar el formulario
             echo "<input type='submit' value='Guardar'>";
