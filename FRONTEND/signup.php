@@ -36,22 +36,22 @@ if($_POST){
                     <td class="imagen" colspan="2"> <a href="bienvenida.php"> <img src="./img/TECHrecortada.png" alt="Descripción de la imagen"> </a></td>
                 </tr>
                 <tr>
-                    <td> <label for="nombre">Nombre:</label> </td> <td> <input type="text" name="nombre" id="nombre" required> </td>
+                    <td> <label for="nombre">Nombre:</label> </td> <td> <input type="text" name="nombre" id="nombre" maxlength="100" required> </td>
                 </tr>
                 <tr>
-                    <td> <label for="apellidos">Apellidos:</label> </td> <td> <input type="text" name="apellidos" id="apellidos" required> </td>
+                    <td> <label for="apellidos">Apellidos:</label> </td> <td> <input type="text" name="apellidos" id="apellidos" maxlength="100" required> </td>
                 </tr>
                 <tr>
-                    <td> <label for="edad">Edad:</label> </td> <td> <input type="text" name="edad" id="edad" required> </td>
+                    <td> <label for="edad">Edad:</label> </td> <td> <input type="text" name="edad" id="edad" maxlength="2" required> </td>
                 </tr>
                 <tr>
                     <td> <label for="dni">DNI:</label> </td> <td> <input type="text" name="dni" id="dni" maxlength="9" required> </td>
                 </tr>
                 <tr>
-                    <td> <label for="contraseña">Contraseña:</label> </td> <td> <input type="password" name="contraseña" id="contraseña" required> </td>
+                    <td> <label for="contraseña">Contraseña:</label> </td> <td> <input type="password" name="contraseña" id="contraseña" maxlength="100" required> </td>
                 </tr>
                 <tr>
-                    <td> <label for="imagen">Foto de perfil:</label> </td> <td> <input type="file" name="imagen" id="imagen" accept="img/*"> </td>
+                    <td> <label for="imagen">Foto de perfil:</label> </td> <td> <input type="file" name="imagen" id="imagen" accept=".jpg, .png, .jpeg"> </td>
                 </tr>
                 <tr>
                     <td style="text-align:center" colspan="2"> 
