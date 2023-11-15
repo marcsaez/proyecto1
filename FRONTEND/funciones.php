@@ -546,15 +546,15 @@ function cursoModificar($codigo){
 
             echo "<form action='cursoprocesar.php' method='POST' enctype='multipart/form-data'>";
             echo "<label for='codigo'>CODIGO:</label>";
-            echo "<input type='text' id='codigo' name='codigo' value='" . $row['codigo'] . "' readonly required><br>";
+            echo "<input type='text' id='codigo' name='codigo' value='" . $row['codigo'] . "' readonly required maxlength = '100'><br>";
             echo "<label for='nombre'>Nombre:</label>";
-            echo "<input type='text' id='nombre' name='nombre' value='" . $row['nombre'] . "' required><br>";
+            echo "<input type='text' id='nombre' name='nombre' value='" . $row['nombre'] . "' required maxlength='100'><br>";
             echo "<label for='descripcion'>Descripcion:</label>";
             echo "<textarea name='descripcion' rows='4' cols='50' required>" . $row['descripcion'] . "</textarea><br>";
             echo "<label for='horas'>Horas:</label>";
-            echo "<input type='number' name='horas' value='" . $row['horas'] . "' required><br>";
+            echo "<input type='number' name='horas' value='" . $row['horas'] . "' required maxlength='3'><br>";
             echo "<label for='Inicio'>Inicio:</label>";
-            echo "<input type='date' name='inicio' value='" . $row['inicio'] . "' required><br>";
+            echo "<input type='date' name='inicio' value='" . $row['inicio'] . "' required ><br>";
             echo "<label for='final'>Final:</label>";
             echo "<input type='date' name='final' value='" . $row['final'] . "' required><br>";
 
@@ -587,11 +587,11 @@ function profeModificar($dni){
             echo "<label for='dni'>DNI:</label>";
             echo "<input type='text' id='dni' name='dni' value='" . $row['dni'] . "' readonly required><br>";
             echo "<label for='nombre'>Nombre:</label>";
-            echo "<input type='text' id='nombre' name='nombre' value='" . $row['nombre'] . "' required><br>";
+            echo "<input type='text' id='nombre' name='nombre' value='" . $row['nombre'] . "' required maxlength='100'><br>";
             echo "<label for='apellidos'>Apellidos:</label>";
-            echo "<input type='text' id='apellidos' name='apellidos' value='" . $row['apellidos'] . "' required><br>";
+            echo "<input type='text' id='apellidos' name='apellidos' value='" . $row['apellidos'] . "' required maxlength='100'><br>";
             echo "<label for='titulo_academico'>Titulo academico:</label>";
-            echo "<input type='text' id='titulo_academico' name='titulo_academico' value='" . $row['titulo_academico'] . "' required><br>";
+            echo "<input type='text' id='titulo_academico' name='titulo_academico' value='" . $row['titulo_academico'] . "' required maxlength='100'><br>";
 
             // echo "<img src='./".$row['foto']."' alt='fotocurso' id='fotocurso'>";
             // echo "<label for='Foto'>Foto:</label>";
