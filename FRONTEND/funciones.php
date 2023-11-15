@@ -40,6 +40,7 @@ function EncabaezadoAlternativo(){
     navegadorBienvenida2();
     echo "</header>";
 }
+//Mirar si se usa en algun sitio
 function encabezadoBienvenida($datos){
     echo "<header>
     <div class='header'>
@@ -53,14 +54,12 @@ function encabezadoBienvenida($datos){
 function navegadorBienvenida2(){
     echo '<nav>
     <ul>
-        <li><a href="sobrenosotros.php">Sobre nosotros</a></li>
-        <li><a href="#">Servicios</a></li>
-        <li><a href="#">Contacto</a></li>
         <li><a href="login.php">Iniciar Sesion</a></li>
-
+        <li><a href="signup.php">Registrarse</a></li>
     </ul>
   </nav>';
 }
+//Mirar si se usa en algun sitio
 function navegadorBienvenida(){
     echo '<nav>
     <ul>
