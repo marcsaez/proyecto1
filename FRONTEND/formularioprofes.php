@@ -27,7 +27,8 @@
             <img src="./img/98-1.jpg" alt="fotoperfil" id="fotoperfil">
         </div>
     </header>
-    <a href="./adminprofes.php"><h2>Editar profesor</h2></a>
+    <a href="./adminprofes.php"><span title="Volver administracion profesor"><img src="./img/flecha_atras.png" alt="atras" id="atras" style="width: 50px;"></span></a>
+    <!-- <a href="./adminprofes.php"><h2>Editar profesor</h2></a> -->
     <h2>Crear Nuevo Profesor</h2>
 
     <form action="" method="post">
