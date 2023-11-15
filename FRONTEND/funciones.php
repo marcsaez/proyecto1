@@ -54,7 +54,7 @@ function encabezadoBienvenida($datos){
 function navegadorBienvenida2(){
     echo '<nav>
     <ul>
-        <li><a href="login.php">Iniciar Sesion</a></li>
+        <li><a href="login.php">Iniciar Sesión</a></li>
         <li><a href="signup.php">Registrarse</a></li>
     </ul>
   </nav>';
