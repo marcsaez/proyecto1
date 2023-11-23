@@ -392,7 +392,7 @@ function adminCursos(){
             </tr>
             <tr class="titulo">
                 <td colspan="7" class="buscador">
-                    <form enctype="multipart/form-data" action="" method="POST">
+                    <form enctype="multipart/form-data" action="#" method="POST">
                         <p>Busqueda por Codigo/Nombre: <input type="search" name="busqueda" placeholder="Codigo o Nombre"><a href = "admincursos.php"><img src="./img/refresh.png" alt="RefrescarBusqueda" id ="Refresh"></a></p>
                     </form>
                 </td> 
@@ -616,7 +616,7 @@ function listarCursos($dni){
             echo '<h2> Todos los cursos: </h2>';
             //Poner buscador
             ?>
-            <form enctype="multipart/form-data" action="" method="POST">
+            <form enctype="multipart/form-data" action="#" method="POST">
                 <p>Busqueda de curso por nombre: <input type="search" name="busqueda" placeholder="Nombre"> <a href="listarcursos.php"><img src="./img/refresh.png" alt="RefrescarBusqueda" id ="Refresh"></a></p>
             </form>
             <?php
@@ -1318,7 +1318,7 @@ function perfil($dni){
             echo "<input type='text' id='apellidos' name='apellidos' value='" . $row['apellidos'] . "' maxlength='100' required><br>";
 
             echo "<label for='edad'>Edad:</label>";
-            echo "<input type='number' id='edad' name='edad' value='" . $row['edad'] . "' maxlength='2' required><br>";
+            echo "<input type='number' id='edad' name='edad' value='" . $row['edad'] . "' required><br>";
             
             echo "<label for='change_password_checkbox'>Cambiar contraseña</label> <input type='checkbox' id='change_password_checkbox' onchange='togglePasswordFields()'><br>";
             

@@ -28,7 +28,7 @@
     </header>
         <?php
             adminProfes();
-            footer();
+            // footer();
         ?>
 </body>
 </html>

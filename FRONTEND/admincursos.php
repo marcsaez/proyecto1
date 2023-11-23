@@ -33,7 +33,7 @@
         ?>
     </table>
     <?php
-    footer();
+    // footer();
     ?>
 </body>
 </html>

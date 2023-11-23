@@ -41,7 +41,7 @@
         <textarea name="descripcion" rows="4" cols="50" required maxlength="250"></textarea><br>
 
         <label for="horas">Horas:</label>
-        <input type="number" name="horas" required maxlength="3"><br>
+        <input type="number" name="horas" required><br>
 
         <label for="inicio">Fecha de Inicio: (AAAA-MM-DD)</label>
         <input type="date" name="inicio" required><br>
@@ -57,16 +57,6 @@
         
         <input type="submit" value="Crear Curso">
     </form>
-
-    <footer>
-        <div class="contacto">
-            <p>consultas@techacademy.com</p>
-            <p>C/de la Batlloria, Badalona</p>
-        </div>
-        <div class="copyright">
-            <p>© 2023 TECH ACADEMY</p>
-        </div>
-    </footer>
 
 </body>
 </html>

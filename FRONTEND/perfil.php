@@ -55,7 +55,7 @@
 
     <?php
         perfil($_SESSION['dni']);
-        footer();
+        // footer();
     } else{
         ?>
         <h2>ERROR: ¡SESION NO INICIADA!</h2>

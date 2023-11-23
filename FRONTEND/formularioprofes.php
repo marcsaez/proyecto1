@@ -52,23 +52,8 @@
         <label for="foto">Foto de perfil:</label>
         <input type="file" name="foto" id="foto" accept="img/*"><br>
 
-        <!--
-        <label for="foto">Foto (en proceso):</label>
-        <input type="text" name="foto"><br>
-        -->
-
         <input type="submit" value="Crear Profesor">
     </form>
-
-    <footer>
-        <div class="contacto">
-            <p>consultas@techacademy.com</p>
-            <p>C/de la Batlloria, Badalona</p>
-        </div>
-        <div class="copyright">
-            <p>© 2023 TECH ACADEMY</p>
-        </div>
-    </footer>
 
 </body>
 </html>

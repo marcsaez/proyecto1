@@ -30,7 +30,7 @@
            
             notas($codigo);
    
-            footer();
+            // footer();
         } 
         
         else{
