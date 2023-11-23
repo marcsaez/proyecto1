@@ -1,5 +1,6 @@
 <?php 
     include("funciones.php");
+    adminLogin();
     if ($_POST){
         crearProfe();
     }
@@ -22,8 +23,9 @@
             <h2 id="titulo">TECH ACADEMY</h2>
         </div>
         <div class="usuario">
-            <!-- FOTO DE PRUEBA PARA MEDIDAS (HAY QUE SACARLA DE LA BBDD) -->
-            <p id="username" >Pablo de Gregorio</p>
+        <?php
+            echo '<p id="username" >'. $_SESSION['usuario'] .'</p>';
+        ?>
             <img src="./img/98-1.jpg" alt="fotoperfil" id="fotoperfil">
         </div>
     </header>

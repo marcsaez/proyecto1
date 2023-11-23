@@ -33,7 +33,7 @@
 
     
     <?php
-        footer();
+                footer();
             }
         } else{
             echo "<script> 

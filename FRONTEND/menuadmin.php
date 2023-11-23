@@ -18,7 +18,7 @@
         </div>
         <div class="usuario">
         <?php
-            echo '<p id="username" >'. $_SESSION['usuario'] .'</p>'
+            echo '<p id="username" >'. $_SESSION['usuario'] .'</p>';
         ?>
             <img src="./img/98-1.jpg" alt="fotoperfil" id="fotoperfil">
         </div>
