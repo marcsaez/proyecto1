@@ -33,24 +33,18 @@
     <!-- <a href="./adminprofes.php"><h2>Editar profesor</h2></a> -->
     <h2>Crear Nuevo Profesor</h2>
 
-    <form action="" method="post">
-        <label for="dni">DNI del profesor:</label>
-        <input type="text" name="dni" required><br>
+    <form action="#" method="post">
+        <p>DNI del profesor:<input type="text" name="dni" required></p>
 
-        <label for="nombre">Nombre del profesor:</label>
-        <input type="text" name="nombre" required><br>
+        <p>Nombre del profesor:<input type="text" name="nombre" required></p>
 
-        <label for="apellidos">Apellidos del profesor:</label>
-        <input type="text" name="apellidos" required><br>
+        <p>Apellidos del profesor:<input type="text" name="apellidos" required></p>      
 
-        <label for="titulo_academico">Titulo del profesor:</label>
-        <input type="text" name="titulo_academico" required><br>
+        <p>Titulo del profesor:<input type="text" name="titulo_academico" required></p>       
 
-        <label for="contraseña">Contraseña:</label>
-        <input type="password" name="contraseña" id="contraseña" required><br>
+        <p>Contraseña:<input type="password" name="contraseña" id="contraseña" required></p>       
 
-        <label for="foto">Foto de perfil:</label>
-        <input type="file" name="foto" id="foto" accept="img/*"><br>
+        <p>Foto de perfil:<input type="file" name="foto" id="foto" accept="img/*"></p>        
 
         <input type="submit" value="Crear Profesor">
     </form>

@@ -33,27 +33,20 @@
     <!-- <a href="./admincursos.php"><h2>Modificar cursos</h2></a> -->
     <h2>Crear Nuevo Curso</h2>
 
-    <form action="" method="post" enctype = "multipart/form-data">
-        <label for="nombre">Nombre del Curso:</label>
-        <input type="text" name="nombre" required maxlength="100"><br>
+    <form action="#" method="post" enctype = "multipart/form-data">
+        <p>Nombre del Curso:<input type="text" name="nombre" required maxlength="100"></p>
+        
+        <p>Descripción:<textarea name="descripcion" rows="4" cols="50" required maxlength="250"></textarea></p>
 
-        <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" rows="4" cols="50" required maxlength="250"></textarea><br>
+        <p>Horas:<input type="number" name="horas" required></p>       
 
-        <label for="horas">Horas:</label>
-        <input type="number" name="horas" required><br>
+        <p>Fecha de Inicio: (AAAA-MM-DD)<input type="date" name="inicio" required></p>       
 
-        <label for="inicio">Fecha de Inicio: (AAAA-MM-DD)</label>
-        <input type="date" name="inicio" required><br>
+        <p>Fecha de Finalización: (AAAA-MM-DD)<input type="date" name="final" required></p>        
 
-        <label for="final">Fecha de Finalización: (AAAA-MM-DD)</label>
-        <input type="date" name="final" required><br>
+        <p>DNI del Profesor:<input type="text" name="fk_profesor" required maxlength="9"></p>  
 
-        <label for="fk_profesor">DNI del Profesor:</label>
-        <input type="text" name="fk_profesor" required maxlength="9"><br>
-
-        <label for="imagen">Imagen del curso:</label>
-        <input type="file" name="imagen" accept=".jpg, .png, .jpeg" required><br>
+        <p>Imagen del curso:<input type="file" name="imagen" accept=".jpg, .png, .jpeg" required></p>
         
         <input type="submit" value="Crear Curso">
     </form>

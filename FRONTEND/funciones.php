@@ -462,7 +462,7 @@ function adminProfes(){
             </tr>
             <tr class="titulo">
                 <td colspan="7" class="buscador">
-                    <form enctype="multipart/form-data" action="" method="POST">
+                    <form enctype="multipart/form-data" action="#" method="POST">
                         <p>Busqueda por DNI/Nombre: <input type="search" name="busqueda" placeholder="DNI o Nombre"><a href = "adminprofes.php"><img src="./img/refresh.png" alt="RefrescarBusqueda" id ="Refresh"></a></p>
                     </form>
                 </td> 
@@ -492,9 +492,9 @@ function adminProfes(){
         while ($linia = $result->fetch_assoc()){
             $info = pathinfo($linia['foto']);
             if (isset($info['extension']) && $info['extension'] !== '') {
-                $foto = "<img src='./".$linia['foto']."' alt='fotoperfil' id='fotoperfil'>";
+                $foto = "<img src='./".$linia['foto']."' alt='fotoperfil' class='fotoperfil'>";
                 } else {
-                $foto = "<img src='./img/perfiles/default.png' alt='fotoperfil' id='fotoperfil'>";
+                $foto = "<img src='./img/perfiles/default.png' alt='fotoperfil' class='fotoperfil'>";
                 }
             echo '<tr>
                     <td>' . $linia['dni'] . '</td>
